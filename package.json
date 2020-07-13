@@ -2,6 +2,7 @@
   "name": "hexo-site",
   "version": "0.0.0",
   "private": true,
+  "homepage": "https://wangguibin.github.io/hexo-github-action",
   "scripts": {
     "build": "hexo generate",
     "clean": "hexo clean",
