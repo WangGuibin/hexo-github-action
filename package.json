@@ -9,8 +9,7 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "",
-    "homepage":"wangguibin/github.io/hexo-github-action"
+    "version": ""
   },
   "dependencies": {
     "hexo": "^4.2.1",
