@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@master 
 
     - name: Build and Deploy
-      uses: WangGuibin/hexo-deploy-action@master
+      uses: renzhaosy/hexo-deploy-action@master
       env: 
         PERS0NAL_T0KEN: ${{ secrets.HEXO_KEY }}
         PUBLISH_REPOSITORY: WangGuibin/hexo-github-action  
