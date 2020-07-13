@@ -1,19 +1,19 @@
-name: Hexo github action demo
-on: 
-   push:
-     branches:
-       - master
+name: Deploy to Remote Branch
+
+on:
+  push:
+    branches:
+      - master
+      
 jobs:
-  build-and-deploy:
+  hexo-deploy-gh-pages:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@master 
-
-    - name: Build and Deploy
-      uses: renzhaosy/hexo-deploy-action@master
-      env: 
-        PERS0NAL_T0KEN: ${{ secrets.HEXO_KEY }}
-        PUBLISH_REPOSITORY: WangGuibin/hexo-github-action  
-        BRANCH: gh-pages  
-        PUBLISH_DIR: ./public
+    - uses: actions/checkout@master
+    - name: hexo-deploy-gh-pages
+      uses: khanhicetea/gh-actions-hexo-deploy-gh-pages@master
+      env:
+        GITHUB_REMOTE_REPOSITORY: WangGuibin/hexo-github-action
+        GITHUB_BRANCH: gh-pages 
+        GIT_DEPLOY_KEY: ${{ secrets.HEXO_KEY }}
+        HUGO_VERSION: "0.58.3"
