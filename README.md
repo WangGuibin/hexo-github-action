@@ -1,4 +1,4 @@
 # hexo-github-action
 github-actions试试水 
 
-## http://WangGuibin/github.io/hexo-github-action
+## http://wangguibin.github.io/hexo-github-action
