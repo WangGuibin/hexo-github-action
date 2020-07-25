@@ -104,7 +104,7 @@ menu:
 
 # Enable/Disable menu icons.
 menu_icons:
-  enable: true
+  enable: false
 
 
 # ---------------------------------------------------------------
