@@ -4,7 +4,6 @@ date: 2017-09-26 22:25:24
 tags: [HTML,JavaScript,CSS,前端,学习总结]
 published: true
 hideInList: false
-feature: /post-images/css-xue-xi-bi-ji.jpg
 ---
 最近学习CSS的一些知识点的总结
 

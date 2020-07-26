@@ -4,12 +4,14 @@ date: 2020-03-22 17:36:05
 tags: [Objective-C,iOS,CSS,前端,大前端]
 published: true
 hideInList: false
-feature: https://images.cnblogs.com/cnblogs_com/wgb1234/1662566/o_200322020921heart1.png
 isTop: false
 ---
 > 灵感来源于前端CSS画红心的原理  [参考](https://www.cnblogs.com/yingzi1028/p/6248937.html)
 
+![](https://github.com/WangGuibin/MyFilesRepo/images/heart_demo.png)
+
 <!-- more -->
+
 
 
 # 上代码
@@ -123,7 +125,7 @@ NS_ASSUME_NONNULL_END
 @end
 
 ```
-![IB设置的过程](https://images.cnblogs.com/cnblogs_com/wgb1234/1662566/o_200322020929heart2.png)
+![IB设置的过程](https://github.com/WangGuibin/MyFilesRepo/images/heart2IB.png)
 
 # 简单调用如下: 
 ```objectivec
