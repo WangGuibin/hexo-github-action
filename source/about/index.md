@@ -1,12 +1,9 @@
 ---
-title: '关于我'
-date: 2019-06-16 19:09:48
-tags: []
-published: true
-hideInList: true
-feature: /post-images/about.jpeg
-isTop: false
+title: about
+date: 2020-07-26 11:08:44
+type: "about"
 ---
+
 CoderWGB , 一枚苦逼的iOS开发者。
 
 ![](http://wangguibin.github.io/post-images/1580100127864.jpeg)
