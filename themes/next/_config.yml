@@ -92,19 +92,19 @@ index_with_subtitle: true
 # Value before `||` delimeter is the target link.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 
-menu:
-  home: / || fa fa-home
-  about: /about/ || fa fa-user
-  tags: /tags/ || fa fa-tags
-  categories: /categories/ || fa fa-th
-  archives: /archives/ || fa fa-archive
+# menu:
+#   home: / || fa fa-home
+#   about: /about || fa fa-user
+#   tags: /tags || fa fa-tags
+#   categories: /categories || fa fa-th
+#   archives: /archives || fa fa-archive
   #schedule: /schedule || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404 || fa fa-heartbeat
 
 # Enable / Disable menu icons / item badges.
-menu_icons:
-  enable: true
+# menu_icons:
+#   enable: true
 
 # ---------------------------------------------------------------
 # Scheme Settings
@@ -115,9 +115,6 @@ menu_icons:
 #scheme: Mist
 scheme: Pisces
 # scheme: Gemini
-
-# Dark Mode
-darkmode: false
 
 # ---------------------------------------------------------------
 # Sidebar Settings
@@ -606,7 +603,7 @@ algolia_search:
 # Local search
 # Dependencies: https://github.com/flashlab/hexo-generator-search
 local_search:
-  enable: true
+  enable: false
   # if auto, trigger search by changing input
   # if manual, trigger search by pressing enter key or search button
   trigger: auto

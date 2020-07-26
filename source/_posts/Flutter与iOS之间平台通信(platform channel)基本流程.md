@@ -218,5 +218,5 @@ flutter run
 
 **附上一张控制台打印的效果图**
 
-![](https://github.com/WangGuibin/MyFilesRepo/tree/master/images/flutter2ios.png)
+![](https://github.com/WangGuibin/MyFilesRepo/blob/master/images/flutter2ios.png?raw=true)
 

@@ -18,31 +18,24 @@ root: /hexo-github-action/
 permalink: :year/:month/:day/:title/
 
 menu:
-  home: / || fa fa-home
-  about: /about || fa fa-user
-  tags: /tags || fa fa-tags
-  categories: /categories || fa fa-th
-  archives: /archives || fa fa-archive
+  home: /  
+  about: /about 
+  tags: /tags  
+  categories: /categories  
+  archives: /archives  
   #schedule: /schedule/ || fa fa-calendar
   #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeat
 
 # Enable / Disable menu icons / item badges.
 menu_icons:
-  enable: true
+  enable: false
 
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
-
-# 搜索
-search:
-  path: search.xml
-  field: post
-  format: html
-  limit: 10000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

@@ -8,7 +8,7 @@ isTop: false
 ---
 > 灵感来源于前端CSS画红心的原理  [参考](https://www.cnblogs.com/yingzi1028/p/6248937.html)
 
-![](https://github.com/WangGuibin/MyFilesRepo/images/heart_demo.png)
+![](https://github.com/WangGuibin/MyFilesRepo/blob/master/images/heart_demo.png?raw=true)
 
 <!-- more -->
 
@@ -125,7 +125,8 @@ NS_ASSUME_NONNULL_END
 @end
 
 ```
-![IB设置的过程](https://github.com/WangGuibin/MyFilesRepo/images/heart2IB.png)
+![IB设置的过程](https://github.com/WangGuibin/MyFilesRepo/blob/master/images/heart2IB.png?raw=true)
+
 
 # 简单调用如下: 
 ```objectivec
