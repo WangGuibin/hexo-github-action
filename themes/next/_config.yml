@@ -246,6 +246,10 @@ post_wordcount:
 #alipay: /images/alipay.jpg
 #bitcoin: /images/bitcoin.png
 
+# Online contact
+daovoice: true
+daovoice_app_id: 25c7361c
+
 # Declare license on posts
 post_copyright:
   enable: true
