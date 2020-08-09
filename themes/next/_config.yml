@@ -359,7 +359,7 @@ han: false
 
 # Disqus
 disqus:
-  enable: true
+  enable: false
   shortname: coderwgb
   count: true
 
@@ -377,10 +377,10 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+  enable: true
+  appid:  oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz
+  appkey: V7zBLpzBgxVESicbyF072Cj9
+  notify: true # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
   avatar: mm # gravatar style
