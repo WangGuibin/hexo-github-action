@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习总结,python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="字符串有些情况下是有很多转义字符的,可以这样写,好处是可以省去写繁琐的反斜杠... 1print r&#39;&#39;&#39; &quot;哈哈哈哈哈😄&quot;,\\\\ 6666%%%% &quot;U&quot; &quot;u&quot; &#39;&#39;&#39; 打印中文, u’’’…. ‘’’ 1234567891011121314print(u&#39;我就能打中文,怎么了&#39;);&#x2F;&#x2F;单行&#x2F;&#x2F;我就能打中文,怎么了 #-*- coding: utf-8 -*-print (u&#39;&#39;&#39;静夜思">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习笔记">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="字符串有些情况下是有很多转义字符的,可以这样写,好处是可以省去写繁琐的反斜杠... 1print r&#39;&#39;&#39; &quot;哈哈哈哈哈😄&quot;,\\\\ 6666%%%% &quot;U&quot; &quot;u&quot; &#39;&#39;&#39; 打印中文, u’’’…. ‘’’ 1234567891011121314print(u&#39;我就能打中文,怎么了&#39;);&#x2F;&#x2F;单行&#x2F;&#x2F;我就能打中文,怎么了 #-*- coding: utf-8 -*-print (u&#39;&#39;&#39;静夜思">
+<meta property="article:published_time" content="2017-10-11T20:54:36.000Z">
+<meta property="article:modified_time" content="2021-03-07T09:30:47.745Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="学习总结">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2017/10/11/python学习笔记/"/>
+
+
+
+
+
+  <title>python学习笔记 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T20:54:36+00:00">
+                2017-10-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-03-07T09:30:47+00:00">
+                2021-03-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p><code>有些情况下是有很多转义字符的,可以这样写,好处是可以省去写繁琐的反斜杠...</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> <span class="string">r''' "哈哈哈哈哈😄",\\\\ 6666%%%% "U" "u" '''</span></span><br></pre></td></tr></table></figure>
+<p>打印中文, u’’’…. ‘’’<a href="link"></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">u'我就能打中文,怎么了'</span>);//单行</span><br><span class="line">//我就能打中文,怎么了 </span><br><span class="line"><span class="comment">#-*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">u'''静夜思</span></span><br><span class="line"><span class="string">床前明月光，</span></span><br><span class="line"><span class="string">疑是地上霜。</span></span><br><span class="line"><span class="string">举头望明月，</span></span><br><span class="line"><span class="string">低头思故乡。'''</span>)///多行</span><br><span class="line"></span><br><span class="line">静夜思</span><br><span class="line">床前明月光，</span><br><span class="line">疑是地上霜。</span><br><span class="line">举头望明月，</span><br><span class="line">低头思故乡。</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="一些基本数据类型的互相转换"><a href="#一些基本数据类型的互相转换" class="headerlink" title="一些基本数据类型的互相转换"></a>一些基本数据类型的互相转换</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">int(x [,base ])         将x转换为一个整数    </span><br><span class="line">long(x [,base ])        将x转换为一个长整数    </span><br><span class="line">float(x )               将x转换到一个浮点数    </span><br><span class="line">complex(real [,imag ])  创建一个复数    </span><br><span class="line">str(x )                 将对象 x 转换为字符串    </span><br><span class="line">repr(x )                将对象 x 转换为表达式字符串    </span><br><span class="line">eval(str )              用来计算在字符串中的有效Python表达式,并返回一个对象    </span><br><span class="line">tuple(s )               将序列 s 转换为一个元组    </span><br><span class="line">list(s )                将序列 s 转换为一个列表    </span><br><span class="line">chr(x )                 将一个整数转换为一个字符    </span><br><span class="line">unichr(x )              将一个整数转换为Unicode字符    </span><br><span class="line">ord(x )                 将一个字符转换为它的整数值    </span><br><span class="line">hex(x )                 将一个整数转换为一个十六进制字符串    </span><br><span class="line">oct(x )                 将一个整数转换为一个八进制字符串   </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">chr(<span class="number">65</span>)=<span class="string">'A'</span></span><br><span class="line">ord(<span class="string">'A'</span>)=<span class="number">65</span></span><br><span class="line"> </span><br><span class="line">int(<span class="string">'2'</span>)=<span class="number">2</span>;</span><br><span class="line">str(<span class="number">2</span>)=<span class="string">'2'</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="if-else"><a href="#if-else" class="headerlink" title="if-else"></a>if-else</h3><ul>
+<li><p>缩进请严格按照Python的习惯写法：<code>4个空格</code>，不要使用Tab，更不要混合Tab和空格，否则很容易造成因为缩进引起的语法错误。<code>如果你在Python交互环境下敲代码，还要特别留意缩进，并且退出缩进需要多敲一行回车</code></p>
+</li>
+<li><p>if - else</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">score = <span class="number">55</span></span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">60</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'passed'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'failed'</span></span><br></pre></td></tr></table></figure></li>
+<li><p>if - elif - else 多分支判断</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">score = <span class="number">85</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'excellent'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'good'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">60</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'passed'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">print</span> <span class="string">'failed'</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="循环语句相关"><a href="#循环语句相关" class="headerlink" title="循环语句相关"></a>循环语句相关</h3><p>for循环遍历</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">L = [<span class="number">75</span>, <span class="number">92</span>, <span class="number">59</span>, <span class="number">68</span>]</span><br><span class="line">sum = <span class="number">0.0</span></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> L:</span><br><span class="line">    sum += num    </span><br><span class="line"><span class="keyword">print</span> sum / <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<p>while循环</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//求<span class="number">100</span>以内的奇数和</span><br><span class="line">sum = <span class="number">0</span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> x &lt; <span class="number">100</span>:</span><br><span class="line">    <span class="keyword">if</span> x % <span class="number">2</span>: </span><br><span class="line">        sum += x</span><br><span class="line">    x += <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> sum</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**利用 <span class="string">"while True"</span> 无限循环配合 <span class="string">"break"</span> 语句，计算 <span class="number">1</span> + <span class="number">2</span> + <span class="number">4</span> + <span class="number">8</span> + <span class="number">16</span> + ... 的前<span class="number">20</span>项的和。*/</span><br><span class="line">sum = <span class="number">0</span></span><br><span class="line">x = <span class="number">1</span></span><br><span class="line">n = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">  <span class="keyword">if</span> n &gt; <span class="number">20</span>:</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  sum += x</span><br><span class="line">  x *= <span class="number">2</span></span><br><span class="line">  n += <span class="number">1</span></span><br><span class="line"><span class="keyword">print</span> sum</span><br></pre></td></tr></table></figure>
+
+<p>///break 和continue</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">sum = <span class="number">0</span></span><br><span class="line">x = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    x = x + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> x &gt; <span class="number">100</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span> :</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    sum += x</span><br><span class="line"><span class="keyword">print</span> sum</span><br></pre></td></tr></table></figure>
+
+<p>//对100以内的两位数，请使用一个两重循环打印出所有十位数数字比个位数数字小的数，例如，23（2 &lt; 3）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [ <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span> ]:</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> [ <span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span> ]:</span><br><span class="line">         <span class="keyword">if</span> x &lt; y :</span><br><span class="line">             <span class="keyword">print</span> x*<span class="number">10</span> + y</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="python的-list-操作"><a href="#python的-list-操作" class="headerlink" title="python的 list 操作"></a>python的 list 操作</h3><p>创建和访问都很简单,其中有一个特殊一点就是-1下标代表最后一个元素,以此类推..</p>
+<p>插入操作: append(item)和 insert (index,item)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">L = [<span class="string">'Adam'</span>, <span class="string">'Lisa'</span>, <span class="string">'Bart'</span>]</span><br><span class="line">L.insert(<span class="number">0</span>,<span class="string">'WGB'</span>)</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line"></span><br><span class="line">L.append(<span class="string">'666'</span>)</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line"></span><br><span class="line">L.insert(<span class="number">-1</span>,<span class="string">"888888888"</span>)</span><br><span class="line"><span class="keyword">print</span> L</span><br></pre></td></tr></table></figure>
+<p>删除操作: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">L = [<span class="string">'Adam'</span>, <span class="string">'Lisa'</span>, <span class="string">'Paul'</span>,<span class="string">'P'</span>,<span class="string">'PAPP'</span>,<span class="string">'PAD'</span>,<span class="string">'Pel'</span>,<span class="string">'PB'</span>,<span class="string">'PLL'</span>,<span class="string">'PCCl'</span>,<span class="string">'Jaul'</span>,<span class="string">'OOl'</span>,<span class="string">'Qaul'</span>, <span class="string">'Bart'</span>]</span><br><span class="line">L.pop() //默认是移除最后一个</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line">L.pop(<span class="number">0</span>) //第<span class="number">1</span>项</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line">L.pop(<span class="number">1</span>)//第<span class="number">2</span>项</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line">L.pop(<span class="number">2</span>)//第<span class="number">3</span>项</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line">L.pop(<span class="number">3</span>)//第<span class="number">4</span>项</span><br><span class="line"><span class="keyword">print</span> L</span><br></pre></td></tr></table></figure>
+<p>替换操作: </p>
+<ol>
+<li>把之前的元素删掉,再添加新元素取代它</li>
+<li>直接访问下标,修改它的值</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">L = [<span class="string">'Adam'</span>, <span class="string">'Lisa'</span>, <span class="string">'Bart'</span>]</span><br><span class="line">L.pop(<span class="number">1</span>)</span><br><span class="line">L.insert(<span class="number">1</span>,<span class="string">'Job'</span>)</span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line">L[<span class="number">1</span>] = <span class="string">"iOS"</span></span><br><span class="line"><span class="keyword">print</span> L</span><br><span class="line">//[<span class="string">'Adam'</span>, <span class="string">'Job'</span>, <span class="string">'Bart'</span>]</span><br><span class="line">//[<span class="string">'Adam'</span>, <span class="string">'iOS'</span>, <span class="string">'Bart'</span>]</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="dict-和-set的操作"><a href="#dict-和-set的操作" class="headerlink" title="dict 和 set的操作"></a>dict 和 set的操作</h3><p>和其他他语言一样,key是唯一的且不能为空,查找速度快,键值访问</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dict的第一个特点是查找速度快，无论dict有10个元素还是10万个元素，查找速度都一样。而list的查找速度随着元素增加而逐渐下降。</span><br><span class="line">不过dict的查找速度快不是没有代价的，dict的缺点是占用内存大，还会浪费很多内容，list正好相反，占用内存小，但是查找速度慢。</span><br><span class="line">由于dict是按 key 查找，所以，在一个dict中，key不能重复。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过键值访问修改value或者添加元素</li>
+</ul>
+<p>set([1,2,3,4]) 就是set( )里面包装一个list,但是元素不能重复,和其他语言类似,用来排重还是阔以的<br>set 用 in操作符来判断是不是自己元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s &#x3D; set([&#39;adam&#39;,&#39;bart&#39;])</span><br><span class="line">print &#39;adam&#39; in s &#x2F;&#x2F;True</span><br><span class="line">print &#39;bart&#39; in s &#x2F;&#x2F;True</span><br><span class="line">print &#39;Bart&#39; in s &#x2F;&#x2F;False</span><br></pre></td></tr></table></figure>
+
+<p>判断月份是不是对的,如果使用if-else将会很繁琐</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">months &#x3D; set([&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;, &#39;Jun&#39;, &#39;Jul&#39;, &#39;Aug&#39;, &#39;Sep&#39;, &#39;Oct&#39;, &#39;Nov&#39;, &#39;Dec&#39;])</span><br><span class="line">x1 &#x3D; &#39;Feb&#39;</span><br><span class="line">x2 &#x3D; &#39;Sun&#39;</span><br><span class="line"></span><br><span class="line">if x1 in months:</span><br><span class="line">    print &#39;x1: ok&#39;</span><br><span class="line">else:</span><br><span class="line">    print &#39;x1: error&#39;</span><br><span class="line"></span><br><span class="line">if x2 in months:</span><br><span class="line">    print &#39;x2: ok&#39;</span><br><span class="line">else:</span><br><span class="line">    print &#39;x2: error&#39;</span><br></pre></td></tr></table></figure>
+
+<p>遍历set </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F;请用 for 循环遍历如下的set，打印出 name: score 来。</span><br><span class="line">s &#x3D; set([(&#39;Adam&#39;, 95), (&#39;Lisa&#39;, 85), (&#39;Bart&#39;, 59)])</span><br><span class="line">for t in s:</span><br><span class="line">    print t[0],&quot;:&quot;,t[1]</span><br><span class="line">    </span><br><span class="line">&#x2F;** log: *&#x2F;</span><br><span class="line"></span><br><span class="line">Lisa : 85</span><br><span class="line">Adam : 95</span><br><span class="line">Bart : 59</span><br></pre></td></tr></table></figure>
+
+<p>set也有add和remove操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F;不能添加重复的元素,否则为无效操作</span><br><span class="line">&gt;&gt;&gt; s &#x3D; set([1, 2, 3])</span><br><span class="line">&gt;&gt;&gt; s.add(4)</span><br><span class="line">&gt;&gt;&gt; print s</span><br><span class="line">set([1, 2, 3, 4])</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F;移除操作针对已有的元素进行删除,移除不存在的元素时会报错</span><br><span class="line">&gt;&gt;&gt; s &#x3D; set([1, 2, 3, 4])</span><br><span class="line">&gt;&gt;&gt; s.remove(4)</span><br><span class="line">&gt;&gt;&gt; print s</span><br><span class="line">set([1, 2, 3])</span><br></pre></td></tr></table></figure>
+
+<h3 id="python-网络请求相关"><a href="#python-网络请求相关" class="headerlink" title="python 网络请求相关"></a>python 网络请求相关</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">urlopen一般可以接受三个参数：</span><br><span class="line">urlopen(url, data, timeout)</span><br><span class="line"></span><br><span class="line">第一个参数url即为URL</span><br><span class="line">第二个参数data是访问URL时要传送的数据，默认为None</span><br><span class="line">第三个timeout是设置超时时间，默认为 socket._GLOBAL_DEFAULT_TIMEOUT</span><br></pre></td></tr></table></figure>
+
+<p>修改请求头: 找到Google Chrome打开开发者工具,找到network , 然后刷新网页,查看请求头,把请求头copy出来进行调试  或者直接 浏览器打开<br><code>http://httpbin.org/headers</code> 测试header的一个工具站点.<br>将headers组装进Request对象中 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">from</span>  urllib.request <span class="keyword">import</span>  Request</span><br><span class="line"></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"</span>,</span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>,</span><br><span class="line">    <span class="string">"Accept-Language"</span>: <span class="string">"zh-CN,zh;q=0.8,en;q=0.6"</span>,</span><br><span class="line">    <span class="string">"Connection"</span>: <span class="string">"close"</span>,</span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>,</span><br><span class="line">    <span class="string">"Upgrade-Insecure-Requests"</span>: <span class="string">"1"</span>,</span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36"</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">req = Request(<span class="string">'http://httpbin.org/headers'</span>,headers=headers)</span><br><span class="line">resp=urllib.request.urlopen(req)</span><br><span class="line"><span class="keyword">print</span> (resp.read().decode(<span class="string">'utf-8'</span>))</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用Get方法访问"><a href="#使用Get方法访问" class="headerlink" title="使用Get方法访问"></a>使用Get方法访问</h4><p>携带一些信息访问一些网页</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  urllib.request</span><br><span class="line"><span class="keyword">import</span>  urllib.parse</span><br><span class="line"></span><br><span class="line">query = &#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">'q'</span> : <span class="string">"火影忍者"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">base_url=<span class="string">"https://www.bing.com/search?"</span></span><br><span class="line"></span><br><span class="line">url = base_url + urllib.parse.urlencode(query=query)</span><br><span class="line"></span><br><span class="line">html = urllib.request.urlopen(url).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="POST访问"><a href="#POST访问" class="headerlink" title="POST访问"></a>POST访问</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">import</span> urllib.parse</span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  Request</span><br><span class="line"></span><br><span class="line">data = urllib.parse.urlencode(&#123;</span><br><span class="line">    <span class="string">"q"</span>:<span class="string">"python"</span>,</span><br><span class="line">    <span class="string">"name"</span>:<span class="string">"wgb"</span>,</span><br><span class="line">    <span class="string">"action"</span>: <span class="string">"two click 666"</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">base_url = <span class="string">"http://httpbin.org/post"</span></span><br><span class="line">req = Request(base_url,data=bytes(data,<span class="string">"utf-8"</span>))</span><br><span class="line">html = urllib.request.urlopen(req).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">print(html)</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://www.xicidaili.com" target="_blank" rel="noopener">用于测试: 国内免费代理IP</a></p>
+<h3 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> ProxyHandler, build_opener</span><br><span class="line"></span><br><span class="line">proxy_handler = ProxyHandler(&#123;</span><br><span class="line">    <span class="string">'http'</span>: <span class="string">'http://122.72.32.74:80'</span>,</span><br><span class="line">&#125;)</span><br><span class="line">opener = build_opener(proxy_handler)</span><br><span class="line">response = opener.open(<span class="string">'http://www.baidu.com'</span>)</span><br><span class="line">print(response.read())</span><br></pre></td></tr></table></figure>
+
+<h4 id="cookies"><a href="#cookies" class="headerlink" title="cookies"></a>cookies</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import http.cookiejar, urllib.request</span><br><span class="line"></span><br><span class="line">cookies &#x3D; http.cookiejar.CookieJar()</span><br><span class="line">handler &#x3D; urllib.request.HTTPCookieProcessor(cookies)</span><br><span class="line">opener &#x3D; urllib.request.build_opener(handler)</span><br><span class="line">response &#x3D; opener.open(&#39;http:&#x2F;&#x2F;www.baidu.com&#39;)</span><br><span class="line">for cookie in cookie:</span><br><span class="line">    print(cookie.name + &quot;&#x3D;&quot;+ cookie.value)</span><br></pre></td></tr></table></figure>
+
+<h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
+<li><p>URLError</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.error</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    response &#x3D; urllib.request.urlopen(&#39;http:&#x2F;&#x2F;nd.com&#39;) # 不存在</span><br><span class="line">except urllib.error.URLError as e:</span><br><span class="line">    print(e.reason)</span><br><span class="line">else:</span><br><span class="line">    html &#x3D; response.read().decode(&#39;utf-8&#39;)</span><br><span class="line">    print(html)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>HTTPError</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line">import urllib.error</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    response &#x3D; urllib.request.urlopen(&#39;http:&#x2F;&#x2F;nd.com&#39;) # 不存在</span><br><span class="line">except urllib.error.HttpError as e:</span><br><span class="line">    print(e.reason)</span><br><span class="line">else:</span><br><span class="line">    html &#x3D; response.read().decode(&#39;utf-8&#39;)</span><br><span class="line">    print(html)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3 id="正则的使用import-re"><a href="#正则的使用import-re" class="headerlink" title="正则的使用import re"></a>正则的使用<code>import re</code></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"> print(re.match(<span class="string">"123"</span>,<span class="string">"123wqwfsdoonsnssms"</span>).group())<span class="comment">#从起始位置开始匹配,没有在起始位置则none</span></span><br><span class="line">print(re.search(<span class="string">"123"</span>,<span class="string">"23sdd123kkkddl"</span>).span())<span class="comment"># 返回第一个匹配结果的范围</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="re-compile函数"><a href="#re-compile函数" class="headerlink" title="re.compile函数"></a>re.compile函数</h4><p> 有时候，我们可能会在代码中大量重复使用相同的模式，这时我们可以将正则字符串编译成正则对象，以便于复用该匹配模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">string  &#x3D; &quot;fjfjkks12345skisnn56777kkjsns #$%fi~~&#96;&#96;&#96;&#96;&quot;</span><br><span class="line">pattern &#x3D; re.compile(&#39;(\d+)&#39;)</span><br><span class="line"># result &#x3D; re.search(pattern,string)</span><br><span class="line"># print(result.group())</span><br><span class="line"></span><br><span class="line">result &#x3D; re.findall(pattern,string)</span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
+
+<h4 id="爬取糗事百科的段子"><a href="#爬取糗事百科的段子" class="headerlink" title="爬取糗事百科的段子~"></a>爬取糗事百科的段子~</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span>  urllib.request</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span>  urllib.request <span class="keyword">import</span>  Request</span><br><span class="line"></span><br><span class="line">user_agent = [<span class="string">'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Mobile Safari/537.36'</span>,</span><br><span class="line">              <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'</span></span><br><span class="line">              ]</span><br><span class="line">headers = &#123; <span class="string">"User-Agent"</span> : random.choice(user_agent)&#125;</span><br><span class="line"></span><br><span class="line">urlString = <span class="string">"https://www.qiushibaike.com/"</span></span><br><span class="line">request = Request(urlString,headers=headers)</span><br><span class="line">htmlString = urllib.request.urlopen(request).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># print(htmlString)</span></span><br><span class="line">pattern = re.compile(<span class="string">'&lt;div\s*?class="content".*?&lt;span&gt;(.*?)&lt;/span&gt;'</span>,re.S)</span><br><span class="line">result = re.findall(pattern,htmlString)</span><br><span class="line"><span class="keyword">for</span> res <span class="keyword">in</span> result:</span><br><span class="line">    res = re.sub(<span class="string">'&lt;br/&gt;'</span>,<span class="string">''</span>,res)</span><br><span class="line">    res = res.strip()</span><br><span class="line">    print(res+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="百思不得姐的段子"><a href="#百思不得姐的段子" class="headerlink" title="百思不得姐的段子"></a>百思不得姐的段子</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span>  urllib.request</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span>  urllib.request <span class="keyword">import</span>  Request</span><br><span class="line"></span><br><span class="line">user_agent = [<span class="string">'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Mobile Safari/537.36'</span>,</span><br><span class="line">              <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'</span></span><br><span class="line">              ]</span><br><span class="line">headers = &#123; <span class="string">"User-Agent"</span> : random.choice(user_agent)&#125;</span><br><span class="line"></span><br><span class="line">urlString = <span class="string">"http://www.budejie.com/text/"</span></span><br><span class="line">request = Request(urlString,headers=headers)</span><br><span class="line">htmlString = urllib.request.urlopen(request).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># print(htmlString)</span></span><br><span class="line">pattern = re.compile(<span class="string">'&lt;a href="/detail-\d+.html"&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">result = re.findall(pattern,htmlString)</span><br><span class="line"><span class="keyword">for</span> res <span class="keyword">in</span> result:</span><br><span class="line">    res = re.sub(<span class="string">'&lt;br/&gt;'</span>,<span class="string">''</span>,res)</span><br><span class="line">    res = res.strip()</span><br><span class="line">    print(res+<span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+
+<h6 id="正则技巧是需要取得的内容使用-正则匹配-d-代表一串数字若干-代表除了换行符外的其他任意字符…"><a href="#正则技巧是需要取得的内容使用-正则匹配-d-代表一串数字若干-代表除了换行符外的其他任意字符…" class="headerlink" title="正则技巧是需要取得的内容使用 (.*?)正则匹配, \d+代表一串数字若干, .*?代表除了换行符外的其他任意字符…"></a>正则技巧是需要取得的内容使用 <code>(.*?)</code>正则匹配, <code>\d+</code>代表一串数字若干, <code>.*?</code>代表除了换行符外的其他任意字符…</h6><p><code>玩这个东西,对于正则一定要烂熟于心啊</code></p>
+<h4 id="时需要数据组装或者数据改造"><a href="#时需要数据组装或者数据改造" class="headerlink" title="时需要数据组装或者数据改造"></a>时需要数据组装或者数据改造</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#coding:utf-8</span></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span>  urllib.request</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span>  urllib.request <span class="keyword">import</span>  Request</span><br><span class="line"></span><br><span class="line">user_agent = [<span class="string">'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Mobile Safari/537.36'</span>,</span><br><span class="line">              <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'</span></span><br><span class="line">              ]</span><br><span class="line">headers = &#123; <span class="string">"User-Agent"</span> : random.choice(user_agent)&#125;</span><br><span class="line"></span><br><span class="line">urlString = <span class="string">"http://www.budejie.com/text/"</span></span><br><span class="line">request = Request(urlString,headers=headers)</span><br><span class="line">htmlString = urllib.request.urlopen(request).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line"><span class="comment"># print(htmlString)</span></span><br><span class="line">pattern1 = re.compile(<span class="string">'&lt;a href="/detail-\d+.html"&gt;(.*?)&lt;/a&gt;'</span>,re.S) <span class="comment"># 获取内容</span></span><br><span class="line">pattern2 = re.compile(<span class="string">'&lt;a href="/user/others-\d+.html" class="u-user-name" target="_blank"&gt;(.*?)&lt;/a&gt;'</span>)<span class="comment">#获取用户名</span></span><br><span class="line"></span><br><span class="line">result1 = re.findall(pattern1,htmlString)</span><br><span class="line">result2 = re.findall(pattern2,htmlString)</span><br><span class="line"></span><br><span class="line"><span class="comment"># index,value in enumerate(l)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># result1 len = 44</span></span><br><span class="line"><span class="comment"># result2 len = 20</span></span><br><span class="line"><span class="comment"># 越界操作了咋办----&gt;反过来写呗 没有名字的不显示不可以嘛</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> index,nickName <span class="keyword">in</span> enumerate(result2):</span><br><span class="line">    <span class="comment"># print(index,value)</span></span><br><span class="line">    value = result1[index]</span><br><span class="line">    value = re.sub(<span class="string">'&lt;br/&gt;'</span>,<span class="string">''</span>,value)</span><br><span class="line">    value = value.strip()</span><br><span class="line">    print(<span class="string">'作者: '</span> + nickName + <span class="string">"\n"</span> + <span class="string">"段子: "</span> + value + <span class="string">'\n'</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="几行代码简单生成词云-实践"><a href="#几行代码简单生成词云-实践" class="headerlink" title="几行代码简单生成词云 (实践)"></a>几行代码简单生成词云 (实践)</h2><h4 id="1-准备文本文件-也就是文章或者大量的词语-用于分词系统切割-然后进行分析-词频高的会展示出来字体高亮且加粗加大"><a href="#1-准备文本文件-也就是文章或者大量的词语-用于分词系统切割-然后进行分析-词频高的会展示出来字体高亮且加粗加大" class="headerlink" title="1. 准备文本文件,也就是文章或者大量的词语,用于分词系统切割,然后进行分析,词频高的会展示出来字体高亮且加粗加大"></a>1. 准备文本文件,也就是文章或者大量的词语,用于分词系统切割,然后进行分析,词频高的会展示出来字体高亮且加粗加大</h4><h4 id="2-pycharm里使用pip包管理工具-类似于iOS中的cocoapods般的存在-先安装几个库matplotlib-wordcloud-jieba"><a href="#2-pycharm里使用pip包管理工具-类似于iOS中的cocoapods般的存在-先安装几个库matplotlib-wordcloud-jieba" class="headerlink" title="2. pycharm里使用pip包管理工具,类似于iOS中的cocoapods般的存在, 先安装几个库matplotlib,wordcloud,jieba"></a>2. pycharm里使用pip包管理工具,类似于iOS中的cocoapods般的存在, 先安装几个库<code>matplotlib</code>,<code>wordcloud</code>,<code>jieba</code></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo brew install pip ///安装pip</span><br><span class="line">sudo easy_install pip ///以上两种方式均可</span><br></pre></td></tr></table></figure>
+<h4 id="3-开始写代码"><a href="#3-开始写代码" class="headerlink" title="3. 开始写代码"></a>3. 开始写代码</h4><ul>
+<li>把第三方库引入</li>
+<li>读取文本</li>
+<li>切割文本即分词</li>
+<li>设置词云属性</li>
+<li>渲染文本为词云</li>
+<li>展示即完成</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">text_from_file_with_apath = open(<span class="string">'/Users/wangguibin/Desktop/ciyun.txt'</span>).read()</span><br><span class="line"></span><br><span class="line">wordlist_after_jieba = jieba.cut(text_from_file_with_apath, cut_all=<span class="literal">True</span>)</span><br><span class="line">wl_space_split = <span class="string">" "</span>.join(wordlist_after_jieba)</span><br><span class="line"></span><br><span class="line">my_wordcloud = WordCloud(background_color = <span class="string">'white'</span>,    <span class="comment"># 设置背景颜色</span></span><br><span class="line">                font_path = <span class="string">'/Library/Fonts/Songti.ttc'</span>,<span class="comment"># 设置字体格式，如不设置显示不了中文</span></span><br><span class="line">                max_font_size = <span class="number">50</span>,            <span class="comment"># 设置字体最大值</span></span><br><span class="line">                random_state = <span class="number">10</span>,            <span class="comment"># 设置有多少种随机生成状态，即有多少种配色方案</span></span><br><span class="line">                ).generate(wl_space_split)</span><br><span class="line"></span><br><span class="line">plt.imshow(my_wordcloud)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p> <strong>先写这么多,后续有时间继续探索,人生苦短,我用python</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="python学习笔记">http://wangguibin/github.io/hexo-github-action/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+            <a href="/hexo-github-action/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2017/09/26/%E6%88%91%E7%9A%84git%E7%AC%94%E8%AE%B0/" rel="next" title="我的git笔记">
+                <i class="fa fa-chevron-left"></i> 我的git笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2018/05/21/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B9%8BwebStorm%E6%89%8B%E6%9C%BA%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" rel="prev" title="前端开发: webStorm手机真机调试">
+                前端开发: webStorm手机真机调试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些基本数据类型的互相转换"><span class="nav-number">2.</span> <span class="nav-text">一些基本数据类型的互相转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-else"><span class="nav-number">3.</span> <span class="nav-text">if-else</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环语句相关"><span class="nav-number">4.</span> <span class="nav-text">循环语句相关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的-list-操作"><span class="nav-number">5.</span> <span class="nav-text">python的 list 操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dict-和-set的操作"><span class="nav-number">6.</span> <span class="nav-text">dict 和 set的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python-网络请求相关"><span class="nav-number">7.</span> <span class="nav-text">python 网络请求相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Get方法访问"><span class="nav-number">7.1.</span> <span class="nav-text">使用Get方法访问</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POST访问"><span class="nav-number">7.2.</span> <span class="nav-text">POST访问</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置代理"><span class="nav-number">8.</span> <span class="nav-text">设置代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookies"><span class="nav-number">8.1.</span> <span class="nav-text">cookies</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">9.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正则的使用import-re"><span class="nav-number">10.</span> <span class="nav-text">正则的使用import re</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#re-compile函数"><span class="nav-number">10.1.</span> <span class="nav-text">re.compile函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爬取糗事百科的段子"><span class="nav-number">10.2.</span> <span class="nav-text">爬取糗事百科的段子~</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#百思不得姐的段子"><span class="nav-number">10.3.</span> <span class="nav-text">百思不得姐的段子</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#正则技巧是需要取得的内容使用-正则匹配-d-代表一串数字若干-代表除了换行符外的其他任意字符…"><span class="nav-number">10.3.0.1.</span> <span class="nav-text">正则技巧是需要取得的内容使用 (.*?)正则匹配, \d+代表一串数字若干, .*?代表除了换行符外的其他任意字符…</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#时需要数据组装或者数据改造"><span class="nav-number">10.4.</span> <span class="nav-text">时需要数据组装或者数据改造</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几行代码简单生成词云-实践"><span class="nav-number"></span> <span class="nav-text">几行代码简单生成词云 (实践)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-准备文本文件-也就是文章或者大量的词语-用于分词系统切割-然后进行分析-词频高的会展示出来字体高亮且加粗加大"><span class="nav-number">0.1.</span> <span class="nav-text">1. 准备文本文件,也就是文章或者大量的词语,用于分词系统切割,然后进行分析,词频高的会展示出来字体高亮且加粗加大</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-pycharm里使用pip包管理工具-类似于iOS中的cocoapods般的存在-先安装几个库matplotlib-wordcloud-jieba"><span class="nav-number">0.2.</span> <span class="nav-text">2. pycharm里使用pip包管理工具,类似于iOS中的cocoapods般的存在, 先安装几个库matplotlib,wordcloud,jieba</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-开始写代码"><span class="nav-number">0.3.</span> <span class="nav-text">3. 开始写代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">34.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

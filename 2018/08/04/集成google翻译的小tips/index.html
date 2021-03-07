@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="效率,iOS,Objective-C,学习总结," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="google翻译的强大,就像我们公司的slogan : “让语言无国界,让世人心相通”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="集成google翻译的小tips">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="google翻译的强大,就像我们公司的slogan : “让语言无国界,让世人心相通”">
+<meta property="og:image" content="http://wangguibin.github.io/post-images/1560697872361.png">
+<meta property="article:published_time" content="2018-08-04T12:43:20.000Z">
+<meta property="article:modified_time" content="2021-03-07T09:30:47.745Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="效率">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="学习总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://wangguibin.github.io/post-images/1560697872361.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2018/08/04/集成google翻译的小tips/"/>
+
+
+
+
+
+  <title>集成google翻译的小tips | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">集成google翻译的小tips</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T12:43:20+00:00">
+                2018-08-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-03-07T09:30:47+00:00">
+                2021-03-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>google翻译的强大,就像我们公司的slogan : “让语言无国界,让世人心相通”</p>
+<a id="more"></a>
+
+<p><img src="http://wangguibin.github.io/post-images/1560697872361.png" alt=""></p>
+<h5 id="友情提示-google相关的服务都是需要翻墙的-不然在大陆无法访问"><a href="#友情提示-google相关的服务都是需要翻墙的-不然在大陆无法访问" class="headerlink" title="友情提示: google相关的服务都是需要翻墙的,不然在大陆无法访问"></a><em>友情提示: google相关的服务都是需要翻墙的,不然在大陆无法访问</em></h5><p>写这篇文章的目的就是为了整合一下这方面的资料, 大概是因为被墙,网上关于这方面的资料很少,有些是过于老旧,甚至是不适用的,所以就不得不做个笔记就当作是探探路。</p>
+<h1 id="google语音识别"><a href="#google语音识别" class="headerlink" title="google语音识别"></a>google语音识别</h1><ol>
+<li>到<code>google</code>注册相关的<code>API_KEY</code>, 地址: <code>https://cloud.google.com/speech-to-text/docs/samples</code></li>
+<li>下载demo  <code>https://github.com/GoogleCloudPlatform/ios-docs-samples/tree/master/speech/Objective-C/Speech-REST-Nonstreaming</code></li>
+<li>录制语音文件存于沙盒, 上传语音文件到 <code>https://speech.googleapis.com/v1/speech:recognize?key=xxxxx</code></li>
+</ol>
+<h3 id="核心代码"><a href="#核心代码" class="headerlink" title="核心代码:"></a>核心代码:</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *service = <span class="string">@"https://speech.googleapis.com/v1/speech:recognize"</span>;</span><br><span class="line">service = [service stringByAppendingString:<span class="string">@"?key="</span>];</span><br><span class="line">service = [service stringByAppendingString:API_KEY];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSData</span> *audioData = [<span class="built_in">NSData</span> dataWithContentsOfFile:[<span class="keyword">self</span> soundFilePath]];<span class="comment">//沙盒里的录音文件 具体看google提供的demo</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *configRequest = @&#123;<span class="string">@"encoding"</span>:<span class="string">@"LINEAR16"</span>,</span><br><span class="line">                                <span class="string">@"sampleRateHertz"</span>:@(SAMPLE_RATE),</span><br><span class="line">                                <span class="string">@"languageCode"</span>:<span class="string">@"zh-cn"</span>,</span><br><span class="line">                                <span class="string">@"maxAlternatives"</span>:@<span class="number">30</span>&#125;;</span><br><span class="line"><span class="built_in">NSDictionary</span> *audioRequest = @&#123;<span class="string">@"content"</span>:[audioData base64EncodedStringWithOptions:<span class="number">0</span>]&#125;;</span><br><span class="line"><span class="built_in">NSDictionary</span> *requestDictionary = @&#123;<span class="string">@"config"</span>:configRequest,</span><br><span class="line">                                    <span class="string">@"audio"</span>:audioRequest&#125;;</span><br><span class="line"><span class="built_in">NSError</span> *error;</span><br><span class="line"><span class="built_in">NSData</span> *requestData = [<span class="built_in">NSJSONSerialization</span> dataWithJSONObject:requestDictionary</span><br><span class="line">                                                      options:<span class="number">0</span></span><br><span class="line">                                                        error:&amp;error];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSString</span> *path = service;</span><br><span class="line"><span class="built_in">NSURL</span> *URL = [<span class="built_in">NSURL</span> URLWithString:path];</span><br><span class="line"><span class="built_in">NSMutableURLRequest</span> *request = [<span class="built_in">NSMutableURLRequest</span> requestWithURL:URL];</span><br><span class="line"><span class="comment">// if your API key has a bundle ID restriction, specify the bundle ID like this:</span></span><br><span class="line">[request addValue:[[<span class="built_in">NSBundle</span> mainBundle] bundleIdentifier] forHTTPHeaderField:<span class="string">@"X-Ios-Bundle-Identifier"</span>];</span><br><span class="line"><span class="built_in">NSString</span> *contentType = <span class="string">@"application/json"</span>;</span><br><span class="line">[request addValue:contentType forHTTPHeaderField:<span class="string">@"Content-Type"</span>];</span><br><span class="line">[request setHTTPBody:requestData];</span><br><span class="line">[request setHTTPMethod:<span class="string">@"POST"</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSURLSessionTask</span> *task =</span><br><span class="line">[[<span class="built_in">NSURLSession</span> sharedSession]</span><br><span class="line"> dataTaskWithRequest:request</span><br><span class="line"> completionHandler:</span><br><span class="line"> ^(<span class="built_in">NSData</span> *data, <span class="built_in">NSURLResponse</span> *response, <span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">   <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(),</span><br><span class="line">                  ^&#123;</span><br><span class="line">                    <span class="built_in">NSString</span> *stringResult = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">                    _textView.text = stringResult;</span><br><span class="line">                    <span class="built_in">NSLog</span>(<span class="string">@"RESULT: %@ "</span>, stringResult);</span><br><span class="line">                  &#125;);</span><br><span class="line"> &#125;];</span><br><span class="line">[task resume];</span><br></pre></td></tr></table></figure>
+
+<h1 id="google-文本翻译"><a href="#google-文本翻译" class="headerlink" title="google 文本翻译"></a>google 文本翻译</h1><p> 文本翻译和语音识别类似,都需要<code>API_KEY</code>,同样是POST请求</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> MARK:- 文本互转</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"> @param text 文本</span></span><br><span class="line"><span class="comment"> @param targetCode 翻译的对应语言代码</span></span><br><span class="line"><span class="comment"> @param callBack 回调结果json字符串</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">- (<span class="keyword">void</span>)translateOriginText:(<span class="built_in">NSString</span> *)text</span><br><span class="line">								 targetCode:(<span class="built_in">NSString</span> *)targetCode</span><br><span class="line">									 callBack:(<span class="keyword">void</span>(^)(<span class="built_in">NSString</span> *objStr))callBack&#123;</span><br><span class="line">	<span class="built_in">NSString</span> *urlStr = [<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"https://translation.googleapis.com/language/translate/v2?key=%@"</span>,API_KEY];</span><br><span class="line">	<span class="built_in">NSURL</span> *URL = [<span class="built_in">NSURL</span> URLWithString: urlStr];</span><br><span class="line">	<span class="built_in">NSMutableURLRequest</span> *request = [<span class="built_in">NSMutableURLRequest</span> requestWithURL:URL];</span><br><span class="line">	[request addValue:[[<span class="built_in">NSBundle</span> mainBundle] bundleIdentifier] forHTTPHeaderField:<span class="string">@"X-Ios-Bundle-Identifier"</span>];</span><br><span class="line">	<span class="built_in">NSString</span> *contentType = <span class="string">@"application/json"</span>;</span><br><span class="line">	[request addValue:contentType forHTTPHeaderField:<span class="string">@"Content-Type"</span>];</span><br><span class="line"><span class="comment">// q: 原文本  tagret: 目标语言的代码 zh-cn,en-us...等</span></span><br><span class="line">	<span class="built_in">NSDictionary</span> *requestDictionary = @&#123;  <span class="string">@"q"</span> : text, <span class="string">@"target"</span> : targetCode &#125;;</span><br><span class="line">	<span class="built_in">NSError</span> *error;</span><br><span class="line">	<span class="built_in">NSData</span> *requestData = [<span class="built_in">NSJSONSerialization</span> dataWithJSONObject:requestDictionary options:<span class="number">0</span> error:&amp;error];</span><br><span class="line">	[request setHTTPBody:requestData];</span><br><span class="line">	[request setHTTPMethod:<span class="string">@"POST"</span>];</span><br><span class="line">	<span class="built_in">NSURLSessionTask</span> *task =</span><br><span class="line">	[[<span class="built_in">NSURLSession</span> sharedSession]</span><br><span class="line">	 dataTaskWithRequest:request</span><br><span class="line">	 completionHandler:</span><br><span class="line">	 ^(<span class="built_in">NSData</span> *data, <span class="built_in">NSURLResponse</span> *response, <span class="built_in">NSError</span> *error) &#123;</span><br><span class="line">		 <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(),</span><br><span class="line">										^&#123;</span><br><span class="line">											<span class="built_in">NSString</span> *stringResult = [[<span class="built_in">NSString</span> alloc] initWithData:data encoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">											<span class="built_in">NSLog</span>(<span class="string">@"RESULT: %@ "</span>, stringResult);</span><br><span class="line">											!callBack? : callBack(stringResult);</span><br><span class="line">										&#125;);</span><br><span class="line">	 &#125;];</span><br><span class="line">	[task resume];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="google-语音合成"><a href="#google-语音合成" class="headerlink" title="google 语音合成"></a>google 语音合成</h1><ul>
+<li>合成是免费的 , 然后是这个接口  <code>http://translate.google.com/translate_tts?ie=UTF-8&amp;client=tw-ob&amp;ttsspeed=1</code></li>
+<li>参数组成<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;基地址</span><br><span class="line">BASE_URL &#x3D; @&quot;http:&#x2F;&#x2F;translate.google.com&#x2F;translate_tts?ie&#x3D;UTF-8&amp;client&#x3D;tw-ob&amp;ttsspeed&#x3D;1&quot;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;拼接规则和get请求类似</span><br><span class="line">total   &#x2F;&#x2F;标准为100个字符为一组 然后total是总共多少组 </span><br><span class="line">idx    &#x2F;&#x2F;下标,第几组</span><br><span class="line">textlen  &#x2F;&#x2F;所有文字的计数,就是这个字符串的长度</span><br><span class="line">q     &#x2F;&#x2F;合成的文字内容,中文的话需要转编码utf-8最为合适</span><br><span class="line">tl  &#x2F;&#x2F;语言，跟识别的语言一致</span><br></pre></td></tr></table></figure>
+主要参数介绍:<br><code>ie</code>: 输入参数编码 <code>input-encode</code> 一般为<code>utf-8</code><br><code>oe</code>: 输入参数编码 <code>output-encode</code> 一般为<code>utf-8</code><br><code>ttsspeed</code>: 合成的语速<br><code>tl</code>: 目标语言代码 <code>target language</code><br><code>hl</code>: 当地语言代码 <code>home language</code></li>
+</ul>
+<p>url编码前:<br><code>http://translate.google.com/translate_tts?ie=UTF-8&amp;client=tw-ob&amp;ttsspeed=1&amp;total=1&amp;idx=1&amp;textlen=6&amp;q=某某某是傻逼&amp;tl=zh-cn</code><br>url编码后:<br><code>http://translate.google.com/translate_tts?ie=UTF-8&amp;client=tw-ob&amp;ttsspeed=1&amp;total=1&amp;idx=1&amp;textlen=6&amp;q=%E9%99%88%E8%89%AF%E8%89%AF%E6%98%AF%E5%82%BB%E9%80%BC&amp;tl=zh-cn</code></p>
+<h3 id="核心代码-1"><a href="#核心代码-1" class="headerlink" title="核心代码"></a>核心代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;&#x2F;MARK:- 文本 转 语音在线合成</span><br><span class="line">- (void)synthesisAudioWithTranslateWithText:(NSString *)text&#123;</span><br><span class="line">    NSString *baseUrl &#x3D; @&quot;http:&#x2F;&#x2F;translate.google.com&#x2F;translate_tts?ie&#x3D;UTF-8&amp;client&#x3D;tw-ob&amp;ttsspeed&#x3D;1&quot;;</span><br><span class="line"> &#x2F;&#x2F;url编码</span><br><span class="line">    NSCharacterSet *encodeUrlSet &#x3D; [NSCharacterSet URLQueryAllowedCharacterSet];</span><br><span class="line">    NSString *encodeContent &#x3D; [text stringByAddingPercentEncodingWithAllowedCharacters:encodeUrlSet];</span><br><span class="line">    NSString *urlStr &#x3D; [NSString stringWithFormat:@&quot;%@&amp;total&#x3D;1&amp;idx&#x3D;1&amp;textlen&#x3D;%ld&amp;q&#x3D;%@&amp;tl&#x3D;%@&quot;,baseUrl,text.length,encodeContent,self.targetCode];</span><br><span class="line">    NSURL *url &#x3D; [NSURL URLWithString: urlStr];</span><br><span class="line">      &#x2F;&#x2F;播放拼接的链接 </span><br><span class="line">	UIWebView *web &#x3D; [[UIWebView alloc] init];</span><br><span class="line">	web.hidden &#x3D; YES;</span><br><span class="line">	[self.view addSubview: web];</span><br><span class="line">	NSURLRequest *req &#x3D; [[NSURLRequest alloc] initWithURL:url];</span><br><span class="line">	[web loadRequest: req];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主流的几种语言的代码对照表"><a href="#主流的几种语言的代码对照表" class="headerlink" title="主流的几种语言的代码对照表:"></a>主流的几种语言的代码对照表:</h3><table>
+<thead>
+<tr>
+<th align="center">国家</th>
+<th align="center">languageCode</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">🇨🇳中文(简体)</td>
+<td align="center"><code>zh-cn</code></td>
+</tr>
+<tr>
+<td align="center">🇨🇳中文(繁体)</td>
+<td align="center"><code>zh-tw</code></td>
+</tr>
+<tr>
+<td align="center">🇺🇸英文(美式)</td>
+<td align="center"><code>en-us</code></td>
+</tr>
+<tr>
+<td align="center">🇬🇧英文(英式)</td>
+<td align="center"><code>en-gb</code></td>
+</tr>
+<tr>
+<td align="center">🇯🇵日语</td>
+<td align="center"><code>ja</code></td>
+</tr>
+<tr>
+<td align="center">🇰🇷韩语</td>
+<td align="center"><code>ko</code></td>
+</tr>
+<tr>
+<td align="center">🇷🇺俄语</td>
+<td align="center"><code>ru</code></td>
+</tr>
+<tr>
+<td align="center">🇪🇸西班牙语</td>
+<td align="center"><code>es</code></td>
+</tr>
+<tr>
+<td align="center">🇫🇷法语</td>
+<td align="center"><code>fr</code></td>
+</tr>
+<tr>
+<td align="center">🇩🇪德语</td>
+<td align="center"><code>de</code></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/" title="集成google翻译的小tips">http://wangguibin/github.io/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
+          
+            <a href="/hexo-github-action/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/hexo-github-action/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2018/06/13/Xcode%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E4%B9%8B%E7%83%AD%E9%87%8D%E8%BD%BD%E6%8F%92%E4%BB%B6%E5%88%A9%E5%99%A8/" rel="next" title="Xcode辅助工具之热重载插件利器">
+                <i class="fa fa-chevron-left"></i> Xcode辅助工具之热重载插件利器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/" rel="prev" title="重新入门python爬虫到放弃">
+                重新入门python爬虫到放弃 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#友情提示-google相关的服务都是需要翻墙的-不然在大陆无法访问"><span class="nav-number">1.</span> <span class="nav-text">友情提示: google相关的服务都是需要翻墙的,不然在大陆无法访问</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#google语音识别"><span class="nav-number"></span> <span class="nav-text">google语音识别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心代码"><span class="nav-number"></span> <span class="nav-text">核心代码:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#google-文本翻译"><span class="nav-number"></span> <span class="nav-text">google 文本翻译</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#google-语音合成"><span class="nav-number"></span> <span class="nav-text">google 语音合成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心代码-1"><span class="nav-number"></span> <span class="nav-text">核心代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主流的几种语言的代码对照表"><span class="nav-number"></span> <span class="nav-text">主流的几种语言的代码对照表:</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">34.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

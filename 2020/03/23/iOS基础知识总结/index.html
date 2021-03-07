@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,Objective-C,学习总结,面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="OC内存管理内存管理的原理和原则 基本数据类型(int,float,double,enum,struct,union等)和C语言的类型存储在栈区,由系统分配释放 继承自NSObject的类属于OC类型,都遵循内存管理原则 谁创建,谁释放(MRC程序员管理,ARC系统封装了编译时插入retain和release 自动释放池等自动管理内存) OC方法调用的本质其实是给对象发送消息,需要引用时发送ret">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS基础知识总结">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2020/03/23/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="OC内存管理内存管理的原理和原则 基本数据类型(int,float,double,enum,struct,union等)和C语言的类型存储在栈区,由系统分配释放 继承自NSObject的类属于OC类型,都遵循内存管理原则 谁创建,谁释放(MRC程序员管理,ARC系统封装了编译时插入retain和release 自动释放池等自动管理内存) OC方法调用的本质其实是给对象发送消息,需要引用时发送ret">
+<meta property="article:published_time" content="2020-03-23T13:22:53.000Z">
+<meta property="article:modified_time" content="2021-03-07T09:30:47.745Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="学习总结">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2020/03/23/iOS基础知识总结/"/>
+
+
+
+
+
+  <title>iOS基础知识总结 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2020/03/23/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS基础知识总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-23T13:22:53+00:00">
+                2020-03-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2021-03-07T09:30:47+00:00">
+                2021-03-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2020/03/23/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2020/03/23/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  26 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="OC"><a href="#OC" class="headerlink" title="OC"></a>OC</h2><h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><h5 id="内存管理的原理和原则"><a href="#内存管理的原理和原则" class="headerlink" title="内存管理的原理和原则"></a>内存管理的原理和原则</h5><ul>
+<li>基本数据类型(<code>int</code>,<code>float</code>,<code>double</code>,<code>enum</code>,<code>struct</code>,<code>union</code>等)和C语言的类型存储在栈区,由系统分配释放</li>
+<li>继承自<code>NSObject</code>的类属于<code>OC</code>类型,都遵循内存管理原则</li>
+<li>谁创建,谁释放(<code>MRC</code>程序员管理,<code>ARC</code>系统封装了编译时插入<code>retain</code>和<code>release</code> 自动释放池等自动管理内存)</li>
+<li><code>OC</code>方法调用的本质其实是给对象发送消息,需要引用时发送<code>retain</code>引用计数加<code>1</code>,释放时发送<code>release</code>引用计数减<code>1</code>,每个<code>OC</code>对象都有一个<code>retainCount</code>计数器占有<code>4</code>个字节</li>
+<li><code>MRC</code> 设置<code>setter</code>需要判断,存在旧值,则需要先把旧值释放<code>release</code>,然后新值<code>retain</code>之后赋值</li>
+</ul>
+<a id="more"></a>
+
+
+<h5 id="内存管理中容易出现的问题和概念"><a href="#内存管理中容易出现的问题和概念" class="headerlink" title="内存管理中容易出现的问题和概念"></a>内存管理中容易出现的问题和概念</h5><ul>
+<li><p>内存泄漏: 开辟了内存空间创建了对象却没有得到真正的使用,也没有得到释放并常驻在内存中,造成对内存的浪费(不用的记得释放,养成合理使用内存的习惯,才能有效避免类似问题)</p>
+</li>
+<li><p>悬垂指针(也叫迷途指针): 就是指针指向的那块内存已经销毁(对象已经释放了),但是引用它的指针还在,然后指针自己也不知道指向的是什么鬼👻了,对象释放时需要顺带也要把引用它的指针也置为 <code>nil</code> (<code>OC</code>中任何对象给<code>nil</code>发消息都不会有反应的)</p>
+</li>
+<li><p>野指针: 还没有初始化的指针</p>
+</li>
+<li><p>僵尸对象: 一个已经被释放的对象</p>
+</li>
+<li><p>空指针: nil,NULL </p>
+</li>
+<li><p>一个NSObject占用多少内存？<a href="https://blog.csdn.net/a_horse/article/details/82532304" target="_blank" rel="noopener">查看OC对象占用至少多少字节</a></p>
+<blockquote>
+<p>1、系统分配了16个字节给NSObject对象（可以通过malloc_size函数得到）<br>2、但NSObject对象内部只使用了8个字节空间（在64bit环境下，可以通过class_getInstanceSize函数获得）</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="OC中的几个小常识"><a href="#OC中的几个小常识" class="headerlink" title="OC中的几个小常识"></a>OC中的几个小常识</h3><h5 id="import-include-class的区别在哪里"><a href="#import-include-class的区别在哪里" class="headerlink" title="#import , #include,@class的区别在哪里?"></a><code>#import</code> , <code>#include</code>,<code>@class</code>的区别在哪里?</h5><ul>
+<li><code>#include</code>是<code>C</code>语言中的导入头文件的方式,会出现重复导入的情况</li>
+<li><code>#import</code>是``#include`的改进版,针对同一个头文件只会导入一次,避免递归导入问题</li>
+<li><code>@class</code> 类的声明,可以避免循环导入互相引用头文件报错的问题,还有就是提高编译效率,如果头文件链式引用的话容易出现重复编译的问题(可优化编译耗时)</li>
+</ul>
+<h5 id="static-extern-const的使用"><a href="#static-extern-const的使用" class="headerlink" title="static,extern,const的使用"></a><code>static</code>,<code>extern</code>,<code>const</code>的使用</h5><p><code>static</code>可以修饰</p>
+<ul>
+<li>静态局部变量:  <em>保证局部变量永远只初始化一次，在程序的运行过程中永远有且只有一份内存， 生命周期类似全局变量了，但是作用域不变。</em></li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//push到这个页面,页面添加按钮点击进行累加操作 点两下pop页面,再次进入继续点击按钮累加 观察控制台打印</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">    count += <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"计数: %d"</span>,count);</span><br><span class="line"><span class="comment">// 控制台打印结果如下: </span></span><br><span class="line"><span class="comment">//第一次进入该页面点击打印</span></span><br><span class="line">计数: <span class="number">1</span></span><br><span class="line">计数: <span class="number">2</span></span><br><span class="line"><span class="comment">//第二次进入该页面点击打印</span></span><br><span class="line">计数: <span class="number">3</span></span><br><span class="line">计数: <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>修饰静态全局变量:  <em>使全局变量的作用域仅限于当前文件内部，即当前文件内部才能访问该全局变量</em> </p>
+<p>例如单例:</p>
+</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> ShareManager *_manager = <span class="literal">nil</span>;</span><br><span class="line">+ (ShareManager *)shareInstance&#123;</span><br><span class="line">    <span class="keyword">if</span> (!_manager) &#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">        <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">            _manager = [[ShareManager alloc] init];</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _manager;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修饰静态函数: <em><code>static</code>修饰的函数叫静态函数,外部文件无法访问这个函数,函数当前文件可以访问</em></li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> hello()&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"你好!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>extern</code> 外部引用的意思,其实是用于修饰外部全局变量的关键字,在<code>iOS</code>中被定义了多种别名,其实本质还是<code>extern</code>,当然自己开发的时候也可以自定义别名,可以增加代码可读性.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FOUNDATION_EXPORT</span><br><span class="line">FOUNDATION_EXTERN</span><br><span class="line">UIKIT_EXTERN</span><br></pre></td></tr></table></figure>
+
+<h5 id="OC中-property的几个关键字用法-iOS面试之-property"><a href="#OC中-property的几个关键字用法-iOS面试之-property" class="headerlink" title="OC中@property的几个关键字用法 iOS面试之@property"></a>OC中<code>@property</code>的几个关键字用法 <a href="https://juejin.im/post/5c105c7ce51d4562d138086f?utm_source=gold_browser_extension" target="_blank" rel="noopener">iOS面试之@property</a></h5><details>
+<summary>查看代码示例 show the code</summary>
+<pre><code class="java">
+// @property = iVar + setter + getter
+// 默认是atomic原子的 读写线程安全但耗性能  一般设置nonatomic是非原子的 节省开销
+//基本数据类型
+@property (nonatomic,assign) int age;
+@property (nonatomic,assign) float distance;
+@property (nonatomic,assign) double aValue;
+@property (nonatomic,assign) NSInteger count1;
+@property (nonatomic,assign) NSUInteger count2;
+@property (nonatomic,assign) CGFloat number1;
+//枚举类型
+@property (nonatomic,assign) NSTextAlignment align;
+//结构体
+@property (nonatomic,assign) CGSize size;
+@property (nonatomic,assign) CGRect frame;
+//代理委托
+@property (nonatomic,assign) id<HelloDelegate> assignDelegate;
+@property (nonatomic,weak) id<HelloDelegate> weakDelegate;
+//弱引用属性
+@property (nonatomic,weak) ShareManager *weakManager;
+//IB拉线视图
+@property (nonatomic,weak) IBOutlet UIView *testView;
+//字符串
+@property (nonatomic,copy) NSString *name;
+//block/闭包
+@property (nonatomic,copy) dispatch_block_t block;
+//强引用对象
+@property (nonatomic,strong) NSArray *arr;
+@property (nonatomic,strong) NSMutableArray *arrM;
+@property (nonatomic,strong) NSDictionary *dic;
+@property (nonatomic,strong) NSMutableArray *dicM;
+@property (nonatomic,strong) ShareManager  *strongManager;
+//默认是readwrite 对于外部引用是可读可写 设置readonly是只读
+@property (nonatomic,strong,readonly) ShareManager  *strongManager2;
+</code></pre>
+</details>
+----------------------------
+
+<h5 id="NSObject中类方法load和initialize-load和initialize"><a href="#NSObject中类方法load和initialize-load和initialize" class="headerlink" title="NSObject中类方法load和initialize load和initialize"></a><code>NSObject</code>中类方法<code>load</code>和<code>initialize</code> <a href="http://blog.y500.me/initialize-vs-load/" target="_blank" rel="noopener">load和initialize</a></h5><blockquote>
+<p>这两个类方法会在类被使用时主动调用，但是调用时机和调用顺序却截然不同。</p>
+</blockquote>
+<ul>
+<li><code>initialize</code>方法是在该类接收到第一个消息之前调用.</li>
+<li>父类的 <code>initialize</code> 方法先于子类的 <code>initialize</code> 方法调用.</li>
+<li>如果子类中没有实现 <code>initialize</code> 方法，或者子类显示调用父类实现<code>[super initialize]</code>, 那么则会调用其父类的实现。也就是说，父类的 <code>initialize</code> 可能会被调用多次。</li>
+<li>在应用程序生命周期里，<code>runtime</code> 只会向每个类发送一次 <code>initialize</code> 消息. 所以如果category中实现了<code>initialize</code>方法，那么原来类中的则不会被调用.</li>
+<li><code>load</code>在类或者<code>category</code>被添加到<code>runtime</code>的时候调用，该调用发生在main函数之前</li>
+<li>父类<code>load</code>方法先于子类调用，类本身<code>load</code>方法先于<code>category</code>中调用。</li>
+<li>不需要在<code>load</code>和<code>initialize</code>方法中显式的去调用父类的方法。</li>
+</ul>
+<h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><h3 id="一些常见的知识点"><a href="#一些常见的知识点" class="headerlink" title="一些常见的知识点"></a>一些常见的知识点</h3><h5 id="UIView和CALayer的区别"><a href="#UIView和CALayer的区别" class="headerlink" title="UIView和CALayer的区别?"></a>UIView和CALayer的区别?</h5><p>view: 负责用户交互,事件响应</p>
+<p>layer: 负责绘制展示内容,隐式动画</p>
+<h5 id="如何高效绘制圆角"><a href="#如何高效绘制圆角" class="headerlink" title="如何高效绘制圆角?"></a>如何高效绘制圆角?</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//采用贝塞尔曲线绘制 上下左右四个角 可大可小/可有可无/易于控制 </span></span><br><span class="line">    <span class="comment">//可选枚举</span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="built_in">NS_OPTIONS</span>(<span class="built_in">NSUInteger</span>, <span class="built_in">UIRectCorner</span>) &#123;</span><br><span class="line">        <span class="built_in">UIRectCornerTopLeft</span>     = <span class="number">1</span> &lt;&lt; <span class="number">0</span>,</span><br><span class="line">        <span class="built_in">UIRectCornerTopRight</span>    = <span class="number">1</span> &lt;&lt; <span class="number">1</span>,</span><br><span class="line">        <span class="built_in">UIRectCornerBottomLeft</span>  = <span class="number">1</span> &lt;&lt; <span class="number">2</span>,</span><br><span class="line">        <span class="built_in">UIRectCornerBottomRight</span> = <span class="number">1</span> &lt;&lt; <span class="number">3</span>,</span><br><span class="line">        <span class="built_in">UIRectCornerAllCorners</span>  = ~<span class="number">0</span>UL</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">UIBezierPath</span> *maskPath = [<span class="built_in">UIBezierPath</span> bezierPathWithRoundedRect:<span class="keyword">self</span>.bounds byRoundingCorners:(<span class="built_in">UIRectCornerAllCorners</span>) cornerRadii:<span class="built_in">CGSizeMake</span>(<span class="number">10</span>, <span class="number">10</span>)];</span><br><span class="line">    <span class="built_in">CAShapeLayer</span> *maskLayer = [[<span class="built_in">CAShapeLayer</span> alloc] init];</span><br><span class="line">    maskLayer.frame = <span class="keyword">self</span>.bounds;</span><br><span class="line">    maskLayer.path = maskPath.CGPath;</span><br><span class="line">    <span class="keyword">self</span>.layer.mask = maskLayer;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><h5 id="更新布局"><a href="#更新布局" class="headerlink" title="更新布局"></a>更新布局</h5><ul>
+<li><code>layoutIfNeeded</code>强制更新布局</li>
+<li><code>setNeedsDisplay</code>重绘,适用于需要重写<code>drawRect:</code>绘制的视图</li>
+<li><code>updateConstraintsIfNeeded</code>标记需要更新约束,然后调用<code>layoutIfNeeded</code>才会生效</li>
+</ul>
+<h5 id="纯代码"><a href="#纯代码" class="headerlink" title="纯代码"></a>纯代码</h5><ul>
+<li>系统AutoLayout <ul>
+<li><a href="https://www.jianshu.com/p/c476f797fedc" target="_blank" rel="noopener">iOS 自动布局总结篇</a></li>
+</ul>
+</li>
+<li>frame布局<ul>
+<li><a href="https://www.jianshu.com/p/98c8e18d7fea" target="_blank" rel="noopener">参考</a></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>PS：bounds与frame有一定区别。<br>bounds只用来描述视图的尺寸，就像一页A4纸，不论把它放在桌子上还是地板上，它的bounds都不发生变化。<br>frame除了能够描述视图的尺寸外还能描述视图的位置。再如A4纸，从桌子上挪到地板上，它的frame就发生变化了</p>
+</blockquote>
+<ul>
+<li><p>Masonry约束布局</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/587efafdd2b3" target="_blank" rel="noopener">参考一</a> </li>
+<li><a href="http://tutuge.me/2017/03/12/autolayout-example-with-masonry5/" target="_blank" rel="noopener">参考二</a></li>
+</ul>
+</li>
+<li><p>StackView布局</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/19fbf3ee2840" target="_blank" rel="noopener">参考</a></li>
+</ul>
+</li>
+<li><p>基于YogaKit的Flexbox布局</p>
+<ul>
+<li><a href="https://www.cnblogs.com/baitongtong/p/11778738.html" target="_blank" rel="noopener">iOS - FlexBox 布局之 YogaKit</a></li>
+</ul>
+</li>
+<li><p>其他第三方布局库</p>
+<ul>
+<li><a href="https://github.com/gsdios/SDAutoLayout" target="_blank" rel="noopener">SDAutoLayout</a></li>
+<li><a href="https://github.com/youngsoft/MyLinearLayout" target="_blank" rel="noopener">MyLayout</a></li>
+</ul>
+</li>
+</ul>
+<h5 id="IB拉线"><a href="#IB拉线" class="headerlink" title="IB拉线"></a>IB拉线</h5><p> XIB结合代码</p>
+<p>StoryBoard结合代码</p>
+<blockquote>
+<p>利用<code>IB_DESIGNABLE</code>和<code>IBInspectable</code>修饰,然后再重写setter,在IB面板上即可出现添加可勾选☑️的属性列表,此方法适用自定义类,不建议在category中设置,category的话是比较耗性能,时不时爆个红~ </p>
+</blockquote>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">IB_DESIGNABLE</span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">WGBCustomButton</span> : <span class="title">UIButton</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) IBInspectable <span class="built_in">CGFloat</span> space;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) IBInspectable <span class="built_in">CGFloat</span>   borderWidth;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) IBInspectable  <span class="built_in">UIColor</span> * borderColor;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) IBInspectable <span class="built_in">CGFloat</span>  radius;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) IBInspectable  <span class="built_in">UIColor</span> *bgColor;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) IBInspectable  <span class="built_in">BOOL</span>  buttonHighlighted;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) IBInspectable  <span class="built_in">UIColor</span> *selectedBgColor;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) IBInspectable  <span class="built_in">UIColor</span> *normalBgColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p><code>UIViewController</code>生命周期</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 初始化构造方法</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithNibName:(<span class="built_in">NSString</span> *)nibNameOrNil bundle:(<span class="built_in">NSBundle</span> *)nibBundleOrNil &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IB编译后解码</span></span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithCoder:(<span class="built_in">NSCoder</span> *)aDecoder &#123;</span><br><span class="line">     <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> initWithCoder:aDecoder]) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// IB加载完成</span></span><br><span class="line">- (<span class="keyword">void</span>)awakeFromNib &#123;</span><br><span class="line">    [<span class="keyword">super</span> awakeFromNib];</span><br><span class="line">     <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加载视图 </span></span><br><span class="line">- (<span class="keyword">void</span>)loadView &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    <span class="keyword">self</span>.view = [[<span class="built_in">UIView</span> alloc] initWithFrame:[<span class="built_in">UIScreen</span> mainScreen].bounds];</span><br><span class="line">    <span class="keyword">self</span>.view.backgroundColor = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//视图加载完成</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLoad &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewDidLoad];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//视图将要出现</span></span><br><span class="line">- (<span class="keyword">void</span>)viewWillAppear:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewWillAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//将要布局子视图</span></span><br><span class="line">- (<span class="keyword">void</span>)viewWillLayoutSubviews &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewWillLayoutSubviews];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//子视图布局(可能会被多次调用)</span></span><br><span class="line">- (<span class="keyword">void</span>)layoutSubviews&#123;</span><br><span class="line">    [<span class="keyword">super</span> layoutSubviews];</span><br><span class="line">    	<span class="comment">//此处能够获取准确frame</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 子视图已经布局完毕</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidLayoutSubviews &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewDidLayoutSubviews];</span><br><span class="line">    	<span class="comment">//此处能够获取准确frame</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//视图已经出现</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidAppear:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewDidAppear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//视图将要消失</span></span><br><span class="line">- (<span class="keyword">void</span>)viewWillDisappear:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewWillDisappear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//视图已经消失</span></span><br><span class="line">- (<span class="keyword">void</span>)viewDidDisappear:(<span class="built_in">BOOL</span>)animated &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> viewDidDisappear:animated];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//出现内存警告  //模拟内存警告:点击模拟器-&gt;hardware-&gt; Simulate Memory Warning</span></span><br><span class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 视图被销毁</span></span><br><span class="line">- (<span class="keyword">void</span>)dealloc &#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>, __FUNCTION__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//控制台打印如下:</span></span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">41.577</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController initWithCoder:]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">41.579</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController awakeFromNib]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">41.581</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController loadView]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.485</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewDidLoad]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.486</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewWillAppear:]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.487</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewWillLayoutSubviews]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.488</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewDidLayoutSubviews]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.488</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewWillLayoutSubviews]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.488</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewDidLayoutSubviews]</span><br><span class="line"><span class="number">18</span>:<span class="number">03</span>:<span class="number">46.490</span> ViewControllerLifeCircle[<span class="number">32254</span>:<span class="number">401790</span>] -[ViewController viewDidAppear:]</span><br><span class="line"><span class="number">19</span>:<span class="number">03</span>:<span class="number">13.308</span> ViewControllerLifeCircle[<span class="number">32611</span>:<span class="number">427962</span>] -[ViewController viewWillDisappear:]</span><br><span class="line"><span class="number">19</span>:<span class="number">03</span>:<span class="number">14.683</span> ViewControllerLifeCircle[<span class="number">32611</span>:<span class="number">427962</span>] -[ViewController viewDidDisappear:]</span><br><span class="line"><span class="number">19</span>:<span class="number">03</span>:<span class="number">14.683</span> ViewControllerLifeCircle[<span class="number">32611</span>:<span class="number">427962</span>] -[ViewController dealloc]</span><br><span class="line"><span class="number">19</span>:<span class="number">12</span>:<span class="number">05.927</span> ViewControllerLifeCircle[<span class="number">32611</span>:<span class="number">427962</span>] -[ViewController didReceiveMemoryWarning]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h3><h5 id="UIView动画-UIView动画UIView-Animation总结"><a href="#UIView动画-UIView动画UIView-Animation总结" class="headerlink" title="UIView动画  UIView动画UIView Animation总结"></a>UIView动画  <a href="http://www.cocoachina.com/articles/19794" target="_blank" rel="noopener">UIView动画UIView Animation总结</a></h5><ul>
+<li>常用的块动画</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 参数一 : 时长  </span></span><br><span class="line"><span class="comment">/// 参数二 : 执行动画块</span></span><br><span class="line"><span class="comment">/// 参数三 : 动画结束时回调</span></span><br><span class="line">[<span class="built_in">UIView</span> animateWithDuration:<span class="number">0.25</span> animations:^&#123;</span><br><span class="line">  <span class="comment">//做动画: 修改视图大小位置,透明度,颜色,transform等属性</span></span><br><span class="line">&#125; completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">  <span class="comment">//动画结束回调</span></span><br><span class="line">&#125;];       </span><br><span class="line"><span class="comment">/// 参数一 : 时长</span></span><br><span class="line"><span class="comment">/// 参数二 : 延时几秒执行</span></span><br><span class="line"><span class="comment">/// 参数三 : 动画函数枚举</span></span><br><span class="line"><span class="comment">/// 参数四 : 执行动画块</span></span><br><span class="line"><span class="comment">/// 参数五 : 动画结束时回调</span></span><br><span class="line">[<span class="built_in">UIView</span> animateWithDuration:<span class="number">0.25</span> delay:<span class="number">1.0</span> options:(<span class="built_in">UIViewAnimationOptionAllowUserInteraction</span>) animations:^&#123;</span><br><span class="line">  <span class="comment">//执行动画</span></span><br><span class="line">&#125; completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">  <span class="comment">//动画结束回调</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Spring</code>弹性动画</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 参数一: 执行时长</span></span><br><span class="line">    <span class="comment">/// 参数二: 延时几秒执行</span></span><br><span class="line">    <span class="comment">/// 参数三: 阻尼值 0~1之间取值 值越小弹性越大</span></span><br><span class="line">    <span class="comment">/// 参数四: 初始速度 默认为0 值越大 动画执行的越快</span></span><br><span class="line">    <span class="comment">/// 参数五: 动画执行曲线函数</span></span><br><span class="line">    <span class="comment">/// 参数六: 执行动画块</span></span><br><span class="line">    <span class="comment">/// 参数七: 动画结束时回调</span></span><br><span class="line">    [<span class="built_in">UIView</span> animateWithDuration:<span class="number">0.25</span> delay:<span class="number">0.0</span> usingSpringWithDamping:<span class="number">0.5</span> initialSpringVelocity:<span class="number">10</span> options:(<span class="built_in">UIViewAnimationOptionCurveEaseInOut</span>) animations:^&#123;</span><br><span class="line">        <span class="comment">//执行动画</span></span><br><span class="line">    &#125; completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">        <span class="comment">//动画结束</span></span><br><span class="line">    &#125;];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>视图转场动画</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIView</span> *aView = <span class="literal">nil</span>;<span class="comment">//替换项目中实际的view</span></span><br><span class="line"><span class="built_in">UIView</span> *bView = <span class="literal">nil</span>;<span class="comment">//替换项目中实际的view</span></span><br><span class="line"><span class="comment">//从一个视图过渡到另一个视图</span></span><br><span class="line">[<span class="built_in">UIView</span> transitionFromView:aView toView:bView duration:<span class="number">0.25</span> options:(<span class="built_in">UIViewAnimationOptionCurveLinear</span>) completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">    <span class="comment">//转场结束</span></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">//单个视图向右翻转转场</span></span><br><span class="line">[<span class="built_in">UIView</span> transitionWithView:aView duration:<span class="number">0.25</span> options:(<span class="built_in">UIViewAnimationOptionTransitionFlipFromRight</span>) animations:^&#123;</span><br><span class="line">    <span class="comment">//转场过程中 做一些改变</span></span><br><span class="line">&#125; completion:^(<span class="built_in">BOOL</span> finished) &#123;</span><br><span class="line">    <span class="comment">//转场结束</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+
+<h5 id="核心动画"><a href="#核心动画" class="headerlink" title="核心动画"></a>核心动画</h5><h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><blockquote>
+<p> 超文本传输协议,是一种建立在TCP上的无状态连接，整个基本的工作流程是客户端发送一个HTTP请求，说明客户端想要访问的资源和请求的动作，服务端收到请求之后，服务端开始处理请求，并根据请求做出相应的动作访问服务器资源，最后通过发送HTTP响应把结果返回给客户端</p>
+</blockquote>
+<p> <a href="https://www.cnblogs.com/an-wen/p/11180076.html" target="_blank" rel="noopener">HTTP协议超级详解</a></p>
+<h5 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h5><p>工作中只用过一次,用于检测CDN回源,主要是获取Header中的字段值进行判断是否上报</p>
+<h5 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h5><p>参数拼接到URL上是暴露的,相对于POST来说不安全(POST将参数放到body里),传输数据量小,受限于URL最大长度<a href="https://www.baidu.com/link?url=6QrTUOfAvDPuZo5IiUykxyECWlRjatZHflDTimgeKB3MMnAPlomQOXj1IKlsAwHrxAlGKixhByKSNZFXsYf4Q3eKbrqJ8d9wh5Zq1YJMdGu&wd=&eqid=ae2e0e330015c461000000055e7575ff" target="_blank" rel="noopener"><em>URL最大长度</em>问题 </a>   表单默认请求方式数据集必须为ASCII,执行效率比POST高</p>
+<h5 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h5><p>安全,参数不可见(放到body中),数据类型没有限制, 可传输的数据容量大(<a href="https://www.cnblogs.com/zxj159/articles/2428376.html" target="_blank" rel="noopener">GET和POST可传递的值到底有多大？</a>) </p>
+<h3 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h3><p>tcp是长连接,能够保证传输数据的完整性</p>
+<p>udp是发出去就不管的,容易丢包</p>
+<p> <a href="https://www.cnblogs.com/williamjie/p/9390164.html" target="_blank" rel="noopener">TCP和UDP的最完整的区别</a></p>
+<h3 id="Socket-WebSocket"><a href="#Socket-WebSocket" class="headerlink" title="Socket/WebSocket"></a>Socket/WebSocket</h3><p>socket: <code>应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口，提供一套调用TCP/IP协议的API</code></p>
+<p>websocket: <code>一种双向通信协议。在建立连接后，WebSocket服务器端和客户端都能主动向对方发送或接收数据，就像Socket一样；(而http服务端不能主动联系客户端，只能有客户端发起,太被动啦) ,只要建立一次HTTP请求，就可以连续不断的得到服务器推送的消息，节省带宽和服务器端的压力~</code></p>
+<h3 id="WebServer模拟本地接口请求数据"><a href="#WebServer模拟本地接口请求数据" class="headerlink" title="WebServer模拟本地接口请求数据"></a>WebServer模拟本地接口请求数据</h3><p><a href="https://www.cnblogs.com/wgb1234/p/12514220.html#/cnblog/works/article/12466122" target="_blank" rel="noopener">盘点Mac上搭建本地WebServer的几种方式 </a></p>
+<h3 id="三次握手🤝-四次挥手👋"><a href="#三次握手🤝-四次挥手👋" class="headerlink" title="三次握手🤝/四次挥手👋"></a>三次握手🤝/四次挥手👋</h3><p><strong>三次握手(通道的建立):</strong>   </p>
+<blockquote>
+<p>（1）在建立通道时，客户端首先要向服务端发送一个SYN同步信号。</p>
+<p>（2）服务端在接收到这个信号之后会向客户端发出SYN同步信号和ACK确认信号。</p>
+<p>（3）当服务端的ACK和SYN到达客户端后，客户端与服务端之间的这个“通道”就会被建立起来。</p>
+</blockquote>
+<p>PS. 以上整个过程有点像叫人开门的感觉, 大声呼喊听得见吗? 听得见的话就把门打开, 然后对方清晰听到后把门开开,即成功建立连接,要是没听见(没连接上)或者没有听清楚(ack丢失了),那就得加大分贝多喊几次(反复发送ack直到确认) … </p>
+<p><strong>四次挥手(通道的关闭):</strong></p>
+<blockquote>
+<p>（1）在数据传输完毕之后，客户端会向服务端发出一个FIN终止信号。</p>
+<p>（2）服务端在收到这个信号之后会向客户端发出一个ACK确认信号。</p>
+<p>（3）如果服务端此后也没有数据发给客户端时服务端会向客户端发送一个FIN终止信号。</p>
+<p>（4）客户端在收到这个信号之后会回复一个Ack确认信号，在服务端接收到这个信号之后，服务端与客户端的通道也就关闭了。</p>
+</blockquote>
+<p>PS. 以上过程有点像黑帮交易验货~  到达交易约定地点之后,由甲方提出要验货,乙方听到后点了点头,然后让小弟把大箱子搬了出来,甲方打开之后验货没有问题,然后叫小弟把装钱的箱子提了上来交给乙方, 乙方清点之后也没有问题,银货两讫,各自退散~ </p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h5 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h5><ol>
+<li>手机里每一个App就一个独立的进程,负责运行的程序内存分配,每个进程有独立的虚拟的内存空间, 线程是CPU执行任务的基本单元,是进程执行任务的路径</li>
+<li>队列: 串行和并行, 串行是一个任务接着一个任务执行,并行是指在不同队列即多个CPU同时执行不同的任务 (多核才有可能实现真正的并行)</li>
+<li>并发: 单核情况下,单位时间内多个任务快速切换执行,造成同时执行的假象(异步执行任务才有并发一说)</li>
+<li>同步和异步: 分配了一堆任务,同步是指阻塞式的一个任务执行完再执行下一个任务, 异步是指分不同优先级调度任务顺序来执行任务</li>
+<li>主线程和子线程: 每个进程必有一条线程即主线程,异步才会开子线程</li>
+</ol>
+<h5 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h5><ol>
+<li>创建队列</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 队列类型</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一个参数：队列名称</span></span><br><span class="line"><span class="comment">// 第二个参数：队列类型</span></span><br><span class="line">dispatch_queue_create(<span class="keyword">const</span> <span class="keyword">char</span> *label, dispatch_queue_attr_t attr);</span><br><span class="line"></span><br><span class="line"><span class="comment">/** 队列类型</span></span><br><span class="line"><span class="comment">  // 串行队列标识：本质就是NULL，但建议不要写成NULL，可读性不好</span></span><br><span class="line"><span class="comment">  DISPATCH_QUEUE_SERIAL</span></span><br><span class="line"><span class="comment">  // 并行队列标识</span></span><br><span class="line"><span class="comment">  DISPATCH_QUEUE_CONCURRENT</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一条自定义并行队列</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"myQueue"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建全局并发队列</span></span><br><span class="line"><span class="comment">// 第一个参数：队列优先级 默认填0</span></span><br><span class="line"><span class="comment">// 第二个参数：保留参数，暂时无用，填0即可</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局并发队列的优先级</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPATCH_QUEUE_PRIORITY_HIGH 2               <span class="comment">// 高</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPATCH_QUEUE_PRIORITY_DEFAULT 0            <span class="comment">// 默认(中)</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPATCH_QUEUE_PRIORITY_LOW (-2)             <span class="comment">// 低</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DISPATCH_QUEUE_PRIORITY_BACKGROUND INT16_MIN <span class="comment">// 后台</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建串行队列（队列类型传递DISPATCH_QUEUE_SERIAL或者NULL）</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"serialQueue"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"><span class="comment">// 主队列(特殊的串行队列)中的任务，都会放到主线程中执行</span></span><br><span class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</span><br></pre></td></tr></table></figure>
+
+<p>常用的几种:</p>
+<ul>
+<li><code>dispatch_once_t</code> 一次性代码块</li>
+<li><code>dispatch_after和dispatch_time_t</code> 设置延时或者倒计时</li>
+<li><code>dispatch_barrier_async</code> 栅栏函数,拦截之前任务执行完才让执行下一个</li>
+<li><code>dispatch_group</code> 分组处理多任务统一回调问题</li>
+<li><code>dispatch_semaphore_t</code> 信号量,线程同步,防止资源抢占</li>
+</ul>
+<p><a href="https://www.jianshu.com/p/77c5051aede2" target="_blank" rel="noopener">OC高级-GCD使用总结</a></p>
+<p><a href="https://juejin.im/post/5a90de68f265da4e9b592b40" target="_blank" rel="noopener">iOS多线程：『GCD』详尽总结</a></p>
+<h5 id="NSOperation"><a href="#NSOperation" class="headerlink" title="NSOperation"></a>NSOperation</h5><p><a href="https://www.jianshu.com/p/8ccf51bdbb2f" target="_blank" rel="noopener">OC高级-NSOperation 和 NSOperationQueue</a></p>
+<p> <a href="https://www.cnblogs.com/zhanglinfeng/p/4980087.html" target="_blank" rel="noopener">iOS 多线程之NSOperation篇举例详解</a></p>
+<h2 id="设计模式-参考"><a href="#设计模式-参考" class="headerlink" title="设计模式  参考"></a>设计模式  <a href="https://github.com/Binlogo/Design-Patterns-In-Swift-CN" target="_blank" rel="noopener">参考</a></h2><h2 id="性能优化-参考"><a href="#性能优化-参考" class="headerlink" title="性能优化 参考"></a>性能优化 <a href="https://www.jianshu.com/p/b8346c1a4145" target="_blank" rel="noopener">参考</a></h2><h2 id="本地持久化方案"><a href="#本地持久化方案" class="headerlink" title="本地持久化方案"></a>本地持久化方案</h2><h5 id="本地数据库sqlite3-0-FMDB"><a href="#本地数据库sqlite3-0-FMDB" class="headerlink" title="本地数据库sqlite3.0+FMDB"></a>本地数据库sqlite3.0+FMDB</h5><ul>
+<li><a href="https://www.cnblogs.com/guohai-stronger/p/9251131.html" target="_blank" rel="noopener">SQLite与FMDB的使用</a></li>
+</ul>
+<h5 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h5><details>
+<summary> 查看归档相关代码 show the code </summary>
+<pre> <code class="objectivec">
+#import &ltFoundation/Foundation.h&gt
+#import "YYModel.h"<br>
+@interface Person : NSObject&ltNSCoding, NSCopying&gt
+@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *age;
+@end<br><br>#import "Person.h"
+@implementation Person
+//重写以下几个方法 
+- (void)encodeWithCoder:(NSCoder*)aCoder {
+    [self yy_modelEncodeWithCoder:aCoder];
+}
+- (id)initWithCoder:(NSCoder*)aDecoder
+{
+    self = [super init];
+    return [self yy_modelInitWithCoder:aDecoder];
+}
+- (id)copyWithZone:(NSZone*)zone {
+    return [self yy_modelCopy];
+}
+- (NSUInteger)hash {
+    return [self yy_modelHash];
+}
+- (BOOL)isEqual:(id)object {
+    return [self yy_modelIsEqual:object];
+}
+@end<br><br>#import &ltUIKit/UIKit.h&gt<br>
+@interface ViewController : UIViewController
+@end<br><br>#import "ViewController.h"
+#import "Person.h"
+<br>#define KDocumentPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) lastObject]<br><br>#define kPersonInfoPath [KDocumentPath stringByAppendingPathComponent:@"personInfo.archiver"]
+<br>@interface ViewController ()<br>
+@end
+<br>
+@implementation ViewController
+- (void)viewDidLoad {
+    [super viewDidLoad];
+<br>
+//先存档  然后屏蔽这段代码  看看是否归档到了本地
+//    NSMutableArray *dataArray =[NSMutableArray array];
+//
+//    for (NSInteger i = 10; i &lt 20 ; i++) {
+//        Person * p =[Person new];
+//        p.name = [NSString stringWithFormat:@"name==-%ld",i];
+//        p.age = [NSString stringWithFormat:@"+++%ld岁",i];
+//        [dataArray addObject:p];
+//    }
+//
+//    BOOL ret =  [NSKeyedArchiver archiveRootObject:dataArray toFile:kPersonInfoPath];
+//
+//    if (ret) {
+//        NSLog(@"归档成功");
+//    }else{
+//        NSLog(@"归档失败");
+//    }
+    NSArray *arr =[NSKeyedUnarchiver unarchiveObjectWithFile:kPersonInfoPath];
+    for (Person *p in arr) {
+        NSLog(@"名字%@,年龄%@", p.name,p.age);
+    }
+}
+@end
+</code>
+</pre>
+</details>
+-------
+
+<h5 id="keychain"><a href="#keychain" class="headerlink" title="keychain"></a>keychain</h5><p>这个需要绑定唯一标识,不会因为应用卸载而消除,可以重置系统或者手动删除</p>
+<h5 id="写文件到沙盒"><a href="#写文件到沙盒" class="headerlink" title="写文件到沙盒"></a>写文件到沙盒</h5><ul>
+<li>Document目录,一般持久化的数据都存储在这个目录,iCloud会自动备份Document中的所有文件,一般重要的文件存储在这里</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *documentPath = <span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>,<span class="built_in">NSUserDomainMask</span>,<span class="literal">YES</span>).firstObject;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>tmp临时目录,临时文件夹里面的文件，由系统回收， 如磁盘内存不足，重启手机，应用进程杀掉，都会清除临时文件,系统自动管理该目录的文件</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *tmpDir = <span class="built_in">NSTemporaryDirectory</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>Library 存储默认设置或者一些状态信息</p>
+<ul>
+<li>Library/Caches 缓存目录,iCloud不会备份,系统不会自动清除,需要写代码去清除 </li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *cacheDir =[<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSCachesDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) lastobject];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Library/Preferences 存储偏好设置 NSUserDefaults</li>
+</ul>
+</li>
+</ul>
+<h2 id="Runtime"><a href="#Runtime" class="headerlink" title="Runtime"></a>Runtime</h2><ul>
+<li>黑魔法方法交换实现</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//实例方法交换</span></span><br><span class="line">+ (<span class="keyword">void</span>)wgb_swizzleInstanceMethodWithClass:(Class)originClass</span><br><span class="line">                          OriginMethod:(SEL)originMethod</span><br><span class="line">                         swappedMethod:(SEL)swappedMethod &#123;</span><br><span class="line">    </span><br><span class="line">    SEL originalSelector = originMethod;</span><br><span class="line">    SEL swappedSelector = swappedMethod;</span><br><span class="line">    </span><br><span class="line">    Method originalMethod = class_getInstanceMethod(originClass, originalSelector);</span><br><span class="line">    Method newMethod = class_getInstanceMethod(originClass, swappedSelector);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">BOOL</span> didAddMethod = class_addMethod(originClass, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));</span><br><span class="line">    <span class="keyword">if</span> (didAddMethod) &#123;</span><br><span class="line">        class_replaceMethod(originClass, swappedSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        method_exchangeImplementations(originalMethod, newMethod);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//类方法交换</span></span><br><span class="line">+ (<span class="keyword">void</span>)wgb_swizzleClassMethodWithClass:(Class)originClass</span><br><span class="line">                       OriginMethod:(SEL)originMethod</span><br><span class="line">                      swappedMethod:(SEL)swappedMethod &#123;</span><br><span class="line">    SEL originalSelector = originMethod;</span><br><span class="line">    SEL swappedSelector = swappedMethod;</span><br><span class="line">    </span><br><span class="line">    Method originalMethod = class_getClassMethod(originClass, originalSelector);</span><br><span class="line">    Method newMethod = class_getClassMethod(originClass, swappedSelector);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">BOOL</span> didAddMethod = class_addMethod(originClass, originalSelector, method_getImplementation(newMethod), method_getTypeEncoding(newMethod));</span><br><span class="line">    <span class="keyword">if</span> (didAddMethod) &#123;</span><br><span class="line">        class_replaceMethod(originClass, swappedSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        method_exchangeImplementations(originalMethod, newMethod);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>category中生成关联对象</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">assign</span>) <span class="built_in">NSInteger</span> totalScore; </span><br><span class="line"></span><br><span class="line">-(<span class="keyword">void</span>)setTotalScore:(<span class="built_in">NSInteger</span>)totalScore&#123;</span><br><span class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, <span class="keyword">@selector</span>(totalScore), @(totalScore), OBJC_ASSOCIATION_RETAIN_NONATOMIC);</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="built_in">NSInteger</span>)totalScore&#123;</span><br><span class="line">    <span class="keyword">id</span> value = objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);</span><br><span class="line">    <span class="keyword">return</span> [value integerValue];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>字典转模型</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">instancetype</span>)initWithDict:(<span class="built_in">NSDictionary</span> *)dict &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">self</span> init]) &#123;</span><br><span class="line">        <span class="comment">//(1)获取类的属性及属性对应的类型</span></span><br><span class="line">        <span class="built_in">NSMutableArray</span> * keys = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">        <span class="built_in">NSMutableArray</span> * attributes = [<span class="built_in">NSMutableArray</span> array];</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">         * 例子</span></span><br><span class="line"><span class="comment">         * name = value3 attribute = T@"NSString",C,N,V_value3</span></span><br><span class="line"><span class="comment">         * name = value4 attribute = T^i,N,V_value4</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> outCount;</span><br><span class="line">        objc_property_t * properties = class_copyPropertyList([<span class="keyword">self</span> <span class="keyword">class</span>], &amp;outCount);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; outCount; i ++) &#123;</span><br><span class="line">            objc_property_t property = properties[i];</span><br><span class="line">            <span class="comment">//通过property_getName函数获得属性的名字</span></span><br><span class="line">            <span class="built_in">NSString</span> * propertyName = [<span class="built_in">NSString</span> stringWithCString:property_getName(property) encoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">            [keys addObject:propertyName];</span><br><span class="line">            <span class="comment">//通过property_getAttributes函数可以获得属性的名字和@encode编码</span></span><br><span class="line">            <span class="built_in">NSString</span> * propertyAttribute = [<span class="built_in">NSString</span> stringWithCString:property_getAttributes(property) encoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">            [attributes addObject:propertyAttribute];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//立即释放properties指向的内存</span></span><br><span class="line">        free(properties);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//(2)根据类型给属性赋值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">NSString</span> * key <span class="keyword">in</span> keys) &#123;</span><br><span class="line">            <span class="keyword">if</span> ([dict valueForKey:key] == <span class="literal">nil</span>) <span class="keyword">continue</span>;</span><br><span class="line">            [<span class="keyword">self</span> setValue:[dict valueForKey:key] forKey:key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>消息动态转发</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)safePerformAction:(SEL)action target:(<span class="built_in">NSObject</span> *)target params:(<span class="built_in">NSDictionary</span> *)params</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSMethodSignature</span>* methodSig = [target methodSignatureForSelector:action];</span><br><span class="line">    <span class="keyword">if</span>(methodSig == <span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* retType = [methodSig methodReturnType];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (strcmp(retType, <span class="keyword">@encode</span>(<span class="keyword">void</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSInvocation</span> *invocation = [<span class="built_in">NSInvocation</span> invocationWithMethodSignature:methodSig];</span><br><span class="line">        [invocation setArgument:&amp;params atIndex:<span class="number">2</span>];</span><br><span class="line">        [invocation setSelector:action];</span><br><span class="line">        [invocation setTarget:target];</span><br><span class="line">        [invocation invoke];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (strcmp(retType, <span class="keyword">@encode</span>(<span class="built_in">NSInteger</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSInvocation</span> *invocation = [<span class="built_in">NSInvocation</span> invocationWithMethodSignature:methodSig];</span><br><span class="line">        [invocation setArgument:&amp;params atIndex:<span class="number">2</span>];</span><br><span class="line">        [invocation setSelector:action];</span><br><span class="line">        [invocation setTarget:target];</span><br><span class="line">        [invocation invoke];</span><br><span class="line">        <span class="built_in">NSInteger</span> result = <span class="number">0</span>;</span><br><span class="line">        [invocation getReturnValue:&amp;result];</span><br><span class="line">        <span class="keyword">return</span> @(result);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (strcmp(retType, <span class="keyword">@encode</span>(<span class="built_in">BOOL</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSInvocation</span> *invocation = [<span class="built_in">NSInvocation</span> invocationWithMethodSignature:methodSig];</span><br><span class="line">        [invocation setArgument:&amp;params atIndex:<span class="number">2</span>];</span><br><span class="line">        [invocation setSelector:action];</span><br><span class="line">        [invocation setTarget:target];</span><br><span class="line">        [invocation invoke];</span><br><span class="line">        <span class="built_in">BOOL</span> result = <span class="number">0</span>;</span><br><span class="line">        [invocation getReturnValue:&amp;result];</span><br><span class="line">        <span class="keyword">return</span> @(result);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (strcmp(retType, <span class="keyword">@encode</span>(<span class="built_in">CGFloat</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSInvocation</span> *invocation = [<span class="built_in">NSInvocation</span> invocationWithMethodSignature:methodSig];</span><br><span class="line">        [invocation setArgument:&amp;params atIndex:<span class="number">2</span>];</span><br><span class="line">        [invocation setSelector:action];</span><br><span class="line">        [invocation setTarget:target];</span><br><span class="line">        [invocation invoke];</span><br><span class="line">        <span class="built_in">CGFloat</span> result = <span class="number">0</span>;</span><br><span class="line">        [invocation getReturnValue:&amp;result];</span><br><span class="line">        <span class="keyword">return</span> @(result);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (strcmp(retType, <span class="keyword">@encode</span>(<span class="built_in">NSUInteger</span>)) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">NSInvocation</span> *invocation = [<span class="built_in">NSInvocation</span> invocationWithMethodSignature:methodSig];</span><br><span class="line">        [invocation setArgument:&amp;params atIndex:<span class="number">2</span>];</span><br><span class="line">        [invocation setSelector:action];</span><br><span class="line">        [invocation setTarget:target];</span><br><span class="line">        [invocation invoke];</span><br><span class="line">        <span class="built_in">NSUInteger</span> result = <span class="number">0</span>;</span><br><span class="line">        [invocation getReturnValue:&amp;result];</span><br><span class="line">        <span class="keyword">return</span> @(result);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic push</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic ignored <span class="meta-string">"-Warc-performSelector-leaks"</span></span></span><br><span class="line">    <span class="keyword">return</span> [target performSelector:action withObject:params];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> clang diagnostic pop</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>实现<code>NSCoding</code>自动归档和解档</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">id</span>)initWithCoder:(<span class="built_in">NSCoder</span> *)aDecoder &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span> = [<span class="keyword">super</span> init]) &#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> outCount;</span><br><span class="line">        Ivar * ivars = class_copyIvarList([<span class="keyword">self</span> <span class="keyword">class</span>], &amp;outCount);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; outCount; i ++) &#123;</span><br><span class="line">            Ivar ivar = ivars[i];</span><br><span class="line">            <span class="built_in">NSString</span> * key = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(ivar)];</span><br><span class="line">            [<span class="keyword">self</span> setValue:[aDecoder decodeObjectForKey:key] forKey:key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)encodeWithCoder:(<span class="built_in">NSCoder</span> *)aCoder &#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> outCount;</span><br><span class="line">    Ivar * ivars = class_copyIvarList([<span class="keyword">self</span> <span class="keyword">class</span>], &amp;outCount);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; outCount; i ++) &#123;</span><br><span class="line">        Ivar ivar = ivars[i];</span><br><span class="line">        <span class="built_in">NSString</span> * key = [<span class="built_in">NSString</span> stringWithUTF8String:ivar_getName(ivar)];</span><br><span class="line">        [aCoder encodeObject:[<span class="keyword">self</span> valueForKey:key] forKey:key];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Runloop"><a href="#Runloop" class="headerlink" title="Runloop"></a>Runloop</h2><p><a href="https://github.com/qiaoyoung/RunLoop" target="_blank" rel="noopener">参考一</a></p>
+<p><a href="https://github.com/diwu/RunLoopWorkDistribution" target="_blank" rel="noopener">参考二</a></p>
+<p><a href="https://www.jianshu.com/p/413811babe1e" target="_blank" rel="noopener">iOS RunLoop</a></p>
+<h2 id="音视频处理"><a href="#音视频处理" class="headerlink" title="音视频处理"></a>音视频处理</h2><h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><h5 id=""><a href="#" class="headerlink" title=""></a></h5><ul>
+<li><p><a href="https://www.jianshu.com/p/3e0a399380df" target="_blank" rel="noopener">iOS音频掌柜– AVAudioSession</a></p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/c1195f90f081" target="_blank" rel="noopener">AVAudioSession管理需要注意的问题</a></p>
+</li>
+</ul>
+<h5 id="录制"><a href="#录制" class="headerlink" title="录制"></a>录制</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">void</span>)setupRecorder&#123;</span><br><span class="line">    <span class="comment">//设置音频会话</span></span><br><span class="line">    <span class="built_in">NSError</span> *sessionError;</span><br><span class="line">    [[<span class="built_in">AVAudioSession</span> sharedInstance] setCategory:<span class="built_in">AVAudioSessionCategoryRecord</span> error:&amp;sessionError];</span><br><span class="line">    <span class="keyword">if</span> (sessionError)&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"Error creating session: %@"</span>,[sessionError description]);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        [[<span class="built_in">AVAudioSession</span> sharedInstance] setActive:<span class="literal">YES</span> error:&amp;sessionError];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//录音设置</span></span><br><span class="line">    <span class="comment">//创建录音文件保存路径</span></span><br><span class="line">    <span class="built_in">NSURL</span> *url = [<span class="keyword">self</span> getSavePath];</span><br><span class="line">    <span class="comment">//创建录音机</span></span><br><span class="line">    <span class="built_in">NSError</span> *error = <span class="literal">nil</span>;</span><br><span class="line">    _audioRecorder = [[<span class="built_in">AVAudioRecorder</span> alloc] initWithURL:url settings:<span class="keyword">self</span>.setting error:&amp;error];</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"创建录音机对象时发生错误，错误信息：%@"</span>,error.localizedDescription);</span><br><span class="line">    &#125;</span><br><span class="line">    _audioRecorder.delegate = <span class="keyword">self</span>;</span><br><span class="line">    _audioRecorder.meteringEnabled = <span class="literal">YES</span>;<span class="comment">//如果要监控声波则必须设置为YES</span></span><br><span class="line">    [_audioRecorder prepareToRecord];</span><br><span class="line">    <span class="keyword">if</span> (![_audioRecorder isRecording]) &#123;</span><br><span class="line">        [_audioRecorder record];<span class="comment">//首次使用应用时如果调用record方法会询问用户是否允许使用麦克风</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// !!!: 录音设置</span></span><br><span class="line">-(<span class="built_in">NSDictionary</span> *)setting&#123;</span><br><span class="line">    <span class="keyword">if</span> (_setting==<span class="literal">nil</span>) &#123;</span><br><span class="line">        <span class="built_in">NSMutableDictionary</span> *setting = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">        <span class="comment">//录音格式</span></span><br><span class="line">        [setting setObject:@(kAudioFormatLinearPCM) forKey:<span class="built_in">AVFormatIDKey</span>];</span><br><span class="line">        <span class="comment">//采样率，8000/11025/22050/44100/96000（影响音频的质量）,8000是电话采样率</span></span><br><span class="line">        [setting setObject:@(<span class="number">22050</span>) forKey:<span class="built_in">AVSampleRateKey</span>];</span><br><span class="line">        <span class="comment">//通道 , 1/2</span></span><br><span class="line">        [setting setObject:@(<span class="number">2</span>) forKey:<span class="built_in">AVNumberOfChannelsKey</span>];</span><br><span class="line">        <span class="comment">//采样点位数，分为8、16、24、32, 默认16</span></span><br><span class="line">        [setting setObject:@(<span class="number">16</span>) forKey:<span class="built_in">AVLinearPCMBitDepthKey</span>];</span><br><span class="line">        <span class="comment">//是否使用浮点数采样</span></span><br><span class="line">        [setting setObject:@(<span class="literal">YES</span>) forKey:<span class="built_in">AVLinearPCMIsFloatKey</span>];</span><br><span class="line">        <span class="comment">// 录音质量</span></span><br><span class="line">        [setting setObject:@(<span class="built_in">AVAudioQualityHigh</span>) forKey:<span class="built_in">AVEncoderAudioQualityKey</span>];</span><br><span class="line">        <span class="comment">//....其他设置等</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> _setting;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//默认录制是PCM格式的 也可直接设置录制aac格式</span></span><br><span class="line">let recordSettings:[String : AnyObject] = [</span><br><span class="line">            <span class="built_in">AVFormatIDKey</span>:             <span class="built_in">NSNumber</span>(value: kAudioFormatMPEG4AAC),</span><br><span class="line">            <span class="built_in">AVEncoderAudioQualityKey</span> : <span class="built_in">NSNumber</span>(value:<span class="built_in">AVAudioQuality</span>.max.rawValue),</span><br><span class="line">            <span class="built_in">AVNumberOfChannelsKey</span>:     <span class="built_in">NSNumber</span>(value:<span class="number">2</span>),</span><br><span class="line">            <span class="built_in">AVSampleRateKey</span> :          <span class="built_in">NSNumber</span>(value:<span class="number">11025.0</span>),</span><br><span class="line">            <span class="comment">//AVEncoderBitRateKey:       NSNumber(value:64000),</span></span><br><span class="line">            <span class="built_in">AVLinearPCMBitDepthKey</span>:    <span class="built_in">NSNumber</span>(value:<span class="number">16</span>)</span><br><span class="line">            ]</span><br></pre></td></tr></table></figure>
+
+<h5 id="播放"><a href="#播放" class="headerlink" title="播放"></a>播放</h5><ul>
+<li>AudioServicesCreateSystemSoundID(url,soundId)  用于播放音效 </li>
+<li>AVPlayer  本地/远程的音视频均可播放</li>
+<li>AVAudioPlayer 只支持播放本地音频文件</li>
+<li>AudioToolbox中的Audio Queue Services</li>
+</ul>
+<h5 id="转格式"><a href="#转格式" class="headerlink" title="转格式"></a>转格式</h5><ul>
+<li>wav <a href="https://www.jianshu.com/p/5a91edee4871" target="_blank" rel="noopener">参考WAV文件格式</a></li>
+<li>aac 体积小,音质尚可,手机语音音频传输用得多 可直接录制 <a href="https://www.jianshu.com/p/5b12022cdc88" target="_blank" rel="noopener">iOS下解码AAC并播放</a></li>
+<li>mp3 早期音乐音频格式 <a href="https://www.jianshu.com/p/45a520d6b05e" target="_blank" rel="noopener">wav转mp3</a></li>
+<li>amr 安卓的比aac体积还小的音频格式 <a href="https://github.com/WangGuibin/AmrToWav" target="_blank" rel="noopener">amr和wav互转</a></li>
+</ul>
+<p><a href="https://github.com/qq631192328/PFAudioLib" target="_blank" rel="noopener">iOS的音频文件的格式转换</a></p>
+<p><a href="https://www.jianshu.com/p/a3de5e777692" target="_blank" rel="noopener">Mac终端音频格式转换</a></p>
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><h5 id="录制-1"><a href="#录制-1" class="headerlink" title="录制"></a>录制</h5><ul>
+<li>通过系统相机的录制</li>
+<li>基于<code>AVFoundation</code>自定义相机</li>
+<li>第三方GPUImage自定义相机</li>
+</ul>
+<h5 id="播放-1"><a href="#播放-1" class="headerlink" title="播放"></a>播放</h5><ul>
+<li>AVPlayer 需要自定义UI</li>
+<li>AVPlayerViewController 封装好的拿来即用</li>
+</ul>
+<h5 id="转格式-1"><a href="#转格式-1" class="headerlink" title="转格式"></a>转格式</h5><p>录制格式为mov需要转成mp4</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)convertAvcompositionToAvasset:(<span class="built_in">AVURLAsset</span> *)composition presentName:(<span class="built_in">NSString</span> *)presentName completion:(<span class="keyword">void</span> (^)(<span class="built_in">AVAsset</span> * _Nonnull, <span class="built_in">NSURL</span> * _Nonnull))completion &#123;</span><br><span class="line">    <span class="comment">// 导出视频</span></span><br><span class="line">    <span class="built_in">AVAssetExportSession</span> *exporter = [<span class="built_in">AVAssetExportSession</span> exportSessionWithAsset:composition presetName:presentName];</span><br><span class="line">    <span class="comment">// 生成一个文件路径</span></span><br><span class="line">    <span class="built_in">NSInteger</span> randNumber = arc4random();</span><br><span class="line">    <span class="built_in">NSString</span> *exportPath = [[<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSCachesDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) firstObject] stringByAppendingString:[<span class="built_in">NSString</span> stringWithFormat:<span class="string">@"/%ldvideo.mp4"</span>, (<span class="keyword">long</span>)randNumber]];</span><br><span class="line">    <span class="built_in">NSURL</span> *exportURL = [<span class="built_in">NSURL</span> fileURLWithPath:exportPath];</span><br><span class="line">    <span class="comment">// 导出</span></span><br><span class="line">    <span class="keyword">if</span> (exporter) &#123;</span><br><span class="line">        exporter.outputURL = exportURL;  <span class="comment">// 设置路径</span></span><br><span class="line">        exporter.outputFileType = <span class="built_in">AVFileTypeMPEG4</span>;</span><br><span class="line">        exporter.shouldOptimizeForNetworkUse = <span class="literal">YES</span>;</span><br><span class="line">        [exporter exportAsynchronouslyWithCompletionHandler:^&#123;</span><br><span class="line">            <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">AVAssetExportSessionStatusCompleted</span> == exporter.status) &#123;   <span class="comment">// 导出完成</span></span><br><span class="line">                    <span class="built_in">NSURL</span> *URL = exporter.outputURL;</span><br><span class="line">                    <span class="built_in">AVAsset</span> *avAsset = [<span class="built_in">AVAsset</span> assetWithURL:URL];                    </span><br><span class="line">                    <span class="keyword">if</span> (completion) &#123;</span><br><span class="line">                        completion(avAsset, URL);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (completion) &#123;</span><br><span class="line">                        completion(<span class="literal">nil</span>, <span class="literal">nil</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">dispatch_async</span>(dispatch_get_main_queue(), ^&#123;</span><br><span class="line">            <span class="keyword">if</span> (completion) &#123;</span><br><span class="line">                completion(<span class="literal">nil</span>, <span class="literal">nil</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="存储到相册"><a href="#存储到相册" class="headerlink" title="存储到相册"></a>存储到相册</h5><p><code>和保存图片到相册类似的C接口</code></p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Adds a video to the saved photos album. The optional completionSelector should have the form:</span></span><br><span class="line"><span class="comment">//  - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;</span></span><br><span class="line"><span class="built_in">UIKIT_EXTERN</span> <span class="keyword">void</span> <span class="built_in">UISaveVideoAtPathToSavedPhotosAlbum</span>(<span class="built_in">NSString</span> *videoPath, __<span class="keyword">nullable</span> <span class="keyword">id</span> completionTarget, __<span class="keyword">nullable</span> SEL completionSelector, <span class="keyword">void</span> * __<span class="keyword">nullable</span> contextInfo) API_AVAILABLE(ios(<span class="number">3.1</span>)) API_UNAVAILABLE(tvos);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2020/03/23/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/" title="iOS基础知识总结">http://wangguibin/github.io/hexo-github-action/2020/03/23/iOS%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/hexo-github-action/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+            <a href="/hexo-github-action/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2020/03/22/iOS%E5%A6%82%E4%BD%95%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E7%BB%98%E5%88%B6%E7%88%B1%E5%BF%83/" rel="next" title="iOS如何简单实现绘制爱心?">
+                <i class="fa fa-chevron-left"></i> iOS如何简单实现绘制爱心?
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2020/04/02/Flutter%E4%B8%8EiOS%E4%B9%8B%E9%97%B4%E5%B9%B3%E5%8F%B0%E9%80%9A%E4%BF%A1(platform%20channel)%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/" rel="prev" title="Flutter与iOS之间平台通信(platform channel)基本流程">
+                Flutter与iOS之间平台通信(platform channel)基本流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OC"><span class="nav-number">1.</span> <span class="nav-text">OC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理"><span class="nav-number">1.1.</span> <span class="nav-text">内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#内存管理的原理和原则"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">内存管理的原理和原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存管理中容易出现的问题和概念"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">内存管理中容易出现的问题和概念</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OC中的几个小常识"><span class="nav-number">1.2.</span> <span class="nav-text">OC中的几个小常识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#import-include-class的区别在哪里"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">#import , #include,@class的区别在哪里?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#static-extern-const的使用"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">static,extern,const的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#OC中-property的几个关键字用法-iOS面试之-property"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">OC中@property的几个关键字用法 iOS面试之@property</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NSObject中类方法load和initialize-load和initialize"><span class="nav-number">1.2.0.4.</span> <span class="nav-text">NSObject中类方法load和initialize load和initialize</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI"><span class="nav-number">2.</span> <span class="nav-text">UI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些常见的知识点"><span class="nav-number">2.1.</span> <span class="nav-text">一些常见的知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UIView和CALayer的区别"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">UIView和CALayer的区别?</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#如何高效绘制圆角"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">如何高效绘制圆角?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">2.2.</span> <span class="nav-text">布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更新布局"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">更新布局</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#纯代码"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">纯代码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#IB拉线"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">IB拉线</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">2.3.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画"><span class="nav-number">2.4.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UIView动画-UIView动画UIView-Animation总结"><span class="nav-number">2.4.0.1.</span> <span class="nav-text">UIView动画  UIView动画UIView Animation总结</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#核心动画"><span class="nav-number">2.4.0.2.</span> <span class="nav-text">核心动画</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">3.</span> <span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">3.1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HEAD"><span class="nav-number">3.1.0.1.</span> <span class="nav-text">HEAD</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GET"><span class="nav-number">3.1.0.2.</span> <span class="nav-text">GET</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST"><span class="nav-number">3.1.0.3.</span> <span class="nav-text">POST</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">3.2.</span> <span class="nav-text">TCP&#x2F;UDP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Socket-WebSocket"><span class="nav-number">3.3.</span> <span class="nav-text">Socket&#x2F;WebSocket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebServer模拟本地接口请求数据"><span class="nav-number">3.4.</span> <span class="nav-text">WebServer模拟本地接口请求数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三次握手🤝-四次挥手👋"><span class="nav-number">3.5.</span> <span class="nav-text">三次握手🤝&#x2F;四次挥手👋</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">4.</span> <span class="nav-text">多线程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本概念"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GCD"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">GCD</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NSOperation"><span class="nav-number">4.0.0.3.</span> <span class="nav-text">NSOperation</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式-参考"><span class="nav-number">5.</span> <span class="nav-text">设计模式  参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能优化-参考"><span class="nav-number">6.</span> <span class="nav-text">性能优化 参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地持久化方案"><span class="nav-number">7.</span> <span class="nav-text">本地持久化方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#本地数据库sqlite3-0-FMDB"><span class="nav-number">7.0.0.1.</span> <span class="nav-text">本地数据库sqlite3.0+FMDB</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#归档"><span class="nav-number">7.0.0.2.</span> <span class="nav-text">归档</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#keychain"><span class="nav-number">7.0.0.3.</span> <span class="nav-text">keychain</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#写文件到沙盒"><span class="nav-number">7.0.0.4.</span> <span class="nav-text">写文件到沙盒</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Runtime"><span class="nav-number">8.</span> <span class="nav-text">Runtime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Runloop"><span class="nav-number">9.</span> <span class="nav-text">Runloop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#音视频处理"><span class="nav-number">10.</span> <span class="nav-text">音视频处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#音频"><span class="nav-number">10.1.</span> <span class="nav-text">音频</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#"><span class="nav-number">10.1.0.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#录制"><span class="nav-number">10.1.0.2.</span> <span class="nav-text">录制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#播放"><span class="nav-number">10.1.0.3.</span> <span class="nav-text">播放</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转格式"><span class="nav-number">10.1.0.4.</span> <span class="nav-text">转格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视频"><span class="nav-number">10.2.</span> <span class="nav-text">视频</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#录制-1"><span class="nav-number">10.2.0.1.</span> <span class="nav-text">录制</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#播放-1"><span class="nav-number">10.2.0.2.</span> <span class="nav-text">播放</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转格式-1"><span class="nav-number">10.2.0.3.</span> <span class="nav-text">转格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#存储到相册"><span class="nav-number">10.2.0.4.</span> <span class="nav-text">存储到相册</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">34.5k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
