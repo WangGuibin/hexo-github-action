@@ -67,7 +67,7 @@ lipo_info=`lipo -info ${INSTALL_DIR}/${SDK_NAME}`
 icon_path=`pwd`/Xcode.icns
 icon_file=$(osascript -e ”set thePath to POSIX file \“${icon_path}\” as string“)
 echo $icon_file
-archs=${lipo_info##are:*}
+archs=${lipo_info##*are:}
 osascript -e ”display dialog \“${archs}\” with title \“查看静态库信息\” buttons {\“OK\”} default button 1 with icon file \“${icon_file}\”“
 echo ”脚本跑🏃完了“
 ```
@@ -122,7 +122,7 @@ lipo_info=`lipo -info ${INSTALL_DIR}/lib${SDK_NAME}.a`
 icon_path=`pwd`/Xcode.icns 
 icon_file=$(osascript -e ”set thePath to POSIX file \“${icon_path}\” as string“)
 echo $icon_file
-archs=${lipo_info##are:*}
+archs=${lipo_info##*are:}
 osascript -e ”display dialog \“${archs}\” with title \“查看静态库信息\” buttons {\“OK\”} default button 1 with icon file \“${icon_file}\”“
 echo ”脚本跑🏃完了“
 ```
