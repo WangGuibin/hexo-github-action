@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工具使用," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景  最近部门检查工时及其繁琐,而考勤只有第二天才能出来,系统做得不够友好,工时涉及到一个计算,而工时填报只能在下班以后操作,每次都需要自己去算一遍无疑很低效,很是影响下班的效率,顺手撸了一个可交互的shell脚本配合Alfred完美运行,遂成此篇.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="填报工时小助手之Shell+Alfred的合理使用">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2021/05/29/%E5%A1%AB%E6%8A%A5%E5%B7%A5%E6%97%B6%E5%B0%8F%E5%8A%A9%E6%89%8B%E4%B9%8BShell+Alfred%E7%9A%84%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="背景  最近部门检查工时及其繁琐,而考勤只有第二天才能出来,系统做得不够友好,工时涉及到一个计算,而工时填报只能在下班以后操作,每次都需要自己去算一遍无疑很低效,很是影响下班的效率,顺手撸了一个可交互的shell脚本配合Alfred完美运行,遂成此篇.">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161432.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161618.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161718.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161746.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161857.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161827.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161955.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529162019.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161432.png">
+<meta property="article:published_time" content="2021-05-29T16:42:46.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.448Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="工具使用">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161432.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2021/05/29/填报工时小助手之Shell+Alfred的合理使用/"/>
+
+
+
+
+
+  <title>填报工时小助手之Shell+Alfred的合理使用 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2021/05/29/%E5%A1%AB%E6%8A%A5%E5%B7%A5%E6%97%B6%E5%B0%8F%E5%8A%A9%E6%89%8B%E4%B9%8BShell+Alfred%E7%9A%84%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">填报工时小助手之Shell+Alfred的合理使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-05-29T16:42:46+00:00">
+                2021-05-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2021/05/29/%E5%A1%AB%E6%8A%A5%E5%B7%A5%E6%97%B6%E5%B0%8F%E5%8A%A9%E6%89%8B%E4%B9%8BShell+Alfred%E7%9A%84%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2021/05/29/%E5%A1%AB%E6%8A%A5%E5%B7%A5%E6%97%B6%E5%B0%8F%E5%8A%A9%E6%89%8B%E4%B9%8BShell+Alfred%E7%9A%84%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  749 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>  最近部门检查工时及其繁琐,而考勤只有第二天才能出来,系统做得不够友好,工时涉及到一个计算,而工时填报只能在下班以后操作,每次都需要自己去算一遍无疑很低效,很是影响下班的效率,顺手撸了一个可交互的<code>shell</code>脚本配合<code>Alfred</code>完美运行,遂成此篇.<br> <a id="more"></a></p>
+<p>执行效果如图:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161432.png" alt="第一步"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161618.png" alt="第二步"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161718.png" alt="填写"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161746.png" alt="结果"></p>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><blockquote>
+<p>工时计算规则: <code>工时 = 下班时间 - 上班时间 - 中午休息1.5小时</code></p>
+</blockquote>
+<p>  关于时间这种两位数的计算其实并不难,但这是一个体验问题,心算能力强的算我没说,懒就要懒到极致~<br>脚本太过简单,无非就是加减乘除的数学运算~<br>目前我想到了有两种方案</p>
+<ul>
+<li>① 秒级时间戳的差值 / 3600.0, 再减去1.5 即可</li>
+<li>② 上班和下班时间点均转为小时数相减, 再减去1.5 即可</li>
+</ul>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>这里我采用的是②<br>脚本如下: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#使用Xcode图标</span></span><br><span class="line"><span class="comment">#ICON="with icon file \"Macintosh HD:Applications:Xcode.app:Contents:Resources:Xcode.icns\""</span></span><br><span class="line"><span class="comment"># note/ stop/ caution 系统内置图标</span></span><br><span class="line">ICON=<span class="string">"with icon note"</span></span><br><span class="line"></span><br><span class="line">START_TIME=$(</span><br><span class="line">osascript &lt;&lt;EOF</span><br><span class="line">display dialog <span class="string">"工时填报计算"</span> default answer <span class="string">"请输入上班打卡时间"</span> <span class="variable">$&#123;ICON&#125;</span> </span><br><span class="line">text returned of result</span><br><span class="line">EOF</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$START_TIME</span></span><br><span class="line">HOUR1=<span class="variable">$&#123;START_TIME%:*&#125;</span></span><br><span class="line">MIN1=<span class="variable">$&#123;START_TIME#*:&#125;</span></span><br><span class="line">H1=$(<span class="built_in">echo</span> <span class="string">"scale=4; <span class="variable">$&#123;MIN1&#125;</span>/60"</span> | bc)</span><br><span class="line">res1=$(<span class="built_in">echo</span> <span class="string">"scale=4; <span class="variable">$&#123;HOUR1&#125;</span>+<span class="variable">$&#123;H1&#125;</span>"</span> | bc)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">END_TIME=$(</span><br><span class="line">osascript &lt;&lt;EOF</span><br><span class="line">display dialog <span class="string">"工时填报计算"</span> default answer <span class="string">"请输入下班打卡时间"</span> <span class="variable">$&#123;ICON&#125;</span> </span><br><span class="line">text returned of result</span><br><span class="line">EOF</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$END_TIME</span></span><br><span class="line">HOUR2=<span class="variable">$&#123;END_TIME%:*&#125;</span></span><br><span class="line">MIN2=<span class="variable">$&#123;END_TIME#*:&#125;</span></span><br><span class="line">H2=$(<span class="built_in">echo</span> <span class="string">"scale=4; <span class="variable">$&#123;MIN2&#125;</span>/60"</span> | bc)</span><br><span class="line">res2=$(<span class="built_in">echo</span> <span class="string">"scale=4; <span class="variable">$&#123;HOUR2&#125;</span>+<span class="variable">$&#123;H2&#125;</span>"</span> | bc)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 工时 = 下班时间 - 上班时间 - 中午休息1.5小时</span></span><br><span class="line">res3=$(<span class="built_in">echo</span> <span class="string">"scale=4; <span class="variable">$&#123;res2&#125;</span>-<span class="variable">$&#123;res1&#125;</span>-1.5"</span> | bc)</span><br><span class="line">MSG=<span class="string">"计算规则:\n工时 = 下班时间 - 上班时间 - 中午休息1.5小时\n工时 = <span class="variable">$&#123;END_TIME&#125;</span> - <span class="variable">$&#123;START_TIME&#125;</span> - 1.5h午休\n计算结果为: <span class="variable">$&#123;res3&#125;</span>个小时"</span></span><br><span class="line">osascript &lt;&lt;EOF</span><br><span class="line">display dialog <span class="string">"<span class="variable">$&#123;MSG&#125;</span>"</span> with title <span class="string">"计算结果"</span> buttons &#123;<span class="string">"好的👌"</span>&#125;  default button 1 <span class="variable">$&#123;ICON&#125;</span> </span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<p>脚本有了,如何去使用呢? 这可能是一个问题,总不能每次都打开终端去执行吧</p>
+<h2 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h2><p>shell是可以转成可执行程序的,可以执行如下代码试试:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod a+x work.sh</span><br></pre></td></tr></table></figure>
+<p>执行之后就可以双击打开就可以运行该程序</p>
+<h2 id="体验优化"><a href="#体验优化" class="headerlink" title="体验优化"></a>体验优化</h2><p>经过一番折腾,以上代码能够正确运行,还有一点点瑕疵就是打开之后会有一个终端执行窗口在桌面上,这个如何去优化它呢?<br>Alfred神器来帮忙</p>
+<ul>
+<li>1 首先将脚本放到一个目录下</li>
+<li>2 <code>Alfred</code>新建一个<code>workflow</code>,第一个动作就是启动这个workflow的操作,看个人喜好keyword或者hotkey</li>
+<li>3 下一步连接<code>Run Script</code>动作,点开选择bash或zsh,然后命令是cd 到你的脚本目录下执行脚本即可</li>
+</ul>
+<p>基本操作步骤如下图: </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161857.png" alt="添加keyword入口"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161827.png" alt="添加工作流"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161955.png" alt="执行脚本命令填入"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529162019.png" alt="启动Alfred"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/20210529161432.png" alt="最终成品"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2021/05/29/%E5%A1%AB%E6%8A%A5%E5%B7%A5%E6%97%B6%E5%B0%8F%E5%8A%A9%E6%89%8B%E4%B9%8BShell+Alfred%E7%9A%84%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8/" title="填报工时小助手之Shell+Alfred的合理使用">http://wangguibin/github.io/hexo-github-action/2021/05/29/%E5%A1%AB%E6%8A%A5%E5%B7%A5%E6%97%B6%E5%B0%8F%E5%8A%A9%E6%89%8B%E4%B9%8BShell+Alfred%E7%9A%84%E5%90%88%E7%90%86%E4%BD%BF%E7%94%A8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/" rel="tag"># 工具使用</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2021/01/24/Alfred+Shell%E6%89%93%E9%80%A0%E4%B8%80%E6%AC%BE%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84%E5%9B%BE%E5%BA%8A%E5%B7%A5%E5%85%B7/" rel="next" title="Alfred+Shell打造一款轻量级的图床工具">
+                <i class="fa fa-chevron-left"></i> Alfred+Shell打造一款轻量级的图床工具
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2021/06/13/iOS%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0html%E6%96%87%E4%BB%B6%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E5%A4%84%E7%90%86/" rel="prev" title="iOS加载本地html文件锚点定位处理">
+                iOS加载本地html文件锚点定位处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">2.</span> <span class="nav-text">方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行"><span class="nav-number">4.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#体验优化"><span class="nav-number">5.</span> <span class="nav-text">体验优化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

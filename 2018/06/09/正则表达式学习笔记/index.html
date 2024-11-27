@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="效率,工具,学习总结,正则表达式," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="正则字符匹配规则 ^ 行首的意思 $结尾处 * 通配符 \b匹配一个单词边界,单词与空格之间的位置,\w+\b切开成每个单词 \d表示数字, \d{5}五位数字, [0-9]数字0~9 \w 字母,数字,下划线 -匹配短破折号 \r或者\n换行符 \t制表符">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式学习笔记">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2018/06/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="正则字符匹配规则 ^ 行首的意思 $结尾处 * 通配符 \b匹配一个单词边界,单词与空格之间的位置,\w+\b切开成每个单词 \d表示数字, \d{5}五位数字, [0-9]数字0~9 \w 字母,数字,下划线 -匹配短破折号 \r或者\n换行符 \t制表符">
+<meta property="article:published_time" content="2018-06-09T07:16:27.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.448Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="效率">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="学习总结">
+<meta property="article:tag" content="正则表达式">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2018/06/09/正则表达式学习笔记/"/>
+
+
+
+
+
+  <title>正则表达式学习笔记 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2018/06/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T07:16:27+00:00">
+                2018-06-09
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2018/06/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2018/06/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  620 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="正则字符匹配规则"><a href="#正则字符匹配规则" class="headerlink" title="正则字符匹配规则"></a>正则字符匹配规则</h3><ol>
+<li><code>^</code> 行首的意思</li>
+<li><code>$</code>结尾处</li>
+<li><code>*</code> 通配符</li>
+<li><code>\b</code>匹配一个单词边界,单词与空格之间的位置,<code>\w+\b</code>切开成每个单词</li>
+<li><code>\d</code>表示数字, <code>\d{5}</code>五位数字, <code>[0-9]</code>数字0~9</li>
+<li><code>\w</code> 字母,数字,下划线</li>
+<li><code>-</code>匹配短破折号</li>
+<li><code>\r</code>或者<code>\n</code>换行符</li>
+<li><code>\t</code>制表符</li>
+</ol>
+<a id="more"></a>
+
+<ol start="10">
+<li><code>\\</code> \本身</li>
+<li><code>\s</code> 空格,制表符,换页符等空白字符中的任意一个</li>
+<li><code>.</code>匹配除了换行符以外的任意字符</li>
+<li><code>[ab5@]</code> 匹配<code>a</code> 或<code>b</code>或<code>5</code>或<code>@</code></li>
+<li><code>[^abc]</code> 匹配除了<code>a</code> <code>b</code> <code>c</code> 以外的任意一个字符</li>
+<li><code>[f-k]</code>匹配<code>f</code>到<code>k</code>之间的任意一个字母(包含<code>f</code> <code>k</code>)</li>
+<li><code>[^A-F0-3]</code> 匹配 <code>A</code><del><code>F</code>和<code>0</code></del><code>3</code>以外的任意一个字符</li>
+<li><code>{n}</code> 表达式重复<code>n</code>次,比如 <code>\w{2}</code> ==<code>\w\w</code> 或者 <code>a{4}</code> == <code>aaaa</code></li>
+<li><code>{m,n}</code>表达式重复最少<code>m</code>次 最多重复<code>n</code>次,  比如 <code>ha{2,3}</code>=&gt;可匹配到 <code>haa</code> <code>haaa</code></li>
+<li><code>{m,}</code>贪婪模式,表达式至少重复m次,比如<code>\w\d{3,}</code>=&gt;可匹配 <code>g123</code> <code>b456789</code>… 数字可以重复3个以上</li>
+<li><code>?</code>匹配0次或者1次, 比如 <code>qw?</code> —&gt;   <code>qqqw</code>=&gt; qq,qq,qw =&gt;q?,q?,qw 匹配结果就是 q, q, qw </li>
+<li><code>+</code>至少匹配一次以上, <code>a+b</code> =&gt; 匹配到 <code>ab</code> <code>aab</code> <code>aaab</code></li>
+<li><code>|</code>修饰表达式或语句,不是匹配左边就是右边,两个条件均可</li>
+<li><code>()</code>修饰一个整体,括号内的表达式可以单独获取</li>
+<li><code>\x</code> 表示编号在0~255范围内的字符,空格可以表示成 <code>\x20</code></li>
+<li><code>\u</code> <code>\uxxxx</code>表示16进制的数,比如: <code>\x4E2D</code></li>
+<li><code>\S</code>匹配一个非空白字符 , <code>\s</code>匹配一个空白字符</li>
+<li><code>\D</code>匹配非数字字符</li>
+<li><code>\W</code>匹配所有字母,数字,下划线以外的字符</li>
+<li><code>\B</code>匹配非单词边界</li>
+<li><code>?:</code> 可以理解为函数封装的形式, 比如 <code>(?:(\w)\1)+</code> 这个规则去匹配 <code>e233t66i34p</code>=&gt;结果是<code>33</code> <code>66</code>  , <code>?:</code>是封装了一个 <code>(\w)</code>这样不会调用,而使用<code>\1</code>就是调用这句表达式 </li>
+</ol>
+<h3 id="需要加反斜杠转义的字符"><a href="#需要加反斜杠转义的字符" class="headerlink" title="需要加反斜杠转义的字符"></a>需要加反斜杠转义的字符</h3><p><code>^</code>  <code>$</code> <code>()</code> <code>{}</code> <code>[]</code> <code>.</code> <code>?</code> <code>+</code> <code>*</code> <code>|</code></p>
+<h3 id="常用正则"><a href="#常用正则" class="headerlink" title="常用正则"></a>常用正则</h3><ol>
+<li><p><code>[\u4e00-\u9fa5]</code>匹配中文字符</p>
+</li>
+<li><p><code>[^\x00-\xff]</code>匹配双字节字符(包括汉子在内)</p>
+</li>
+<li><p><code>\n\s*\r</code>匹配空白行</p>
+</li>
+<li><p>[\w!#$%&amp;’<em>+/=?^_`{|}~-]+(?:.[\w!#$%&amp;’</em>+/=?^_`{|}~-]+)<em>@(?:[\w](?:[\w-]</em>[\w])?.)+<a href="?:[\w-]*[\w]">\w</a>? 匹配邮箱</p>
+</li>
+<li><p><code>[a-zA-z]+://[^\s]*</code>匹配网址</p>
+</li>
+<li><p><code>\d{3}-\d{8}|\d{4}-\{7,8}</code>匹配电话号码 (PS. 新出的手机号已经不适用了)</p>
+</li>
+<li><p><code>^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$</code>匹配身份证号</p>
+</li>
+</ol>
+<h3 id="参考手册"><a href="#参考手册" class="headerlink" title="参考手册"></a>参考手册</h3><p><a href="http://tool.oschina.net/uploads/apidocs/jquery/regexp.html" target="_blank" rel="noopener">正则手册</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2018/06/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="正则表达式学习笔记">http://wangguibin/github.io/hexo-github-action/2018/06/09/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
+          
+            <a href="/hexo-github-action/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+            <a href="/hexo-github-action/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag"># 正则表达式</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2018/05/21/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B9%8BwebStorm%E6%89%8B%E6%9C%BA%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95/" rel="next" title="前端开发: webStorm手机真机调试">
+                <i class="fa fa-chevron-left"></i> 前端开发: webStorm手机真机调试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2018/06/13/Xcode%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E4%B9%8B%E7%83%AD%E9%87%8D%E8%BD%BD%E6%8F%92%E4%BB%B6%E5%88%A9%E5%99%A8/" rel="prev" title="Xcode辅助工具之热重载插件利器">
+                Xcode辅助工具之热重载插件利器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则字符匹配规则"><span class="nav-number">1.</span> <span class="nav-text">正则字符匹配规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要加反斜杠转义的字符"><span class="nav-number">2.</span> <span class="nav-text">需要加反斜杠转义的字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用正则"><span class="nav-number">3.</span> <span class="nav-text">常用正则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考手册"><span class="nav-number">4.</span> <span class="nav-text">参考手册</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

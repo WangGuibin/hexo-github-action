@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="效率,工具,iOS,捷径," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="这不是一句两句话能描述清楚的,所以直接进入一图胜千言模式 。  玩捷径的时候是不是还在为没有好用的操作或者鸡肋的操作而苦恼呢，自定义捷径拓展可以解决这个问题，只实现要你自己想要的功能，就像是一个黑盒，一顿输入一顿输出就完事儿，压根不知道里面发生了什么，现在要做的就是自己去实现这个黑盒。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发如何给自己的App增加捷径自定义拓展">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2020/11/28/iOS%E5%BC%80%E5%8F%91%E5%A6%82%E4%BD%95%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84App%E5%A2%9E%E5%8A%A0%E6%8D%B7%E5%BE%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%93%E5%B1%95/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="这不是一句两句话能描述清楚的,所以直接进入一图胜千言模式 。  玩捷径的时候是不是还在为没有好用的操作或者鸡肋的操作而苦恼呢，自定义捷径拓展可以解决这个问题，只实现要你自己想要的功能，就像是一个黑盒，一顿输入一顿输出就完事儿，压根不知道里面发生了什么，现在要做的就是自己去实现这个黑盒。">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/2.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/3.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/4.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/7.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/9.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-12-49.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-13-24.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-13-41.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-13-50.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-15-00.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-15-33.png">
+<meta property="article:published_time" content="2020-11-28T12:01:06.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.444Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="效率">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="捷径">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2020/11/28/iOS开发如何给自己的App增加捷径自定义拓展/"/>
+
+
+
+
+
+  <title>iOS开发如何给自己的App增加捷径自定义拓展 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2020/11/28/iOS%E5%BC%80%E5%8F%91%E5%A6%82%E4%BD%95%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84App%E5%A2%9E%E5%8A%A0%E6%8D%B7%E5%BE%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%93%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS开发如何给自己的App增加捷径自定义拓展</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-11-28T12:01:06+00:00">
+                2020-11-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2020/11/28/iOS%E5%BC%80%E5%8F%91%E5%A6%82%E4%BD%95%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84App%E5%A2%9E%E5%8A%A0%E6%8D%B7%E5%BE%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%93%E5%B1%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2020/11/28/iOS%E5%BC%80%E5%8F%91%E5%A6%82%E4%BD%95%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84App%E5%A2%9E%E5%8A%A0%E6%8D%B7%E5%BE%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%93%E5%B1%95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  704 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这不是一句两句话能描述清楚的,所以直接进入一图胜千言模式 。</p>
+</blockquote>
+<p>玩捷径的时候是不是还在为没有好用的操作或者鸡肋的操作而苦恼呢，自定义捷径拓展可以解决这个问题，只实现要你自己想要的功能，就像是一个黑盒，一顿输入一顿输出就完事儿，压根不知道里面发生了什么，现在要做的就是自己去实现这个黑盒。</p>
+<a id="more"></a>
+
+<img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/1.png" style="zoom:50%;" />
+
+<p> 首先添加<code>Target</code> 找到<code>Intent Extension</code> 添加就完事儿了</p>
+<img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/2.png" style="zoom:50%;" />
+
+<p>下一步下一步,弹窗的话就点<code>Activited</code>,接下来再创建<code>SiriKit Intent Defintion File</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/3.png" alt=""></p>
+<p>起名字没啥讲究,一般一个项目就一个这玩意儿,默认的就完事儿了 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/4.png" alt=""></p>
+<p>这里开始就有些操作了,添加一个<code>intent</code>项目 ,填写如图的一些表单信息,勾选重要的几项,添加自定义参数等</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/5.png" alt=""></p>
+<p>如果需要回调处理,响应结果这里也需要填写,创建返回结果的字段/类型,生成模板文件的时候会生成对应的返回方法</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/6.png" alt=""></p>
+<p>编译后查看如图位置,点击箭头进去,即可查看生成的模板文件,只有头文件查看API接口(苹果一贯的闭源作风)</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/7.png" alt=""></p>
+<p>看看👀 就这就这: </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/8.png" alt=""></p>
+<p>然后就去找到一开始创建<code>Target</code>自动生成的文件<code>IntentHandler.m</code>去实现对应的<code>intent</code>处理</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/9.png" alt=""></p>
+<p>每个intent的处理,风格有点相似,只是类型不同而已,大概这就是模板文件的魅力吧</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/10.png" alt=""></p>
+<p>到这一步处理完,就完事了,然后就是运行主App,验证结果了(最好是卸载重新安装)</p>
+<p>运行App之后,打开捷径App,新建一个快捷指令,如图: </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-12-49.png" alt=""></p>
+<p>然后找到自己开发的App</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-13-24.png" alt=""></p>
+<p>那就拿这个<code>图标易容术</code><a href="这是我的一个开源项目,是基于iOS14利用WebClip技术通过生成mobileConfig描述文件来替换应用图标的一种实现方案,项目地址[WebClipChangeAppLogo](https://github.com/WangGuibin/WebClipChangeAppLogo)">^1</a>来举个例子吧 </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-13-41.png" alt=""></p>
+<p>写的一个沙盒存储,基于<code>NSUserDefaults</code>[^2]实现的,如果想要卸载App也能不丢失数据,那实现方案只能更换钥匙串或者iCloud等,但是这个操作是基于这个应用的,我也不希望我开发的App被人卸载,虽说有点流氓操作,但是不想用就别用的原则就是这么简单粗暴~ </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-13-50.png" alt=""></p>
+<p>这个描述就是一开始创建<code>Intent</code>时表单里的<code>description</code>字段,提前编辑好再copy过去,排版会好看些.</p>
+<p>存储功能展示</p>
+<img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-15-00.png" style="zoom:67%;" />
+
+<p>查数据</p>
+<img src="https://cdn.jsdelivr.net/gh/WangGuibin/MyFilesRepo/images/Xnip2020-11-28_11-15-33.png" style="zoom:67%;" />
+
+
+
+<p>整体开发下来好像没有什么很困难的东西,只不过国内目前还很少对应的中文资料,只能硬着头皮找英文资料取经~ </p>
+<p>参考资料: </p>
+<ul>
+<li>Alex Hay <a href="https://github.com/mralexhay/ShortcutsExample" target="_blank" rel="noopener">https://github.com/mralexhay/ShortcutsExample</a></li>
+<li><code>Toolbox pro</code>的作者的博客 <a href="https://toolboxpro.app/blog" target="_blank" rel="noopener">Adding Shortcuts To An App</a></li>
+</ul>
+<p>[^2]: apple官方文档 <a href="https://developer.apple.com/documentation/foundation/nsuserdefaults" target="_blank" rel="noopener">NSUserDefaults</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2020/11/28/iOS%E5%BC%80%E5%8F%91%E5%A6%82%E4%BD%95%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84App%E5%A2%9E%E5%8A%A0%E6%8D%B7%E5%BE%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%93%E5%B1%95/" title="iOS开发如何给自己的App增加捷径自定义拓展">http://wangguibin/github.io/hexo-github-action/2020/11/28/iOS%E5%BC%80%E5%8F%91%E5%A6%82%E4%BD%95%E7%BB%99%E8%87%AA%E5%B7%B1%E7%9A%84App%E5%A2%9E%E5%8A%A0%E6%8D%B7%E5%BE%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8B%93%E5%B1%95/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
+          
+            <a href="/hexo-github-action/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          
+            <a href="/hexo-github-action/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/hexo-github-action/tags/%E6%8D%B7%E5%BE%84/" rel="tag"># 捷径</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2020/11/25/Fastlane%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC%E6%89%93%E5%8C%85%E4%B8%8A%E4%BC%A0%E8%92%B2%E5%85%AC%E8%8B%B1%E5%8F%91%E9%80%81%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5/" rel="next" title="Fastlane自动化脚本打包上传蒲公英发送钉钉机器人消息通知">
+                <i class="fa fa-chevron-left"></i> Fastlane自动化脚本打包上传蒲公英发送钉钉机器人消息通知
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2020/12/24/%E6%90%AD%E5%BB%BAnginx+rtmp%E6%9C%AC%E5%9C%B0%E6%A8%A1%E6%8B%9F%E6%8E%A8%E6%B5%81/" rel="prev" title="搭建nginx+rtmp本地模拟推流">
+                搭建nginx+rtmp本地模拟推流 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

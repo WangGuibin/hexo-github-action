@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="效率,工具,学习总结,python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近项目不忙,乘此机会重新学习了一下python爬虫, 引发了一些思考,以下几点:   学习python真的是从众现象一时热吗? 学了有什么用,能改变现状吗? 如果不学又当如何,干点什么事情好呢   学习python到了现在是个分水岭,几乎各方面的知识都有所涉及,到底是往哪个方向发展呢?   数据爬虫 (网络请求,页面解析,设置headers,代理ip,cookies,处理异常,ajax&amp;amp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重新入门python爬虫到放弃">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="最近项目不忙,乘此机会重新学习了一下python爬虫, 引发了一些思考,以下几点:   学习python真的是从众现象一时热吗? 学了有什么用,能改变现状吗? 如果不学又当如何,干点什么事情好呢   学习python到了现在是个分水岭,几乎各方面的知识都有所涉及,到底是往哪个方向发展呢?   数据爬虫 (网络请求,页面解析,设置headers,代理ip,cookies,处理异常,ajax&amp;amp">
+<meta property="article:published_time" content="2018-09-12T22:32:29.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.448Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="效率">
+<meta property="article:tag" content="工具">
+<meta property="article:tag" content="学习总结">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2018/09/12/重新入门python爬虫到放弃/"/>
+
+
+
+
+
+  <title>重新入门python爬虫到放弃 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">重新入门python爬虫到放弃</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T22:32:29+00:00">
+                2018-09-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>最近项目不忙,乘此机会重新学习了一下python爬虫, 引发了一些思考,以下几点:</p>
+</blockquote>
+<ol>
+<li><p>学习python真的是从众现象一时热吗? 学了有什么用,能改变现状吗? 如果不学又当如何,干点什么事情好呢 </p>
+</li>
+<li><p>学习python到了现在是个分水岭,几乎各方面的知识都有所涉及,到底是往哪个方向发展呢?</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 数据爬虫 (网络请求,页面解析,设置headers,代理ip,cookies,处理异常,ajax&amp;&amp;JS等动态页面数据的获取,伪装浏览器的访问等… requests,BeautifulSoup,xpath,正则,selenium,phantomJS,scrapy) </li>
+<li><input checked="" disabled="" type="checkbox"> 数据分析可视化(pyecharts,Echarts,csv,json等)</li>
+<li><input checked="" disabled="" type="checkbox"> web前端 (Django …)</li>
+<li><input checked="" disabled="" type="checkbox"> 后端 (数据库+服务器)</li>
+<li><input checked="" disabled="" type="checkbox"> 机器学习 (尚未涉及)</li>
+<li><input checked="" disabled="" type="checkbox"> 用来写工具/脚本 (用过别人写好的)</li>
+<li><input checked="" disabled="" type="checkbox"> 做游戏 (听说吃鸡就是python在做的)</li>
+<li><input checked="" disabled="" type="checkbox"> …</li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li>此时此刻,真的有些迷茫 , 但是人总是想着改变,只能说目前没有别的想法 ,学到一个是一个吧 ,但愿能派上用场吧</li>
+</ol>
+<a id="more"></a>
+
+</br>
+</br>
+</br>
+
+<p>[TOC]</p>
+<h2 id="爬虫技巧"><a href="#爬虫技巧" class="headerlink" title="爬虫技巧"></a>爬虫技巧</h2><p>“人生苦短,我用<code>python</code>“,也许是因为简单,也许是因为效率高… 这门语言已经风靡全球,有些学校已经列为必修课了。</p>
+<h3 id="下载器-使用什么框架爬取-必备"><a href="#下载器-使用什么框架爬取-必备" class="headerlink" title="下载器,使用什么框架爬取 (必备)"></a>下载器,使用什么框架爬取 (必备)</h3><h4 id="requests-BeautifulSoup-正则或者xpath也可"><a href="#requests-BeautifulSoup-正则或者xpath也可" class="headerlink" title="requests + BeautifulSoup (正则或者xpath也可)"></a>requests + BeautifulSoup (正则或者xpath也可)</h4><ul>
+<li>用传统正则解析<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib.request</span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> Request</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">base_url = <span class="string">'https://www.douban.com/doulist/3936288/'</span></span><br><span class="line">pattern = re.compile(<span class="string">'&lt;div\sclass="title"&gt;\s.*?&lt;a.*?&gt;(.*?)&lt;/a&gt;'</span>,re.S)</span><br><span class="line">user_agent = [</span><br><span class="line">    <span class="string">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)'</span>,</span><br><span class="line">    <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'</span>,</span><br><span class="line">]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">250</span>,<span class="number">25</span>):</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'start'</span>:i</span><br><span class="line">    &#125;</span><br><span class="line">    data = bytes(urlencode(data),<span class="string">'utf-8'</span>)</span><br><span class="line">    headers = &#123;<span class="string">'User-Agent'</span>:random.choice(user_agent)&#125;</span><br><span class="line">    requ = Request(base_url,data)</span><br><span class="line">    html = urllib.request.urlopen(requ).read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    results = re.findall(pattern,html)</span><br><span class="line">    <span class="keyword">for</span> result <span class="keyword">in</span> results:</span><br><span class="line">        result = re.sub(<span class="string">'\n'</span>,<span class="string">''</span>,result)</span><br><span class="line">        print(result)</span><br></pre></td></tr></table></figure></li>
+<li>用BeautifulSoup解析<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  urllib.request</span><br><span class="line"><span class="keyword">import</span>  re</span><br><span class="line"><span class="keyword">import</span>  random</span><br><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span>  Request</span><br><span class="line"><span class="keyword">from</span>  urllib.parse <span class="keyword">import</span>  urlencode</span><br><span class="line"><span class="keyword">from</span>  bs4 <span class="keyword">import</span>  BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> urllib.error</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">base_url = <span class="string">'https://www.douban.com/doulist/3936288/'</span></span><br><span class="line">user_agent = [<span class="string">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E)'</span>,<span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">250</span>,<span class="number">25</span>):</span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'start'</span>:i</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">data = bytes(urlencode(data),<span class="string">'utf-8'</span>) <span class="comment">#参数打成二进制</span></span><br><span class="line">header = &#123; <span class="string">'User-Agent'</span> : random.choice(user_agent) &#125; <span class="comment">#请求头</span></span><br><span class="line">req = Request(base_url,data,headers=header) <span class="comment"># url + 参数+ 请求头伪装成浏览器</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    response = urllib.request.urlopen(req)</span><br><span class="line"><span class="keyword">except</span> urllib.error.HttpError <span class="keyword">as</span> e:</span><br><span class="line">    print(e.reason)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    html = response.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">    <span class="comment"># print(html)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">####注意以下是骚操作</span></span><br><span class="line">    soup =BeautifulSoup(html,<span class="string">'html.parser'</span>)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> soup.select(<span class="string">'.title'</span>): <span class="comment">#类访问到div</span></span><br><span class="line">        a = item.select(<span class="string">'a'</span>)[<span class="number">0</span>] <span class="comment">#取到div里的a标签</span></span><br><span class="line">        title = a.get_text() <span class="comment">#获取a标签的文本内容</span></span><br><span class="line">        print(title)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="scrapy-BeautifulSoup-正则或者xpath也可"><a href="#scrapy-BeautifulSoup-正则或者xpath也可" class="headerlink" title="scrapy + BeautifulSoup (正则或者xpath也可)"></a>scrapy + BeautifulSoup (正则或者xpath也可)</h4><p><a href="https://scrapy-chs.readthedocs.io/zh_CN/0.24/intro/tutorial.html" target="_blank" rel="noopener">scrapy中文教程</a><br></br></p>
+<ul>
+<li>BeautifulSoup<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">html = = response.text</span><br><span class="line">soup =BeautifulSoup(html) <span class="comment"># 原理同上</span></span><br></pre></td></tr></table></figure></li>
+<li>正则 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">html = = response.text</span><br><span class="line">pattern = re.compile(<span class="string">'&lt;div.?class="autho r.?&gt;.?&lt;a.?.?&lt;a.?&gt;(.?).?&lt;div.?class'</span>+ <span class="string">'="content".?title="(.?)"&gt;(.?)(.*?)&lt;div class="stats.?class="number"&gt;(.?)'</span>,re.S)</span><br><span class="line">items = re.findall(pattern,html)</span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">     	print(item)</span><br></pre></td></tr></table></figure></li>
+<li>xpath</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 豆瓣电影Top250</span></span><br><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span>  BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span>  <span class="title">DoubanDianYing</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">            name = <span class="string">'douban'</span></span><br><span class="line">            allow_domains = [<span class="string">'movie.douban.com'</span>]</span><br><span class="line">            datalist = []</span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line"></span><br><span class="line">                    headers = &#123;</span><br><span class="line">                        <span class="string">'User-Agent'</span> : <span class="string">'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36'</span>,</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                    <span class="keyword">for</span> page <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">251</span>,<span class="number">25</span>):</span><br><span class="line">                        <span class="keyword">if</span> page <span class="keyword">is</span> <span class="keyword">not</span> <span class="number">0</span>:</span><br><span class="line">                             url = <span class="string">'https://movie.douban.com/top250?start=%d&amp;filter='</span> % page</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                             url = <span class="string">'https://movie.douban.com/top250'</span></span><br><span class="line">                        <span class="keyword">yield</span> scrapy.Request(url,headers=headers)</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">                    <span class="comment"># html = response.text</span></span><br><span class="line">                    <span class="comment"># bs = BeautifulSoup(html)</span></span><br><span class="line">                    <span class="comment"># 练习xpath</span></span><br><span class="line">                    titles = response.xpath(<span class="string">'//div/a/span[1]/text()'</span>).extract()</span><br><span class="line">                    imgs = response.xpath(<span class="string">'//div[@class="pic"]/a/img/@src'</span>).extract()</span><br><span class="line">                    links = response.xpath(<span class="string">'//div[@class="hd"]/a/@href'</span>).extract()</span><br><span class="line">                    actors = response.xpath(<span class="string">'//div[@class="bd"]/p/text()'</span>).extract()</span><br><span class="line">                    descs = response.xpath(<span class="string">'//span[@class="inq"]/text()'</span>).extract()</span><br><span class="line">                    rating = response.xpath(<span class="string">'//div[@class="star"]/span[@class="rating_num"]/text()'</span>).extract()</span><br><span class="line">                    hots = response.xpath(<span class="string">'//div[@class="star"]/span[4]/text()'</span>).extract()</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(imgs)):</span><br><span class="line">                             dic = &#123;&#125;</span><br><span class="line">                             dic[<span class="string">'title'</span>] = titles[index]</span><br><span class="line">                             dic[<span class="string">'img'</span>] = imgs[index]</span><br><span class="line">                             dic[<span class="string">'actors'</span>] = str(actors[index]).strip().replace(<span class="string">"\n"</span>,<span class="string">""</span>)</span><br><span class="line">                             dic[<span class="string">'rating'</span>] = rating[index]</span><br><span class="line">                             dic[<span class="string">'hot'</span>] = hots[index]</span><br><span class="line">                             dic[<span class="string">'link'</span>] = links[index]</span><br><span class="line">                             dic[<span class="string">'desc'</span>] = descs[index]</span><br><span class="line">                             self.datalist.append(dic)</span><br><span class="line">                    <span class="keyword">if</span> len(self.datalist) == <span class="number">250</span>:</span><br><span class="line">                        <span class="keyword">with</span> open(<span class="string">'dataSource.json'</span>, <span class="string">'a+'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                            json.dump(self.datalist, f, ensure_ascii=<span class="literal">False</span>, indent=<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="selenium-phantomJS-python3"><a href="#selenium-phantomJS-python3" class="headerlink" title="selenium + phantomJS + python3"></a>selenium + phantomJS + python3</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">driver = webdriver.PhantomJS()</span><br><span class="line">driver.get(<span class="string">'网址'</span>)</span><br><span class="line">html = driver.page_source <span class="comment"># 解析原理同上</span></span><br></pre></td></tr></table></figure>
+<p>另外它也支持自己的解析语法: </br><br><em>参考博客</em> </br><br><code>参考崔庆才的博客</code><a href="https://cuiqingcai.com/2577.html" target="_blank" rel="noopener">https://cuiqingcai.com/2577.html</a> </br><br><code>参考知乎selenium文章</code><a href="https://zhuanlan.zhihu.com/p/29435831" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29435831</a></br><br><code>参考selenium博客</code><a href="https://cuiqingcai.com/2599.html" target="_blank" rel="noopener">https://cuiqingcai.com/2599.html</a></br><br><code>selenium+python+PhantomJS的使用</code><a href="http://www.cnblogs.com/jinxiao-pu/p/6677782.html#_label0" target="_blank" rel="noopener">http://www.cnblogs.com/jinxiao-pu/p/6677782.html#_label0</a></br></p>
+<h3 id="目标网站即URL-必须"><a href="#目标网站即URL-必须" class="headerlink" title="目标网站即URL (必须)"></a>目标网站即URL (必须)</h3><ul>
+<li><p>爬什么,心里得有数吧!</p>
+<h3 id="代理ip-可选"><a href="#代理ip-可选" class="headerlink" title="代理ip(可选)"></a>代理ip(可选)</h3></li>
+<li><p>网上一搜免费的代理ip一大堆,但是都不是很稳定的,用于学习还是可以满足的,商用的话还是建议花钱买稳定的好</p>
+<h3 id="使用cookies-可选"><a href="#使用cookies-可选" class="headerlink" title="使用cookies (可选)"></a>使用cookies (可选)</h3></li>
+<li><p>参考<a href="http://www.wangguibin.club/#/posts/python学习笔记" target="_blank" rel="noopener">python学习笔记</a> 有提到代理ip怎么设置 headers怎么设置 cookies的读写删除</p>
+</li>
+<li><p>使用selenium管理cookies</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cookies</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser.get(<span class="string">'https://www.zhihu.com/explore'</span>)</span><br><span class="line">print(browser.get_cookies())</span><br><span class="line">browser.add_cookie(&#123;<span class="string">'name'</span>: <span class="string">'name'</span>, <span class="string">'domain'</span>: <span class="string">'www.zhihu.com'</span>, <span class="string">'value'</span>: <span class="string">'germey'</span>&#125;)</span><br><span class="line">print(browser.get_cookies())</span><br><span class="line">browser.delete_all_cookies()</span><br><span class="line">print(browser.get_cookies())</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="如何处理AJAX和JS渲染的内容"><a href="#如何处理AJAX和JS渲染的内容" class="headerlink" title="如何处理AJAX和JS渲染的内容?"></a>如何处理AJAX和JS渲染的内容?</h3><ul>
+<li>ajax 无非就是表单提交网络请求, 只要找到对应的标签节点和js函数,使用selenium的JS行为操作一番,把结果获取到进行解析即可</li>
+<li>JS同理</br>
+
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行JS</span></span><br><span class="line"><span class="keyword">from</span> selenium <span class="keyword">import</span> webdriver</span><br><span class="line"></span><br><span class="line">browser = webdriver.Chrome()</span><br><span class="line">browser.get(<span class="string">'https://www.zhihu.com/explore'</span>)</span><br><span class="line">browser.execute_script(<span class="string">'window.scrollTo(0, document.body.scrollHeight)'</span>)</span><br><span class="line">browser.execute_script(<span class="string">'alert("To Bottom")'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何绕过反爬虫机制"><a href="#如何绕过反爬虫机制" class="headerlink" title="如何绕过反爬虫机制?"></a>如何绕过反爬虫机制?</h3><ul>
+<li>这里的反爬虫机制其实就是我们爬取数据的时候伪装成用户操作的行为一样就ok,频率和使用的硬件等信息要相似,验证码之类,或者弹窗之类的一般先模仿浏览器打开然后操作一步一步进行推进,最后到达想要的页面进行操作获取页面的数据 </li>
+</ul>
+<p><a href="https://github.com/WangGuibin/PythonLife" target="_blank" rel="noopener">平时操练的代码已经托管在github上了</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/" title="重新入门python爬虫到放弃">http://wangguibin/github.io/hexo-github-action/2018/09/12/%E9%87%8D%E6%96%B0%E5%85%A5%E9%97%A8python%E7%88%AC%E8%99%AB%E5%88%B0%E6%94%BE%E5%BC%83/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E6%95%88%E7%8E%87/" rel="tag"># 效率</a>
+          
+            <a href="/hexo-github-action/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+            <a href="/hexo-github-action/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2018/08/04/%E9%9B%86%E6%88%90google%E7%BF%BB%E8%AF%91%E7%9A%84%E5%B0%8Ftips/" rel="next" title="集成google翻译的小tips">
+                <i class="fa fa-chevron-left"></i> 集成google翻译的小tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2018/12/17/OC%E5%92%8CC++%E6%B7%B7%E7%BC%96%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="OC和C++混编需要注意的问题">
+                OC和C++混编需要注意的问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#爬虫技巧"><span class="nav-number">1.</span> <span class="nav-text">爬虫技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载器-使用什么框架爬取-必备"><span class="nav-number">1.1.</span> <span class="nav-text">下载器,使用什么框架爬取 (必备)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#requests-BeautifulSoup-正则或者xpath也可"><span class="nav-number">1.1.1.</span> <span class="nav-text">requests + BeautifulSoup (正则或者xpath也可)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#scrapy-BeautifulSoup-正则或者xpath也可"><span class="nav-number">1.1.2.</span> <span class="nav-text">scrapy + BeautifulSoup (正则或者xpath也可)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selenium-phantomJS-python3"><span class="nav-number">1.1.3.</span> <span class="nav-text">selenium + phantomJS + python3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标网站即URL-必须"><span class="nav-number">1.2.</span> <span class="nav-text">目标网站即URL (必须)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理ip-可选"><span class="nav-number">1.3.</span> <span class="nav-text">代理ip(可选)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用cookies-可选"><span class="nav-number">1.4.</span> <span class="nav-text">使用cookies (可选)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何处理AJAX和JS渲染的内容"><span class="nav-number">1.5.</span> <span class="nav-text">如何处理AJAX和JS渲染的内容?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何绕过反爬虫机制"><span class="nav-number">1.6.</span> <span class="nav-text">如何绕过反爬虫机制?</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

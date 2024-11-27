@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,Objective-C,学习总结,swift," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近比较忙,一直陷入业务的泥沼不可自拔,很少有时间独立思考作作总结,因为平时上班遇到问题就是打开浏览器各种搜寻轮子,百分之八九十的问题也能解决,但是对于个人成长还是感觉有所缓慢,最近开始总结项目的点点滴滴,需要开始写写博客了,那就从基础的笔记写起吧,熟能生巧,由浅入深,这是一个良性的开端。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS字符串的一些处理总结">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2019/04/18/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="最近比较忙,一直陷入业务的泥沼不可自拔,很少有时间独立思考作作总结,因为平时上班遇到问题就是打开浏览器各种搜寻轮子,百分之八九十的问题也能解决,但是对于个人成长还是感觉有所缓慢,最近开始总结项目的点点滴滴,需要开始写写博客了,那就从基础的笔记写起吧,熟能生巧,由浅入深,这是一个良性的开端。">
+<meta property="article:published_time" content="2019-04-18T20:02:56.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.444Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="学习总结">
+<meta property="article:tag" content="swift">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2019/04/18/iOS字符串的一些处理总结/"/>
+
+
+
+
+
+  <title>iOS字符串的一些处理总结 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2019/04/18/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS字符串的一些处理总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T20:02:56+00:00">
+                2019-04-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2019/04/18/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2019/04/18/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>最近比较忙,一直陷入业务的泥沼不可自拔,很少有时间独立思考作作总结,因为平时上班遇到问题就是打开浏览器各种搜寻轮子,百分之八九十的问题也能解决,但是对于个人成长还是感觉有所缓慢,最近开始总结项目的点点滴滴,需要开始写写博客了,那就从基础的笔记写起吧,熟能生巧,由浅入深,这是一个良性的开端。</strong></p>
+<a id="more"></a>
+
+<h4 id="1-汉字转拼音-用的系统的API-CFStringTransform"><a href="#1-汉字转拼音-用的系统的API-CFStringTransform" class="headerlink" title="1. 汉字转拼音,用的系统的API CFStringTransform"></a>1. 汉字转拼音,用的系统的API <code>CFStringTransform</code></h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///MARK:- 汉字转拼音 是否需要声调</span></span><br><span class="line">+ (<span class="built_in">NSString</span> *)hanziTransformPinyin:(<span class="built_in">NSString</span> *)chinese</span><br><span class="line">                     needVoiceTone:(<span class="built_in">BOOL</span>)needTone&#123;</span><br><span class="line">    <span class="comment">//将NSString装换成NSMutableString</span></span><br><span class="line">    <span class="built_in">NSMutableString</span> *pinyin = [chinese mutableCopy];</span><br><span class="line">    <span class="comment">//将汉字转换为拼音(带音标)</span></span><br><span class="line">    <span class="keyword">if</span> (needTone) &#123;</span><br><span class="line">        <span class="built_in">CFStringTransform</span>((__bridge <span class="built_in">CFMutableStringRef</span>)pinyin, <span class="literal">NULL</span>, kCFStringTransformMandarinLatin, <span class="literal">NO</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//去掉拼音的音标</span></span><br><span class="line">        <span class="built_in">CFStringTransform</span>((__bridge <span class="built_in">CFMutableStringRef</span>)pinyin, <span class="literal">NULL</span>, kCFStringTransformMandarinLatin, <span class="literal">NO</span>);</span><br><span class="line">        <span class="built_in">CFStringTransform</span>((__bridge <span class="built_in">CFMutableStringRef</span>)pinyin, <span class="literal">NULL</span>, kCFStringTransformStripCombiningMarks, <span class="literal">NO</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSString</span> *pinYinStr = pinyin;</span><br><span class="line">    <span class="comment">//去除掉首尾的空白字符和换行字符</span></span><br><span class="line">    pinYinStr = [pinYinStr stringByTrimmingCharactersInSet:[<span class="built_in">NSCharacterSet</span> whitespaceAndNewlineCharacterSet]];</span><br><span class="line">    <span class="comment">//去除掉其它位置的空白字符和换行字符</span></span><br><span class="line">    pinYinStr = [pinYinStr stringByReplacingOccurrencesOfString:<span class="string">@"\r"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    pinYinStr = [pinYinStr stringByReplacingOccurrencesOfString:<span class="string">@"\n"</span> withString:<span class="string">@""</span>];</span><br><span class="line">    pinYinStr = [pinYinStr stringByReplacingOccurrencesOfString:<span class="string">@" "</span> withString:<span class="string">@""</span>];</span><br><span class="line"><span class="comment">//    NSLog(@"去掉空白字符和换行字符的pinyin: %@", pinYinStr);</span></span><br><span class="line"><span class="comment">//    [pinYinStr capitalizedString];//首字母大写</span></span><br><span class="line">    <span class="keyword">return</span> pinYinStr;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-纯英文输入-记得之前记录过设置安全键盘可以实现限制输入中文和emoji表情的另类实现-即设置输入框的属性secureTextEntry-根据键盘的弹出和隐藏动态切换-但是有一点小小的瑕疵-在支持touchID的手机-键盘上方会出现一个小圆圈-就是类似钥匙串的玩意儿-点击之后-验证touchID-然后会看到自己以往在iCloud记录的账户密码-安全以及UI方面不是很符合要求-在这里介绍另一种实现方式"><a href="#2-纯英文输入-记得之前记录过设置安全键盘可以实现限制输入中文和emoji表情的另类实现-即设置输入框的属性secureTextEntry-根据键盘的弹出和隐藏动态切换-但是有一点小小的瑕疵-在支持touchID的手机-键盘上方会出现一个小圆圈-就是类似钥匙串的玩意儿-点击之后-验证touchID-然后会看到自己以往在iCloud记录的账户密码-安全以及UI方面不是很符合要求-在这里介绍另一种实现方式" class="headerlink" title="2. 纯英文输入,记得之前记录过设置安全键盘可以实现限制输入中文和emoji表情的另类实现,即设置输入框的属性secureTextEntry ,根据键盘的弹出和隐藏动态切换,但是有一点小小的瑕疵(在支持touchID的手机,键盘上方会出现一个小圆圈,就是类似钥匙串的玩意儿,点击之后,验证touchID,然后会看到自己以往在iCloud记录的账户密码.... 安全以及UI方面不是很符合要求),在这里介绍另一种实现方式"></a>2. 纯英文输入,记得之前记录过设置安全键盘可以实现<a href="https://www.jianshu.com/p/82c5a1ea8763" target="_blank" rel="noopener">限制输入中文和emoji表情的另类实现</a>,即设置输入框的属性<code>secureTextEntry</code> ,根据键盘的弹出和隐藏动态切换,但是有一点小小的瑕疵(<code>在支持touchID的手机,键盘上方会出现一个小圆圈,就是类似钥匙串的玩意儿,点击之后,验证touchID,然后会看到自己以往在iCloud记录的账户密码.... 安全以及UI方面不是很符合要求</code>),在这里介绍另一种实现方式</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)textField:(<span class="built_in">UITextField</span> *)textField shouldChangeCharactersInRange:(<span class="built_in">NSRange</span>)range replacementString:(<span class="built_in">NSString</span> *)string&#123;</span><br><span class="line"><span class="comment">//指定输入的字符内容</span></span><br><span class="line"><span class="built_in">NSString</span> * kLetterVerifyInput = <span class="string">@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"</span>;</span><br><span class="line">        <span class="built_in">NSCharacterSet</span> *cs = [[<span class="built_in">NSCharacterSet</span> characterSetWithCharactersInString:kLetterVerifyInput] invertedSet];<span class="comment">//与英文取反的集合</span></span><br><span class="line">        <span class="built_in">NSString</span> *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:<span class="string">@""</span>];<span class="comment">//过滤并拼接起来</span></span><br><span class="line">        <span class="keyword">return</span> [string isEqualToString:filtered]; <span class="comment">//如果匹配了这个非英文集合 则不会出现在输入框里</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-利用正则过滤字符"><a href="#3-利用正则过滤字符" class="headerlink" title="3. 利用正则过滤字符"></a>3. 利用正则过滤字符</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据正则，过滤特殊字符</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)filterCharactor:(<span class="built_in">NSString</span> *)string withRegex:(<span class="built_in">NSString</span> *)regexStr&#123;</span><br><span class="line">    <span class="built_in">NSString</span> *searchText = string;</span><br><span class="line">    <span class="built_in">NSError</span> *error = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">NSRegularExpression</span> *regex = [<span class="built_in">NSRegularExpression</span> regularExpressionWithPattern:regexStr options:<span class="built_in">NSRegularExpressionCaseInsensitive</span> error:&amp;error];</span><br><span class="line">    <span class="built_in">NSString</span> *result = [regex stringByReplacingMatchesInString:searchText options:<span class="built_in">NSMatchingReportCompletion</span> range:<span class="built_in">NSMakeRange</span>(<span class="number">0</span>, searchText.length) withTemplate:<span class="string">@""</span>];</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-只能输入中文和只输入英文的处理-标点符号之类的需要自己额外处理一下"><a href="#4-只能输入中文和只输入英文的处理-标点符号之类的需要自己额外处理一下" class="headerlink" title="4. 只能输入中文和只输入英文的处理(标点符号之类的需要自己额外处理一下)"></a>4. 只能输入中文和只输入英文的处理(<code>标点符号之类的需要自己额外处理一下</code>)</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听处理输入的字符串 把不符合要求的字符串替换掉</span></span><br><span class="line"> @weakify(<span class="keyword">self</span>);</span><br><span class="line">  [<span class="keyword">self</span>.nameTextfield.rac_textSignal subscribeNext:^(<span class="built_in">NSString</span> * _Nullable x) &#123;</span><br><span class="line">      @strongify(<span class="keyword">self</span>);</span><br><span class="line">      <span class="keyword">if</span>(!x.length)&#123;</span><br><span class="line">          <span class="keyword">return</span> ;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">self</span>.selectedBtn.tag == <span class="number">1</span>) &#123;</span><br><span class="line">          <span class="comment">//中文</span></span><br><span class="line">          <span class="keyword">if</span> (![<span class="built_in">NSString</span> isChineseCharacter:x]) &#123;</span><br><span class="line">              <span class="comment">//过滤非中文字符</span></span><br><span class="line">              <span class="keyword">self</span>.nameTextfield.text = [<span class="keyword">self</span> filterCharactor:x withRegex:<span class="string">@"[^\u4e00-\u9fa5]"</span>];</span><br><span class="line">              <span class="keyword">return</span> ;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          <span class="comment">//英文</span></span><br><span class="line">          <span class="built_in">NSString</span> *lastStr = [x substringWithRange:<span class="built_in">NSMakeRange</span>(x.length<span class="number">-1</span>, <span class="number">1</span>)];</span><br><span class="line">          <span class="keyword">if</span> (![kLetterVerifyInput containsString:lastStr]) &#123;</span><br><span class="line">              <span class="keyword">self</span>.nameTextfield.text = [x substringToIndex: x.length - <span class="number">1</span>];</span><br><span class="line">              <span class="keyword">return</span> ;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">self</span>.nameTextfield.text = [<span class="keyword">self</span>.nameTextfield.text removeWhiteSpacesFromString];<span class="comment">//移除空格</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">self</span>.nameTextfield.text.length &gt; <span class="number">10</span>) &#123;<span class="comment">//限制输入的长度</span></span><br><span class="line">          <span class="keyword">self</span>.nameTextfield.text = [<span class="keyword">self</span>.nameTextfield.text substringToIndex:<span class="number">10</span>];</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;];</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-一些判断纯中文-纯英文-纯数字的正则的方法"><a href="#5-一些判断纯中文-纯英文-纯数字的正则的方法" class="headerlink" title="5. 一些判断纯中文,纯英文,纯数字的正则的方法"></a>5. 一些判断纯中文,纯英文,纯数字的正则的方法</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//限制中文输入 判断是否中文</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)isChineseCharacter:(<span class="built_in">NSString</span>*)source &#123;</span><br><span class="line">    <span class="comment">//参考了 https://www.jianshu.com/p/b40b3c618fec</span></span><br><span class="line">    <span class="built_in">NSString</span> *regex = <span class="string">@"^[\\u4E00-\\u9FEA]+$"</span>;</span><br><span class="line">    <span class="keyword">return</span> ([source rangeOfString:regex options:<span class="built_in">NSRegularExpressionSearch</span>].length&gt;<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//严格限制英文输入</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)isEnglishCharacter:(<span class="built_in">NSString</span>*)source &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *upperRegex = <span class="string">@"^[\\u0041-\\u005A]+$"</span>;</span><br><span class="line">    <span class="built_in">NSString</span> *lowerRegex = <span class="string">@"^[\\u0061-\\u007A]+$"</span>;</span><br><span class="line">    <span class="built_in">BOOL</span> isEnglish = (([source rangeOfString:upperRegex options:<span class="built_in">NSRegularExpressionSearch</span>].length&gt;<span class="number">0</span>) || ([source rangeOfString:lowerRegex options:<span class="built_in">NSRegularExpressionSearch</span>].length&gt;<span class="number">0</span>));</span><br><span class="line">    <span class="keyword">return</span> isEnglish;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//判断数字</span></span><br><span class="line">+ (<span class="built_in">BOOL</span>)isNumber:(<span class="built_in">NSString</span>*)source &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *regex = <span class="string">@"^[\\u0030-\\u0039]+$"</span>;</span><br><span class="line">    <span class="keyword">return</span> ([source rangeOfString:regex options:<span class="built_in">NSRegularExpressionSearch</span>].length&gt;<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-URL含有中文或者百分号-有时候需要根据业务需求编码或者解码-如下"><a href="#6-URL含有中文或者百分号-有时候需要根据业务需求编码或者解码-如下" class="headerlink" title="6. URL含有中文或者百分号%,有时候需要根据业务需求编码或者解码,如下:"></a>6. URL含有中文或者百分号<code>%</code>,有时候需要根据业务需求编码或者解码,如下:</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//以下是添加的NSString的category方法</span></span><br><span class="line"><span class="comment">///MARK:- URL包含中文转码 编码/Encode</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)urlEncodeUTF8String&#123;</span><br><span class="line">    <span class="keyword">if</span> (@available(iOS <span class="number">9.0</span>, *)) &#123;</span><br><span class="line">        <span class="built_in">NSString</span>  *newUrlString = [<span class="keyword">self</span> stringByAddingPercentEncodingWithAllowedCharacters:[<span class="built_in">NSCharacterSet</span> URLQueryAllowedCharacterSet]];</span><br><span class="line">        <span class="keyword">return</span> newUrlString;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">NSString</span>  *newUrlString = [<span class="keyword">self</span> stringByAddingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">        <span class="keyword">return</span> newUrlString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">///MARK:- URL包含中文百分号的形式 需要转成中文 解码/Decode</span></span><br><span class="line">- (<span class="built_in">NSString</span> *)urlDecodeUTF8String&#123;</span><br><span class="line">    <span class="keyword">if</span> (@available(iOS <span class="number">9.0</span>, *)) &#123;</span><br><span class="line">        <span class="built_in">NSString</span>  *newUrlString = [<span class="keyword">self</span> stringByRemovingPercentEncoding];</span><br><span class="line">        <span class="keyword">return</span> newUrlString;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">NSString</span> *newUrlString = [<span class="keyword">self</span> stringByReplacingPercentEscapesUsingEncoding:<span class="built_in">NSUTF8StringEncoding</span>];</span><br><span class="line">        <span class="keyword">return</span> newUrlString;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-解析URL的参数-即问好后面的参数键值对-入参是-url-query-值得注意的是如果urlString含有中文的话-调用-url-query-是读不出数据-null-我认为采用字符串截取比较安全的做法-不用转来转去-我也是这样做的"><a href="#7-解析URL的参数-即问好后面的参数键值对-入参是-url-query-值得注意的是如果urlString含有中文的话-调用-url-query-是读不出数据-null-我认为采用字符串截取比较安全的做法-不用转来转去-我也是这样做的" class="headerlink" title="7.   解析URL的参数 即问好后面的参数键值对,入参是 [url query] 值得注意的是如果urlString含有中文的话,调用[url query]是读不出数据(null), 我认为采用字符串截取比较安全的做法,不用转来转去,我也是这样做的"></a>7.   解析URL的参数 即问好后面的参数键值对,入参是 <code>[url query]</code> 值得注意的是如果urlString含有中文的话,调用<code>[url query]</code>是读不出数据<code>(null)</code>, 我认为采用字符串截取比较安全的做法,不用转来转去,我也是这样做的</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 扫二维码或者什么操作获取一段URLString 即</span></span><br><span class="line">    <span class="keyword">if</span> (![URLString containsString:<span class="string">@"?"</span>]) &#123;</span><br><span class="line">          <span class="comment">// 没问号 做其他处理</span></span><br><span class="line">         <span class="keyword">return</span> ;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 有问号去解析参数</span></span><br><span class="line">      <span class="built_in">NSInteger</span> location = [URLString rangeOfString:<span class="string">@"?"</span>].location + <span class="number">1</span>;</span><br><span class="line">     <span class="built_in">NSString</span> *query = [URLString substringFromIndex: location];</span><br><span class="line">    获取到query 自然就可以获取到参数字典</span><br><span class="line"></span><br><span class="line">+ (<span class="built_in">NSDictionary</span>*)dictionaryFromQuery:(<span class="built_in">NSString</span>*)query&#123;</span><br><span class="line">    <span class="built_in">NSCharacterSet</span>* delimiterSet = [<span class="built_in">NSCharacterSet</span> characterSetWithCharactersInString:<span class="string">@"&amp;"</span>];<span class="comment">//分割键值对</span></span><br><span class="line">    <span class="built_in">NSMutableDictionary</span>* pairs = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    <span class="built_in">NSScanner</span>* scanner = [[<span class="built_in">NSScanner</span> alloc] initWithString:query];</span><br><span class="line">    <span class="keyword">while</span> (![scanner isAtEnd]) &#123;</span><br><span class="line">        <span class="built_in">NSString</span>* pairString = <span class="literal">nil</span>;</span><br><span class="line">        [scanner scanUpToCharactersFromSet:delimiterSet intoString:&amp;pairString];</span><br><span class="line">        [scanner scanCharactersFromSet:delimiterSet intoString:<span class="literal">NULL</span>];</span><br><span class="line">        <span class="built_in">NSArray</span>* kvPair = [pairString componentsSeparatedByString:<span class="string">@"="</span>]; <span class="comment">//提取键值</span></span><br><span class="line">        <span class="keyword">if</span> (kvPair.count == <span class="number">2</span>) &#123;<span class="comment">//字典一个键 一个值</span></span><br><span class="line">            <span class="built_in">NSString</span>* key = [[kvPair objectAtIndex:<span class="number">0</span>] stringByRemovingPercentEncoding];</span><br><span class="line">            <span class="built_in">NSString</span>* value = [[kvPair objectAtIndex:<span class="number">1</span>] stringByRemovingPercentEncoding];</span><br><span class="line">            [pairs setObject:value forKey:key];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> [<span class="built_in">NSDictionary</span> dictionaryWithDictionary:pairs];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-提取字符串中的数字部分-局限是会把所有数字都提取出来-可以自己使用逗号分隔-数组切割区分-因为我当时的需求是一串字符串中有且只有一串连续的数字-所有全部提取出来就是了"><a href="#8-提取字符串中的数字部分-局限是会把所有数字都提取出来-可以自己使用逗号分隔-数组切割区分-因为我当时的需求是一串字符串中有且只有一串连续的数字-所有全部提取出来就是了" class="headerlink" title="8. 提取字符串中的数字部分 (局限是会把所有数字都提取出来 可以自己使用逗号分隔,数组切割区分,因为我当时的需求是一串字符串中有且只有一串连续的数字  所有全部提取出来就是了)"></a>8. 提取字符串中的数字部分 (<code>局限是会把所有数字都提取出来 可以自己使用逗号分隔,数组切割区分,因为我当时的需求是一串字符串中有且只有一串连续的数字  所有全部提取出来就是了</code>)</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)getNumberFromString&#123;</span><br><span class="line">    <span class="built_in">NSCharacterSet</span> *nonDigitCharacterSet = [[<span class="built_in">NSCharacterSet</span> decimalDigitCharacterSet] invertedSet];</span><br><span class="line">    <span class="keyword">return</span>[[<span class="keyword">self</span> componentsSeparatedByCharactersInSet:nonDigitCharacterSet] componentsJoinedByString:<span class="string">@""</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="9-全角标点符号转半角符号"><a href="#9-全角标点符号转半角符号" class="headerlink" title="9.  全角标点符号转半角符号"></a>9.  全角标点符号转半角符号</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">NSString</span> *)full2HalfWithNSString:(<span class="built_in">NSString</span> *)string &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">nil</span> == string || [<span class="string">@""</span> isEqual:string]) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">@""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">NSMutableString</span> *convertedString = [string mutableCopy];</span><br><span class="line">    <span class="built_in">CFStringTransform</span>((<span class="built_in">CFMutableStringRef</span>)convertedString, <span class="literal">NULL</span>, kCFStringTransformFullwidthHalfwidth, <span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">NSString</span> *newString = [<span class="built_in">NSString</span> stringWithString:convertedString];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"　"</span> withString:<span class="string">@" "</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"‘"</span> withString:<span class="string">@"'"</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"’"</span> withString:<span class="string">@"'"</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"`"</span> withString:<span class="string">@"'"</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"‚"</span> withString:<span class="string">@","</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"，"</span> withString:<span class="string">@","</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"；"</span> withString:<span class="string">@";"</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"｡"</span> withString:<span class="string">@"."</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"？"</span> withString:<span class="string">@"?"</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"！"</span> withString:<span class="string">@"!"</span>];</span><br><span class="line">    newString = [newString stringByReplacingOccurrencesOfString:<span class="string">@"--"</span> withString:<span class="string">@"—"</span>];</span><br><span class="line">    <span class="keyword">return</span> newString;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2019/04/18/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93/" title="iOS字符串的一些处理总结">http://wangguibin/github.io/hexo-github-action/2019/04/18/iOS%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%A4%84%E7%90%86%E6%80%BB%E7%BB%93/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/hexo-github-action/tags/Objective-C/" rel="tag"># Objective-C</a>
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+            <a href="/hexo-github-action/tags/swift/" rel="tag"># swift</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2019/03/26/iOS%20pod%E7%A7%81%E6%9C%89%E5%BA%93%E7%BB%84%E4%BB%B6%E5%8C%96%E5%88%9D%E5%B0%9D%E8%AF%95/" rel="next" title="iOS pod私有库组件化初尝试">
+                <i class="fa fa-chevron-left"></i> iOS pod私有库组件化初尝试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2019/05/25/2019%E5%B9%B4CoderWGB%E6%B8%B8%E8%AE%B0/" rel="prev" title="2019年CoderWGB游记">
+                2019年CoderWGB游记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-汉字转拼音-用的系统的API-CFStringTransform"><span class="nav-number">1.</span> <span class="nav-text">1. 汉字转拼音,用的系统的API CFStringTransform</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-纯英文输入-记得之前记录过设置安全键盘可以实现限制输入中文和emoji表情的另类实现-即设置输入框的属性secureTextEntry-根据键盘的弹出和隐藏动态切换-但是有一点小小的瑕疵-在支持touchID的手机-键盘上方会出现一个小圆圈-就是类似钥匙串的玩意儿-点击之后-验证touchID-然后会看到自己以往在iCloud记录的账户密码-安全以及UI方面不是很符合要求-在这里介绍另一种实现方式"><span class="nav-number">2.</span> <span class="nav-text">2. 纯英文输入,记得之前记录过设置安全键盘可以实现限制输入中文和emoji表情的另类实现,即设置输入框的属性secureTextEntry ,根据键盘的弹出和隐藏动态切换,但是有一点小小的瑕疵(在支持touchID的手机,键盘上方会出现一个小圆圈,就是类似钥匙串的玩意儿,点击之后,验证touchID,然后会看到自己以往在iCloud记录的账户密码.... 安全以及UI方面不是很符合要求),在这里介绍另一种实现方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-利用正则过滤字符"><span class="nav-number">3.</span> <span class="nav-text">3. 利用正则过滤字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-只能输入中文和只输入英文的处理-标点符号之类的需要自己额外处理一下"><span class="nav-number">4.</span> <span class="nav-text">4. 只能输入中文和只输入英文的处理(标点符号之类的需要自己额外处理一下)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-一些判断纯中文-纯英文-纯数字的正则的方法"><span class="nav-number">5.</span> <span class="nav-text">5. 一些判断纯中文,纯英文,纯数字的正则的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-URL含有中文或者百分号-有时候需要根据业务需求编码或者解码-如下"><span class="nav-number">6.</span> <span class="nav-text">6. URL含有中文或者百分号%,有时候需要根据业务需求编码或者解码,如下:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-解析URL的参数-即问好后面的参数键值对-入参是-url-query-值得注意的是如果urlString含有中文的话-调用-url-query-是读不出数据-null-我认为采用字符串截取比较安全的做法-不用转来转去-我也是这样做的"><span class="nav-number">7.</span> <span class="nav-text">7.   解析URL的参数 即问好后面的参数键值对,入参是 [url query] 值得注意的是如果urlString含有中文的话,调用[url query]是读不出数据(null), 我认为采用字符串截取比较安全的做法,不用转来转去,我也是这样做的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-提取字符串中的数字部分-局限是会把所有数字都提取出来-可以自己使用逗号分隔-数组切割区分-因为我当时的需求是一串字符串中有且只有一串连续的数字-所有全部提取出来就是了"><span class="nav-number">8.</span> <span class="nav-text">8. 提取字符串中的数字部分 (局限是会把所有数字都提取出来 可以自己使用逗号分隔,数组切割区分,因为我当时的需求是一串字符串中有且只有一串连续的数字  所有全部提取出来就是了)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-全角标点符号转半角符号"><span class="nav-number">9.</span> <span class="nav-text">9.  全角标点符号转半角符号</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="音视频,音频处理,踩坑记录," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景:   xx项目某个业务流程的某个功能,需要采集用户的操作全过程(录屏+录音),初看需求时,想到ReplayKit是最切合需求的,因为ReplayKit系统录屏自带三路数据分别是视频帧数据CMSampleBuffer, App音频PCM CMSampleBuffer,麦克风音频PCM CMSampleBuffer,如此一来需求瞬间就解决了,但是后来因为麦克风权限被另一个三方通话VoIP功能的S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS音频流混音实践">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="背景:   xx项目某个业务流程的某个功能,需要采集用户的操作全过程(录屏+录音),初看需求时,想到ReplayKit是最切合需求的,因为ReplayKit系统录屏自带三路数据分别是视频帧数据CMSampleBuffer, App音频PCM CMSampleBuffer,麦克风音频PCM CMSampleBuffer,如此一来需求瞬间就解决了,但是后来因为麦克风权限被另一个三方通话VoIP功能的S">
+<meta property="article:published_time" content="2021-08-31T21:32:53.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.444Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="音视频">
+<meta property="article:tag" content="音频处理">
+<meta property="article:tag" content="踩坑记录">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2021/08/31/iOS音频流混音实践/"/>
+
+
+
+
+
+  <title>iOS音频流混音实践 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS音频流混音实践</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-08-31T21:32:53+00:00">
+                2021-08-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>背景:</strong></p>
+<blockquote>
+<p> xx项目某个业务流程的某个功能,需要采集用户的操作全过程(录屏+录音),初看需求时,想到<code>ReplayKit</code>是最切合需求的,因为ReplayKit系统录屏自带三路数据分别是视频帧数据<code>CMSampleBuffer</code>, <code>App</code>音频<code>PCM CMSampleBuffer</code>,麦克风音频<code>PCM CMSampleBuffer</code>,如此一来需求瞬间就解决了,但是后来因为麦克风权限被另一个三方通话<code>VoIP</code>功能的<code>SDK</code>抢占了,所以麦克风数据只能由他们提供,并且授权弹窗老是被用户拒绝,所以<code>ReplayKit</code>录屏方案被领导否了,另外<code>App</code>内部播放的声音也是一样需求业务方提供,如此一来,录屏获取图像可以换成定时器(<code>CADisplayLink</code>)+截图(绘制图层获取<code>UIImage</code>转<code>CVPixelBuffer</code>)生成视频的方案,而音频推流只能通过混音才能保证音画同步~</p>
+</blockquote>
+<a id="more"></a>
+
+<h4 id="定时器-截图实现录屏功能的核心代码"><a href="#定时器-截图实现录屏功能的核心代码" class="headerlink" title="定时器 + 截图实现录屏功能的核心代码"></a>定时器 + 截图实现录屏功能的核心代码</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///MARK:- 起一个CADisplayLink定时器 通过CGImageRef =&gt; CVPixelBufferRef </span></span><br><span class="line">- (<span class="keyword">void</span>)snapshotWithImage &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="comment">//通过Graphics context拿到截屏图片</span></span><br><span class="line">        <span class="built_in">UIGraphicsBeginImageContextWithOptions</span>(<span class="keyword">self</span>.recordView.bounds.size, <span class="literal">NO</span>, <span class="number">0</span>);</span><br><span class="line">      <span class="comment">//这种方式生成的视频可以录制到动画 但是局限性也很明显比如视频和相机预览的图层无法捕捉到以及系统的一些组件(键盘...等)也无法录制到</span></span><br><span class="line">        [<span class="keyword">self</span>.recordView drawViewHierarchyInRect:<span class="keyword">self</span>.recordView.bounds afterScreenUpdates:<span class="literal">NO</span>];</span><br><span class="line">        <span class="built_in">UIImage</span> *image = <span class="built_in">UIGraphicsGetImageFromCurrentImageContext</span>();</span><br><span class="line">        <span class="built_in">UIGraphicsEndImageContext</span>();</span><br><span class="line">        <span class="comment">//UIImage 对象获取 CGImageRef</span></span><br><span class="line">        <span class="built_in">CGImageRef</span> imgRef = image.CGImage;</span><br><span class="line">        <span class="comment">// CGImage =&gt; bitmap</span></span><br><span class="line">        <span class="built_in">NSDictionary</span> *options = [<span class="built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:</span><br><span class="line">                                 [<span class="built_in">NSNumber</span> numberWithBool:<span class="literal">YES</span>], kCVPixelBufferCGImageCompatibilityKey,</span><br><span class="line">                                 [<span class="built_in">NSNumber</span> numberWithBool:<span class="literal">YES</span>], kCVPixelBufferCGBitmapContextCompatibilityKey,</span><br><span class="line">                                 <span class="literal">nil</span>];</span><br><span class="line"></span><br><span class="line">        CVPixelBufferRef pixelBuffer = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">CGFloat</span> frameWidth = <span class="built_in">CGImageGetWidth</span>(imgRef);</span><br><span class="line">        <span class="built_in">CGFloat</span> frameHeight = <span class="built_in">CGImageGetHeight</span>(imgRef);</span><br><span class="line">        <span class="comment">//创建CVPixelBuffer</span></span><br><span class="line">        CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,</span><br><span class="line">                                              frameWidth,</span><br><span class="line">                                              frameHeight,</span><br><span class="line">                                              kCVPixelFormatType_32ARGB,</span><br><span class="line">                                              (__bridge <span class="built_in">CFDictionaryRef</span>) options,</span><br><span class="line">                                              &amp;pixelBuffer);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">NSParameterAssert</span>(status == kCVReturnSuccess &amp;&amp; pixelBuffer != <span class="literal">NULL</span>);</span><br><span class="line">        <span class="comment">//上锁</span></span><br><span class="line">        CVPixelBufferLockBaseAddress(pixelBuffer, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">//获得基地址</span></span><br><span class="line">        <span class="keyword">void</span> *pxdata = CVPixelBufferGetBaseAddress(pixelBuffer);</span><br><span class="line">        <span class="built_in">NSParameterAssert</span>(pxdata != <span class="literal">NULL</span>);</span><br><span class="line">        <span class="comment">//获取设备的颜色通道</span></span><br><span class="line">        <span class="built_in">CGColorSpaceRef</span> rgbColorSpace = <span class="built_in">CGColorSpaceCreateDeviceRGB</span>();</span><br><span class="line">        <span class="comment">//创建bitmap</span></span><br><span class="line">        <span class="built_in">CGContextRef</span> context = <span class="built_in">CGBitmapContextCreate</span>(pxdata,</span><br><span class="line">                                                     frameWidth,</span><br><span class="line">                                                     frameHeight,</span><br><span class="line">                                                     <span class="number">8</span>,</span><br><span class="line">                                                     CVPixelBufferGetBytesPerRow(pixelBuffer),</span><br><span class="line">                                                     rgbColorSpace,</span><br><span class="line">                                                     (<span class="built_in">CGBitmapInfo</span>)kCGImageAlphaNoneSkipFirst);</span><br><span class="line">        <span class="built_in">NSParameterAssert</span>(context);</span><br><span class="line">        <span class="comment">//transform调整</span></span><br><span class="line">        <span class="built_in">CGContextConcatCTM</span>(context, <span class="built_in">CGAffineTransformIdentity</span>);</span><br><span class="line">        <span class="comment">// 画图</span></span><br><span class="line">        <span class="built_in">CGContextDrawImage</span>(context, <span class="built_in">CGRectMake</span>(<span class="number">0</span>,<span class="number">0</span>,frameWidth,frameHeight),imgRef);</span><br><span class="line">        <span class="comment">//释放</span></span><br><span class="line">        <span class="built_in">CGColorSpaceRelease</span>(rgbColorSpace);</span><br><span class="line">        <span class="comment">//回调出去 推流处理或者显示 此处也可利用`AVAssetWriter`写入本地视频文件</span></span><br><span class="line">      <span class="keyword">if</span> (pixelBuffer != <span class="literal">NULL</span>) &#123;</span><br><span class="line">            !<span class="keyword">self</span>.screenRecordCallback? : <span class="keyword">self</span>.screenRecordCallback(pixelBuffer);</span><br><span class="line">          &#125;</span><br><span class="line">        <span class="comment">//释放上下文</span></span><br><span class="line">        <span class="built_in">CGContextRelease</span>(context);</span><br><span class="line">        <span class="comment">//解锁</span></span><br><span class="line">        CVPixelBufferUnlockBaseAddress(pixelBuffer, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">//释放buffer</span></span><br><span class="line">        CVPixelBufferRelease(pixelBuffer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="混音的前提条件"><a href="#混音的前提条件" class="headerlink" title="混音的前提条件"></a>混音的前提条件</h4><p>混音原理介绍可参考 <a href="https://zhuanlan.zhihu.com/p/42110735" target="_blank" rel="noopener">使用这个混音技术，你也能与爱豆隔空对唱</a></p>
+<blockquote>
+<p>并非任何两路音频流都可以直接混合。两路音视频流，必须符合以下条件才能混合：</p>
+<ul>
+<li>格式相同，要解压成 PCM 格式。</li>
+<li>采样率相同，要转换成相同的采样率。主流采样率包括：16k Hz、32k Hz、44.1k Hz 和 48k Hz。</li>
+<li>帧长相同，帧长由编码格式决定，PCM 没有帧长的概念，开发者自行决定帧长。为了和主流音频编码格式的帧长保持一致，推荐采用 20ms 为帧长。</li>
+<li>位深（Bit-Depth）或采样格式 (Sample Format) 相同，承载每个采样点数据的 bit 数目要相同。</li>
+<li>声道数相同，必须同样是单声道或者双声道 (立体声)。这样，把格式、采样率、帧长、位深和声道数对齐了以后，两个音频流就可以混合了。</li>
+</ul>
+<p>在混音之前，还需要做回声消除、噪音抑制和静音检测等处理。回声消除和噪音抑制属于语音前处理范畴的工作。在编码之前，采集、语音前处理、混音之前的处理、混音和混音之后的处理应该按顺序进行。静音抑制（VAD，Voice Activity Detect）可做可不做。对于终端混音，是要把采集到的主播声音和从音频文件中读到的伴奏声音混合。如果主播停顿一段时间不发出声音，通过 VAD 检测到了，那么这段时间不混音，直接采用伴奏音乐的数据就好了。然而，为了简单起见，也可以不做 VAD。主播不发声音的期间，继续做混音也可以（主播的声音为零振幅）。</p>
+</blockquote>
+<h4 id="混音算法"><a href="#混音算法" class="headerlink" title="混音算法"></a>混音算法</h4><p>​    参考一个C++的<a href="https://github.com/cugxchen/MuxerAudio" target="_blank" rel="noopener">repo代码</a></p>
+<ol>
+<li><p>叠加法: 这种方法数据量比较大,容易溢出 <code>y = a + b + c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; channels; ++i)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//叠加法</span></span><br><span class="line">  sumBuf[i] = LimAmp(Sum(buf1[i], buf2[i], buf3[i], buf4[i]));</span><br><span class="line">&#125;</span><br><span class="line">fwrite(sumBuf, <span class="keyword">sizeof</span>(Int16), NUM, pMux);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>加权平均法: 这种方法两路数据问题不大,随着音源数量增加,声音质量会降低 <code>y = (a + b + c)/3</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; channels; ++i)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//加权平均法</span></span><br><span class="line">  sumBuf[i] = LimAmp(AAW(buf1[i], buf2[i], buf3[i], buf4[i]));<span class="comment">//从打印看没有溢出的</span></span><br><span class="line">&#125;</span><br><span class="line">fwrite(sumBuf, <span class="keyword">sizeof</span>(Int16), NUM, pMux);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>自定义权重法: 设定比重,哪个声音大就比重加大一些 <code>y = (sgn(a)*a^2 + sgn(b)*b^2 + sgn(c)*c^2)/(abs(a) + abs(b) + abs(c))</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; channels; ++i)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//自对齐权重法</span></span><br><span class="line">  sumBuf[i] = LimAmp(ASW(buf1[i], buf2[i], buf3[i], buf4[i]));</span><br><span class="line">&#125;</span><br><span class="line">fwrite(sumBuf, <span class="keyword">sizeof</span>(Int16), NUM, pMux);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>归一化 参考<a href="https://blog.csdn.net/jeffasd/article/details/77335874" target="_blank" rel="noopener">改进型归一化混音算法</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">pcmAudioMix</span><span class="params">(SInt16 *bufferA, SInt16 *bufferB, UInt32 bufferLength)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> * sourseFile[<span class="number">2</span>];</span><br><span class="line">    sourseFile[<span class="number">0</span>] = (<span class="keyword">char</span> *)bufferA;</span><br><span class="line">    sourseFile[<span class="number">1</span>] = (<span class="keyword">char</span> *)bufferB;</span><br><span class="line">    Mix(sourseFile, <span class="number">2</span>, (<span class="keyword">char</span> *)bufferB, bufferLength);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Mix</span><span class="params">(<span class="keyword">char</span> **buffers,<span class="keyword">int</span> number,<span class="keyword">char</span> *mix_buf, UInt32 bufferLength)</span></span>&#123;</span><br><span class="line">    <span class="comment">//归一化混音</span></span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">const</span> MAX = <span class="number">32767</span>;</span><br><span class="line">    <span class="keyword">int</span> <span class="keyword">const</span> MIN = <span class="number">-32768</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> f = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> output;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; bufferLength; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> temp = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; number; j++)&#123;</span><br><span class="line">            <span class="keyword">char</span> *<span class="built_in">point</span> = buffers[j];</span><br><span class="line">            <span class="keyword">if</span> (j == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> mixTemp = *(short *)(<span class="built_in">point</span> + i*<span class="number">2</span>);</span><br><span class="line">                temp += (<span class="keyword">int</span>)(mixTemp);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp += *(short *)(<span class="built_in">point</span> + i*<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        output = (<span class="keyword">int</span>)(temp * f);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (output &gt; MAX)&#123;</span><br><span class="line">            f = (<span class="keyword">double</span>)MAX / (<span class="keyword">double</span>)(output);</span><br><span class="line">            output = MAX;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (output &lt; MIN)&#123;</span><br><span class="line">            f = (<span class="keyword">double</span>)MIN / (<span class="keyword">double</span>)(output);</span><br><span class="line">            output = MIN;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (f &lt; <span class="number">1</span>)&#123;</span><br><span class="line">            f += ((<span class="keyword">double</span>)<span class="number">1</span> - f) / (<span class="keyword">double</span>)<span class="number">32</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        *(short *)(mix_buf + i*<span class="number">2</span>) = (short)output;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>目前也是采用的该算法</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">    FILE * fp1;</span><br><span class="line">    FILE * fp2;</span><br><span class="line">    FILE * fpmix;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> size = <span class="number">4</span>*<span class="number">1024</span>;</span><br><span class="line">    <span class="keyword">int</span> channels = <span class="number">2</span>;<span class="comment">//双声道</span></span><br><span class="line">    <span class="comment">//本地pcm文件读取流的方式进行混合 在线的流得根据实际场景去处理</span></span><br><span class="line">    <span class="built_in">NSString</span> *path1 = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"mic"</span> ofType:<span class="string">@"pcm"</span>];</span><br><span class="line">    <span class="built_in">NSString</span> *path2 = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:<span class="string">@"audio"</span> ofType:<span class="string">@"pcm"</span>];</span><br><span class="line">    <span class="comment">// 输出混合后的pcm文件的地址</span></span><br><span class="line">    <span class="built_in">NSString</span> *mix_path = [[<span class="built_in">NSSearchPathForDirectoriesInDomains</span>(<span class="built_in">NSDocumentDirectory</span>, <span class="built_in">NSUserDomainMask</span>, <span class="literal">YES</span>) firstObject] stringByAppendingPathComponent:<span class="string">@"mix.pcm"</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 打开FP读写</span></span><br><span class="line">    fp1 = fopen([path1 UTF8String],<span class="string">"rb"</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp1 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        printf(<span class="string">"Open FILE1 failed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fp2 = fopen([path2 UTF8String],<span class="string">"rb"</span>);</span><br><span class="line">    <span class="keyword">if</span> (fp2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        printf(<span class="string">"Open FILE2 failed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    fpmix = fopen([mix_path UTF8String],<span class="string">"wb"</span>);</span><br><span class="line">    <span class="keyword">if</span> (fpmix == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        printf(<span class="string">"Open MIX_FILE failed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">short</span> *src_data1, *src_data2, *mix_data;</span><br><span class="line">    <span class="comment">//初始化分配内存空间</span></span><br><span class="line">    src_data1 = (<span class="keyword">short</span> *)malloc(size);</span><br><span class="line">    <span class="keyword">if</span> (src_data1 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        printf(<span class="string">"Malloc data1 failed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    src_data2 = (<span class="keyword">short</span> *)malloc(size);</span><br><span class="line">    <span class="keyword">if</span> (src_data2 == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        printf(<span class="string">"Malloc data2 failed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    mix_data = (<span class="keyword">short</span> *)malloc(size);</span><br><span class="line">    <span class="keyword">if</span> (mix_data == <span class="literal">NULL</span>)&#123;</span><br><span class="line">        printf(<span class="string">"Malloc mix_data failed!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> ret1,ret2;</span><br><span class="line">    <span class="comment">//定义二维数组为数据源格式</span></span><br><span class="line">    <span class="keyword">char</span> *sourse_data[<span class="number">2</span>];</span><br><span class="line">    printf(<span class="string">"开始混音!!\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//循环读取文件流数据</span></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        ret1 = fread(src_data1, <span class="number">1</span>, size, fp1);</span><br><span class="line">        ret2 = fread(src_data2, <span class="number">1</span>, size, fp2);</span><br><span class="line">        </span><br><span class="line">        sourse_data[<span class="number">0</span>] = (<span class="keyword">char</span> *)src_data1;</span><br><span class="line">        sourse_data[<span class="number">1</span>] = (<span class="keyword">char</span> *)src_data2;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(ret1 &gt; <span class="number">0</span> &amp;&amp; ret2 &gt; <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//调用混音</span></span><br><span class="line">            Mix(sourse_data, channels,(<span class="keyword">char</span> *)mix_data, size);</span><br><span class="line">            fwrite(mix_data, <span class="number">1</span>, size, fpmix);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( (ret1 &gt; <span class="number">0</span>) &amp;&amp; (ret2 == <span class="number">0</span>))&#123;</span><br><span class="line">            <span class="comment">//ret2已读完 把ret1继续读完写入</span></span><br><span class="line">            fwrite(src_data1, <span class="number">1</span>, ret1, fpmix);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( (ret2 &gt; <span class="number">0</span>) &amp;&amp; (ret1 == <span class="number">0</span>))&#123;</span><br><span class="line">            <span class="comment">//ret1已读完 把ret2继续读完写入</span></span><br><span class="line">            fwrite(src_data2, <span class="number">1</span>, ret2, fpmix);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>( (ret1 == <span class="number">0</span>) &amp;&amp; (ret2 == <span class="number">0</span>))&#123;</span><br><span class="line">            <span class="comment">//数据为空 或者均读取完</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(<span class="string">"混合完毕!!\n"</span>);</span><br><span class="line">    </span><br><span class="line">    free(src_data1);</span><br><span class="line">    free(src_data2);</span><br><span class="line">    free(mix_data);</span><br><span class="line">    </span><br><span class="line">    fclose(fp1);</span><br><span class="line">    fclose(fp2);</span><br><span class="line">    fclose(fpmix);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li><p>github找的一个<code>a+b-ab</code>的一个实现,不明觉厉就是了~</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  MY_INT16_MAX   32767</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span>  MY_INT16_MIN  -32768</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 混音算法</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> short <span class="title">TPMixSamples</span><span class="params">(short a, short b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">int</span> result = a &lt; <span class="number">0</span> &amp;&amp; b &lt; <span class="number">0</span> ? ((<span class="keyword">int</span>)a + (<span class="keyword">int</span>)b) - (((<span class="keyword">int</span>)a * (<span class="keyword">int</span>)b) / MY_INT16_MIN) : ( a &gt; <span class="number">0</span> &amp;&amp; b &gt; <span class="number">0</span> ? ((<span class="keyword">int</span>)a + (<span class="keyword">int</span>)b) - (((<span class="keyword">int</span>)a * (<span class="keyword">int</span>)b)/MY_INT16_MAX) : a + b);</span><br><span class="line"> <span class="keyword">return</span> result &gt; MY_INT16_MAX ? MY_INT16_MAX : (result &lt; MY_INT16_MIN ? MY_INT16_MIN : result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4 id="常用的相关代码块"><a href="#常用的相关代码块" class="headerlink" title="常用的相关代码块"></a>常用的相关代码块</h4><ul>
+<li><code>ASDB</code> 音频格式描述结构体</li>
+</ul>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">AudioStreamBasicDescription inputFormat = &#123;<span class="number">0</span>&#125;; <span class="comment">//结构体初始化</span></span><br><span class="line">inputFormat.mSampleRate = <span class="number">44100</span>;<span class="comment">//采样率,每秒钟的采样频率</span></span><br><span class="line">inputFormat.mFormatID = kAudioFormatLinearPCM;<span class="comment">//格式类型</span></span><br><span class="line">inputFormat.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;<span class="comment">//大小端等标识</span></span><br><span class="line">inputFormat.mChannelsPerFrame = <span class="number">2</span>;<span class="comment">//声道数</span></span><br><span class="line">inputFormat.mFramesPerPacket = <span class="number">1</span>;<span class="comment">//一个数据包一帧</span></span><br><span class="line">inputFormat.mBitsPerChannel = <span class="number">16</span>;<span class="comment">//采样位数或位深度</span></span><br><span class="line">inputFormat.mBytesPerFrame = inputFormat.mBitsPerChannel / <span class="number">8</span> * inputFormat.mChannelsPerFrame;<span class="comment">//每帧多少个字节</span></span><br><span class="line">inputFormat.mBytesPerPacket = inputFormat.mBytesPerFrame * inputFormat.mFramesPerPacket;<span class="comment">//一个包几个字节</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>音频<code>CMSampleBufferRef</code>转<code>NSData</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)pushAudioBuffer:(<span class="built_in">CMSampleBufferRef</span>)sampleBuffer &#123;</span><br><span class="line">    AudioBufferList audioBufferList;</span><br><span class="line">    <span class="built_in">CMBlockBufferRef</span> blockBuffer;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer</span>(sampleBuffer, <span class="literal">NULL</span>, &amp;audioBufferList, <span class="keyword">sizeof</span>(audioBufferList), <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="number">0</span>, &amp;blockBuffer);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> y=<span class="number">0</span>; y&lt;audioBufferList.mNumberBuffers; y++ ) &#123;</span><br><span class="line">        AudioBuffer audioBuffer = audioBufferList.mBuffers[y];</span><br><span class="line">        <span class="keyword">void</span>* audio = audioBuffer.mData;</span><br><span class="line">        <span class="built_in">NSData</span> *data = [<span class="built_in">NSData</span> dataWithBytes:audio length:audioBuffer.mDataByteSize];</span><br><span class="line">        [<span class="keyword">self</span> pushAudio:data];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">CFRelease</span>(blockBuffer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>NSData</code>转<code>CMSampleBufferRef</code></p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">-(AudioStreamBasicDescription)getASBD&#123;</span><br><span class="line">  	<span class="keyword">int</span> channels = <span class="number">2</span>;</span><br><span class="line">    AudioStreamBasicDescription format = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    format.mSampleRate = <span class="number">44100</span>;</span><br><span class="line">    format.mFormatID = kAudioFormatLinearPCM;</span><br><span class="line">    format.mFormatFlags =  kAudioFormatFlagIsSignedInteger | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;</span><br><span class="line">    format.mChannelsPerFrame = channels;</span><br><span class="line">    format.mBitsPerChannel = <span class="number">16</span>;</span><br><span class="line">    format.mFramesPerPacket = <span class="number">1</span>;</span><br><span class="line">    format.mBytesPerFrame = format.mBitsPerChannel / <span class="number">8</span> * format.mChannelsPerFrame;</span><br><span class="line">    format.mBytesPerPacket = format.mBytesPerFrame * format.mFramesPerPacket;</span><br><span class="line">    format.mReserved = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> format;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">CMSampleBufferRef</span>)convertAudioSampleWithData:(<span class="built_in">NSData</span> *)audioData&#123;</span><br><span class="line">    <span class="keyword">int</span> channels = <span class="number">2</span>;</span><br><span class="line">    AudioBufferList audioBufferList;</span><br><span class="line">    audioBufferList.mNumberBuffers = <span class="number">1</span>;</span><br><span class="line">    audioBufferList.mBuffers[<span class="number">0</span>].mNumberChannels = channels;</span><br><span class="line">    audioBufferList.mBuffers[<span class="number">0</span>].mDataByteSize = audioData.length;</span><br><span class="line">    audioBufferList.mBuffers[<span class="number">0</span>].mData = audioData.bytes;</span><br><span class="line">    </span><br><span class="line">    AudioStreamBasicDescription asbd = [<span class="keyword">self</span> getASBD];</span><br><span class="line">    <span class="built_in">CMSampleBufferRef</span> buff = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">CMFormatDescriptionRef</span> format = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">CMSampleTimingInfo</span> timing = &#123;<span class="built_in">CMTimeMake</span>(<span class="number">1</span>,<span class="number">44100</span>), kCMTimeZero, kCMTimeInvalid &#125;;</span><br><span class="line">    OSStatus error = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(format == <span class="literal">NULL</span>)&#123;</span><br><span class="line">      error = <span class="built_in">CMAudioFormatDescriptionCreate</span>(kCFAllocatorDefault, &amp;asbd, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="number">0</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, &amp;format);</span><br><span class="line">    &#125;</span><br><span class="line">        </span><br><span class="line">    error = <span class="built_in">CMSampleBufferCreate</span>(kCFAllocatorDefault, <span class="literal">NULL</span>, <span class="literal">false</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>, format, len/(<span class="number">2</span>*channels), <span class="number">1</span>, &amp;timing, <span class="number">0</span>, <span class="literal">NULL</span>, &amp;buff);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"CMSampleBufferCreate returned error: %ld"</span>, (<span class="keyword">long</span>)error);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    error = <span class="built_in">CMSampleBufferSetDataBufferFromAudioBufferList</span>(buff, kCFAllocatorDefault, kCFAllocatorDefault, <span class="number">0</span>, &amp;audioBufferList);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(error)&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"CMSampleBufferSetDataBufferFromAudioBufferList returned error: %ld"</span>, (<span class="keyword">long</span>)error);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> buff;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>​    其实<code>iOS</code>底层<code>AudioUnit</code>框架可以通过输入输出不同的<code>bus</code>进行混音  <code>可参考</code><a href="https://www.jianshu.com/p/f8bb0cc1075e" target="_blank" rel="noopener">AUGraph结合RemoteI/O Unit与Mixer Unit</a>, 但是局限在于需要调用硬件接口,则需要麦克风权限以及扬声器都需设置相关的音频会话 <a href="https://blog.csdn.net/ByteDanceTech/article/details/114325538" target="_blank" rel="noopener">AVAudioSession</a> ,如果是本地文件+麦克风录音用系统提供的就OK了</p>
+<p>业务场景较为复杂且数据源分散由不同的<code>SDK</code>提供,这时就只能做数据层的处理了,避免各个<code>SDK</code>之间相互抢占系统音频会话的设置权限. </p>
+<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><ul>
+<li><a href="https://blog.csdn.net/dxpqxb/article/details/78329403" target="_blank" rel="noopener">音频混音的算法实现</a></li>
+<li><a href="https://blog.csdn.net/TopsLuo/article/details/72769800" target="_blank" rel="noopener">简单的混音算法</a></li>
+<li><a href="https://github.com/AgoraIO/Advanced-Video/tree/master/iOS%26macOS/Agora-Screen-Sharing/Agora-Screen-Sharing-iOS-Broadcast" target="_blank" rel="noopener">声网基于ReplayKit的两路音频流重采样以及混音代码</a></li>
+<li><a href="https://blog.csdn.net/u011270282/article/details/51792071" target="_blank" rel="noopener">byte*与CMSampleBufferRef互相转换</a></li>
+<li><a href="https://www.jianshu.com/p/ca2cb00418a7" target="_blank" rel="noopener">PCM音频数据调整音量</a></li>
+<li><a href="https://www.jianshu.com/p/57dd36e704be" target="_blank" rel="noopener">播放PCM</a></li>
+<li><a href="https://www.cnblogs.com/junhuawang/p/7920989.html" target="_blank" rel="noopener">AVAudioSession详解</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/" title="iOS音频流混音实践">http://wangguibin/github.io/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E9%9F%B3%E8%A7%86%E9%A2%91/" rel="tag"># 音视频</a>
+          
+            <a href="/hexo-github-action/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86/" rel="tag"># 音频处理</a>
+          
+            <a href="/hexo-github-action/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" rel="tag"># 踩坑记录</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2021/06/13/iOS%E5%8A%A0%E8%BD%BD%E6%9C%AC%E5%9C%B0html%E6%96%87%E4%BB%B6%E9%94%9A%E7%82%B9%E5%AE%9A%E4%BD%8D%E5%A4%84%E7%90%86/" rel="next" title="iOS加载本地html文件锚点定位处理">
+                <i class="fa fa-chevron-left"></i> iOS加载本地html文件锚点定位处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/" rel="prev" title="iOS编译SDK自动化脚本(.framework+.a)">
+                iOS编译SDK自动化脚本(.framework+.a) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定时器-截图实现录屏功能的核心代码"><span class="nav-number">1.</span> <span class="nav-text">定时器 + 截图实现录屏功能的核心代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混音的前提条件"><span class="nav-number">2.</span> <span class="nav-text">混音的前提条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混音算法"><span class="nav-number">3.</span> <span class="nav-text">混音算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的相关代码块"><span class="nav-number">4.</span> <span class="nav-text">常用的相关代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

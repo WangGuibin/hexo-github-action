@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习总结,CSS,前端,HTML,JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近学习CSS的一些知识点的总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS学习笔记">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2017/09/26/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="最近学习CSS的一些知识点的总结">
+<meta property="article:published_time" content="2017-09-26T22:25:24.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.444Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="学习总结">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2017/09/26/CSS学习笔记/"/>
+
+
+
+
+
+  <title>CSS学习笔记 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2017/09/26/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSS学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-26T22:25:24+00:00">
+                2017-09-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2017/09/26/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2017/09/26/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近学习CSS的一些知识点的总结</p>
+<a id="more"></a>
+
+<h1 id="选择器的使用"><a href="#选择器的使用" class="headerlink" title="选择器的使用"></a>选择器的使用</h1><ul>
+<li><p>类选择器和id选择器用法类似,类选择器可以选择多个标签,标签也可以拥有多个类选择器,类还可以继承,以及伪类等使用,而id不同,id是标签唯一的标识,id选择器可以指向多个标签,但是一个标签只能对应一个id。</p>
+</li>
+<li><p>css样式的优先级, 外部 <code>&lt;</code> 内嵌 <code>&lt;</code> 内联, 也就是谁离控制的标签距离越近(按文档流的方向)就听谁的,谁的样式就好使,不然都得被后来者居上,覆盖之。 </p>
+</li>
+<li><p><code>*{ … }</code>  通用选择器  </p>
+</li>
+<li><p><code>food &gt;li</code>子类选择器</p>
+</li>
+<li><p>伪类选择符 鼠标滑过 显示的效果样式..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a:hover&#123;color:red;&#125;</span><br></pre></td></tr></table></figure>
+<!-- more -->
+</li>
+<li><p>段落缩进</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p&#123;text-indent:2em;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>行高(行间距)  : 设置垂直居中一般就用到这个货~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p&#123;line-height:1.5em;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文字间隔</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">h1&#123;</span><br><span class="line">    letter-spacing:50px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>布局属性text-align (left,center,right) 与iOS差不多</p>
+</li>
+<li><p>常用的块状元素有：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;、&lt;p&gt;、&lt;h1&gt;...&lt;h6&gt;、&lt;ol&gt;、&lt;ul&gt;、&lt;dl&gt;、&lt;table&gt;、&lt;address&gt;、&lt;blockquote&gt; 、&lt;form&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>常用的内联元素有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a&gt;、&lt;span&gt;、&lt;br&gt;、&lt;i&gt;、&lt;em&gt;、&lt;strong&gt;、&lt;label&gt;、&lt;q&gt;、&lt;var&gt;、&lt;cite&gt;、&lt;code&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>常用的内联块状元素有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img&gt;、&lt;input&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>将div等块元素转换成内联元素</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> div&#123;display:inline;&#125;</span><br><span class="line">&lt;div style&#x3D;&quot;color:red&quot;&gt;我是谁&lt;&#x2F;div&gt;&lt;br&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>盒子模型<br>填充也可分为上、右、下、左(顺时针)。如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div&#123;padding:20px 10px 15px 30px;&#125;</span><br></pre></td></tr></table></figure>
+<p>顺序一定不要搞混。可以分开写上面代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">   padding-top:20px;</span><br><span class="line">   padding-right:10px;</span><br><span class="line">   padding-bottom:15px;</span><br><span class="line">   padding-left:30px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这上右下左也是醉了 和苹果的(上左下右)刚好相反      一个顺时针  一个逆时针<br>如果上、右、下、左的填充都为<code>10px</code>;可以这么写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div&#123;padding:10px;&#125;</span><br></pre></td></tr></table></figure>
+<p>如果上下填充一样为<code>10px</code>，左右一样为<code>20px</code>，可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div&#123;padding:10px 20px;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>想要让多个块级元素单行显示咋办</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display:  inline--block;</span><br></pre></td></tr></table></figure></li>
+<li><p>水平居中的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准流,文本居中即可</span><br><span class="line">定位流中设置  position: relative;     left: (100% -- 元素宽度)&#x2F;2 ;</span><br><span class="line">浮动流中设置  margin:  0  auto;</span><br></pre></td></tr></table></figure></li>
+<li><p>盒子模型定位技巧</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">display: block;</span><br><span class="line">包括内边距(padding)和外边距(margin)以及边框(boder)</span><br><span class="line"> display: flex; 支持flex-box布局属性灵活弹性布局</span><br><span class="line"></span><br><span class="line">1. flex-direction： 主轴的方向（即项目的排列方向）。 【box-orient】</span><br><span class="line">2. flex-wrap： 如果一条轴线排不下，如何换行。 【box-lines】</span><br><span class="line">3. flex-flow： flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap</span><br><span class="line">4. justify-content： 项目在主轴上的对齐方式。【box-pack】</span><br><span class="line">5. align-items： 项目在交叉轴上如何对齐。【box-align】</span><br><span class="line">6. align-content： 定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定位<br><code>absolute</code>:表里如一，移动了就是移动了。<br><code>relative</code>:只是表面显示移动了，但实际还在文档流中原有位置，别的元素无法占据。<br><code>fixed</code>:传说中的右下角悬浮小广告。<br><code>Relative</code>与<code>Absolute</code>组合使用：子元素定位时，它的前辈元素必须设置有<code>position</code>属性，从而子元素使用<code>absolute</code>进行定位<br>结合 <code>left</code> <code>top</code> <code>right</code> <code>bottom</code>可以灵活各种布局的定位</p>
+</li>
+</ul>
+<h1 id="清除浮动的小技巧"><a href="#清除浮动的小技巧" class="headerlink" title="清除浮动的小技巧"></a>清除浮动的小技巧</h1><h3 id="1-父级div定义-height"><a href="#1-父级div定义-height" class="headerlink" title="1. 父级div定义 height"></a>1. 父级div定义 height</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span> </span><br><span class="line"><span class="css"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="comment">/*解决代码*/</span><span class="attribute">height</span>:<span class="number">200px</span>;&#125; </span></span><br><span class="line"><span class="css"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>&#125; </span></span><br><span class="line"><span class="css"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span></span><br><span class="line"><span class="css"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>Left<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>Right<span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span> </span><br><span class="line">div2 </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>父级div手动定义height，就解决了父级div无法自动获取到高度的问题。</code> </li>
+<li><strong>优点：</strong>`简单、代码少、容易掌握 ``</li>
+<li><strong>缺点：</strong><code>只适合高度固定的布局，要给出精确的高度，如果高度和父级div不一样时，会产生问题</code></li>
+<li><strong>建议：</strong><code>不推荐使用，只建议高度固定的布局时使用</code></li>
+</ul>
+<h3 id="2-结尾处加空div标签-clear-both"><a href="#2-结尾处加空div标签-clear-both" class="headerlink" title="2. 结尾处加空div标签 clear:both"></a>2. 结尾处加空div标签 clear:both</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="comment">/*清除浮动代码*/</span> </span><br><span class="line"><span class="selector-class">.clearfloat</span>&#123;<span class="attribute">clear</span>:both&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;div class="clearfloat"&gt;&lt;/div&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>添加一个空div，利用css提高的clear:both清除浮动，让父级div能自动获取到高度</code></li>
+<li><strong>优点：</strong><code>简单、代码少、浏览器支持好、不容易出现怪问题</code></li>
+<li><strong>缺点：</strong><code>不少初学者不理解原理；如果页面浮动布局多，就要增加很多空div，让人感觉很不好</code></li>
+<li><strong>建议：</strong><code>不推荐使用，但此方法是以前主要使用的一种清除浮动方法</code></li>
+</ul>
+<h3 id="3-父级div定义-伪类-after-和-zoom"><a href="#3-父级div定义-伪类-after-和-zoom" class="headerlink" title="3. 父级div定义 伪类:after 和 zoom"></a>3. 父级div定义 伪类:after 和 zoom</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="comment">/*清除浮动代码*/</span> </span><br><span class="line"><span class="selector-class">.clearfloat</span><span class="selector-pseudo">:after</span>&#123;<span class="attribute">display</span>:block;<span class="attribute">clear</span>:both;<span class="attribute">content</span>:<span class="string">""</span>;<span class="attribute">visibility</span>:hidden;<span class="attribute">height</span>:<span class="number">0</span>&#125; </span><br><span class="line"><span class="selector-class">.clearfloat</span>&#123;<span class="attribute">zoom</span>:<span class="number">1</span>&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1 clearfloat"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>IE8以上和非IE浏览器才支持:after，原理和方法2有点类似，zoom(IE转有属性)可解决ie6,ie7浮动问题</code></li>
+<li><strong>优点：</strong><code>浏览器支持好、不容易出现怪问题（目前：大型网站都有使用，如：腾迅，网易，新浪等等</code></li>
+<li><strong>缺点：</strong><code>代码多、不少初学者不理解原理，要两句代码结合使用才能让主流浏览器都支持。</code></li>
+<li><strong>建议：</strong><code>推荐使用，建议定义公共类，以减少CSS代码。</code></li>
+</ul>
+<h3 id="4-父级div定义-overflow-hidden"><a href="#4-父级div定义-overflow-hidden" class="headerlink" title="4. 父级div定义 overflow:hidden"></a>4. 父级div定义 overflow:hidden</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="comment">/*解决代码*/</span><span class="attribute">width</span>:<span class="number">98%</span>;<span class="attribute">overflow</span>:hidden&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>;<span class="attribute">width</span>:<span class="number">98%</span>&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>必须定义width或zoom:1，同时不能定义height，使用overflow:hidden时，浏览器会自动检查浮动区域的高度</code></li>
+<li><strong>优点：</strong><code>简单、代码少、浏览器支持好</code></li>
+<li><strong>缺点：</strong><code>不能和position配合使用，因为超出的尺寸的会被隐藏。</code> </li>
+<li><strong>建议：</strong><code>只推荐没有使用position或对overflow:hidden理解比较深的朋友使用。</code></li>
+</ul>
+<h3 id="5-父级div定义-overflow-auto"><a href="#5-父级div定义-overflow-auto" class="headerlink" title="5. 父级div定义 overflow:auto"></a>5. 父级div定义 overflow:auto</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="comment">/*解决代码*/</span><span class="attribute">width</span>:<span class="number">98%</span>;<span class="attribute">overflow</span>:auto&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">margin-top</span>:<span class="number">10px</span>;<span class="attribute">width</span>:<span class="number">98%</span>&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>必须定义width或zoom:1，同时不能定义height，使用overflow:auto时，浏览器会自动检查浮动区域的高度</code></li>
+<li><strong>优点：</strong><code>简单、代码少、浏览器支持好</code></li>
+<li><strong>缺点：</strong><code>内部宽高超过父级div时，会出现滚动条。</code> </li>
+<li><strong>建议：</strong><code>不推荐使用，如果你需要出现滚动条或者确保你的代码不会出现滚动条就使用吧。</code></li>
+</ul>
+<h3 id="6-父级div-也一起浮动"><a href="#6-父级div-也一起浮动" class="headerlink" title="6. 父级div 也一起浮动"></a>6. 父级div 也一起浮动</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="comment">/*解决代码*/</span><span class="attribute">width</span>:<span class="number">98%</span>;<span class="attribute">margin-bottom</span>:<span class="number">10px</span>;<span class="attribute">float</span>:left&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">width</span>:<span class="number">98%</span>;<span class="comment">/*解决代码*/</span><span class="attribute">clear</span>:both&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong>`所有代码一起浮动，就变成了一个整体 ``</li>
+<li><strong>优点：</strong><code>没有优点</code></li>
+<li><strong>缺点：</strong><code>会产生新的浮动问题。</code></li>
+<li><strong>建议：</strong><code>不推荐使用，只作了解。</code></li>
+</ul>
+<h3 id="7-父级div定义-display-table"><a href="#7-父级div定义-display-table" class="headerlink" title="7. 父级div定义 display:table"></a>7. 父级div定义 display:table</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="comment">/*解决代码*/</span><span class="attribute">width</span>:<span class="number">98%</span>;<span class="attribute">display</span>:table;<span class="attribute">margin-bottom</span>:<span class="number">10px</span>;&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>;<span class="attribute">width</span>:<span class="number">98%</span>;&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>将div属性变成表格</code></li>
+<li><strong>优点：</strong><code>没有优点</code></li>
+<li><strong>缺点：</strong><code>会产生新的未知问题。</code></li>
+<li><strong>建议：</strong><code>不推荐使用，只作了解。</code></li>
+</ul>
+<h3 id="8-结尾处加-br标签-clear-both"><a href="#8-结尾处加-br标签-clear-both" class="headerlink" title="8. 结尾处加 br标签 clear:both"></a>8. 结尾处加 br标签 clear:both</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;style type="text/css"&gt; </span><br><span class="line"><span class="selector-class">.div1</span>&#123;<span class="attribute">background</span>:<span class="number">#000080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">margin-bottom</span>:<span class="number">10px</span>;<span class="attribute">zoom</span>:<span class="number">1</span>&#125; </span><br><span class="line"><span class="selector-class">.div2</span>&#123;<span class="attribute">background</span>:<span class="number">#800080</span>;<span class="attribute">border</span>:<span class="number">1px</span> solid red;<span class="attribute">height</span>:<span class="number">100px</span>&#125; </span><br><span class="line"><span class="selector-class">.left</span>&#123;<span class="attribute">float</span>:left;<span class="attribute">width</span>:<span class="number">20%</span>;<span class="attribute">height</span>:<span class="number">200px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.right</span>&#123;<span class="attribute">float</span>:right;<span class="attribute">width</span>:<span class="number">30%</span>;<span class="attribute">height</span>:<span class="number">80px</span>;<span class="attribute">background</span>:<span class="number">#DDD</span>&#125; </span><br><span class="line"><span class="selector-class">.clearfloat</span>&#123;<span class="attribute">clear</span>:both&#125; </span><br><span class="line">&lt;/style&gt; </span><br><span class="line">&lt;div class="div1"&gt; </span><br><span class="line">&lt;div class="left"&gt;Left&lt;/div&gt; </span><br><span class="line">&lt;div class="right"&gt;Right&lt;/div&gt; </span><br><span class="line">&lt;br class="clearfloat" /&gt; </span><br><span class="line">&lt;/div&gt; </span><br><span class="line">&lt;div class="div2"&gt; </span><br><span class="line"><span class="selector-tag">div2</span> </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>原理：</strong><code>父级div定义zoom:1来解决IE浮动问题，结尾处加 br标签 clear:both</code></li>
+<li><strong>建议：</strong><code>不推荐使用，只作了解。</code></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2017/09/26/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="CSS学习笔记">http://wangguibin/github.io/hexo-github-action/2017/09/26/CSS%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># 学习总结</a>
+          
+            <a href="/hexo-github-action/tags/CSS/" rel="tag"># CSS</a>
+          
+            <a href="/hexo-github-action/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          
+            <a href="/hexo-github-action/tags/HTML/" rel="tag"># HTML</a>
+          
+            <a href="/hexo-github-action/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2017/09/26/%E6%88%91%E7%9A%84git%E7%AC%94%E8%AE%B0/" rel="prev" title="我的git笔记">
+                我的git笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#选择器的使用"><span class="nav-number">1.</span> <span class="nav-text">选择器的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清除浮动的小技巧"><span class="nav-number">2.</span> <span class="nav-text">清除浮动的小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-父级div定义-height"><span class="nav-number">2.0.1.</span> <span class="nav-text">1. 父级div定义 height</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-结尾处加空div标签-clear-both"><span class="nav-number">2.0.2.</span> <span class="nav-text">2. 结尾处加空div标签 clear:both</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-父级div定义-伪类-after-和-zoom"><span class="nav-number">2.0.3.</span> <span class="nav-text">3. 父级div定义 伪类:after 和 zoom</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-父级div定义-overflow-hidden"><span class="nav-number">2.0.4.</span> <span class="nav-text">4. 父级div定义 overflow:hidden</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-父级div定义-overflow-auto"><span class="nav-number">2.0.5.</span> <span class="nav-text">5. 父级div定义 overflow:auto</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-父级div-也一起浮动"><span class="nav-number">2.0.6.</span> <span class="nav-text">6. 父级div 也一起浮动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-父级div定义-display-table"><span class="nav-number">2.0.7.</span> <span class="nav-text">7. 父级div定义 display:table</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-结尾处加-br标签-clear-both"><span class="nav-number">2.0.8.</span> <span class="nav-text">8. 结尾处加 br标签 clear:both</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

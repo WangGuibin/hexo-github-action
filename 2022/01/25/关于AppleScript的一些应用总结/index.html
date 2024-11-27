@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工作流,workflow,AppleScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="总结一下工作中常用到的一些可提升效率的一些AppleScript的操作    关于AppleScript的一些应用总结 为Mac自带的AppleScript脚本编辑器增加代码注释快捷键 关于AppleScript脚本语言的一些使用总结  iTerm2新建窗口并执行shell指令12345678910111213tell application &quot;iTerm&quot;    set myterm to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于AppleScript的一些应用总结">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="总结一下工作中常用到的一些可提升效率的一些AppleScript的操作    关于AppleScript的一些应用总结 为Mac自带的AppleScript脚本编辑器增加代码注释快捷键 关于AppleScript脚本语言的一些使用总结  iTerm2新建窗口并执行shell指令12345678910111213tell application &quot;iTerm&quot;    set myterm to">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_11_19:54:00_Xnip2022-01-11_19-51-43.png">
+<meta property="article:published_time" content="2022-01-25T18:56:55.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.444Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="工作流">
+<meta property="article:tag" content="workflow">
+<meta property="article:tag" content="AppleScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_11_19:54:00_Xnip2022-01-11_19-51-43.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2022/01/25/关于AppleScript的一些应用总结/"/>
+
+
+
+
+
+  <title>关于AppleScript的一些应用总结 | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">关于AppleScript的一些应用总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-25T18:56:55+00:00">
+                2022-01-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<blockquote>
+<p>总结一下工作中常用到的一些可提升效率的一些AppleScript的操作 </p>
+</blockquote>
+<ul>
+<li><a href="https://www.cnblogs.com/wgb1234/p/15789749.html" target="_blank" rel="noopener">关于AppleScript的一些应用总结</a></li>
+<li><a href="https://www.cnblogs.com/wgb1234/p/14337703.html" target="_blank" rel="noopener">为Mac自带的AppleScript脚本编辑器增加代码注释快捷键</a></li>
+<li><a href="https://www.cnblogs.com/wgb1234/p/14319273.html" target="_blank" rel="noopener">关于AppleScript脚本语言的一些使用总结</a></li>
+</ul>
+<h2 id="iTerm2"><a href="#iTerm2" class="headerlink" title="iTerm2"></a>iTerm2</h2><h3 id="新建窗口并执行shell指令"><a href="#新建窗口并执行shell指令" class="headerlink" title="新建窗口并执行shell指令"></a>新建窗口并执行shell指令</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"iTerm"</span></span><br><span class="line">    <span class="keyword">set</span> myterm <span class="keyword">to</span> create window <span class="keyword">with</span> default profile</span><br><span class="line">    <span class="keyword">tell</span> myterm</span><br><span class="line">        <span class="built_in">activate</span> current session</span><br><span class="line">        <span class="built_in">launch</span> session <span class="string">"Default Session"</span></span><br><span class="line">        <span class="keyword">tell</span> <span class="keyword">the</span> current session</span><br><span class="line">            <span class="built_in">write</span> <span class="built_in">text</span> <span class="string">"echo hello"</span></span><br><span class="line">            <span class="built_in">write</span> <span class="built_in">text</span> <span class="string">"clear;"</span></span><br><span class="line">            <span class="built_in">write</span> <span class="built_in">text</span> <span class="string">"date &amp;&amp; cal"</span> <span class="keyword">without</span> newline</span><br><span class="line">        <span class="keyword">end</span> <span class="keyword">tell</span></span><br><span class="line">        <span class="built_in">write</span> (sessions <span class="keyword">of</span> current <span class="literal">tab</span>) <span class="built_in">text</span> <span class="literal">linefeed</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">tell</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">tell</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="新建tab-并执行shell命令"><a href="#新建tab-并执行shell命令" class="headerlink" title="新建tab, 并执行shell命令"></a>新建tab, 并执行shell命令</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"iTerm"</span></span><br><span class="line">	<span class="keyword">tell</span> current window</span><br><span class="line">		create <span class="literal">tab</span> <span class="keyword">with</span> default profile</span><br><span class="line">		<span class="keyword">tell</span> current session</span><br><span class="line">			<span class="built_in">write</span> <span class="built_in">text</span> <span class="string">"echo 'hello world~ ' "</span></span><br><span class="line">		<span class="keyword">end</span> <span class="keyword">tell</span></span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">tell</span></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">tell</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="配合自动操作选中Podfile文件增加快速操作菜单-创建新窗口并执行pod-install"><a href="#配合自动操作选中Podfile文件增加快速操作菜单-创建新窗口并执行pod-install" class="headerlink" title="配合自动操作选中Podfile文件增加快速操作菜单,创建新窗口并执行pod install"></a>配合自动操作选中<code>Podfile</code>文件增加快速操作菜单,创建新窗口并执行pod install</h3><p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_11_19:54:00_Xnip2022-01-11_19-51-43.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#新建窗口,选中Podfile 右键快速操作找到pod install这个菜单执行即可</span></span><br><span class="line">PodfilePath=<span class="string">"<span class="variable">$&#123;1%/*&#125;</span>"</span> </span><br><span class="line">osascript &lt;&lt;EOF</span><br><span class="line">tell application <span class="string">"iTerm"</span></span><br><span class="line">    <span class="built_in">set</span> myterm to create window with default profile</span><br><span class="line">    tell myterm</span><br><span class="line">        activate current session</span><br><span class="line">        launch session <span class="string">"Default Session"</span></span><br><span class="line">        tell the current session</span><br><span class="line">            write text <span class="string">"cd <span class="variable">$&#123;PodfilePath&#125;</span>"</span></span><br><span class="line">            write text <span class="string">"clear;"</span></span><br><span class="line">            write text <span class="string">"pod install"</span> without newline</span><br><span class="line">        end tell</span><br><span class="line">        write (sessions of current tab) text linefeed</span><br><span class="line">    end tell</span><br><span class="line">end tell</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者新建tab</span></span><br><span class="line">PodfilePath=<span class="string">"<span class="variable">$&#123;1%/*&#125;</span>"</span> </span><br><span class="line">osascript &lt;&lt;EOF</span><br><span class="line">tell application <span class="string">"iTerm"</span></span><br><span class="line">	tell current window</span><br><span class="line">		create tab with default profile</span><br><span class="line">		tell current session</span><br><span class="line">            write text <span class="string">"cd <span class="variable">$&#123;PodfilePath&#125;</span>"</span></span><br><span class="line">            write text <span class="string">"clear;"</span></span><br><span class="line">            write text <span class="string">"pod install"</span> without newline</span><br><span class="line">		end tell</span><br><span class="line">	end tell</span><br><span class="line">end tell</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<h2 id="Safari"><a href="#Safari" class="headerlink" title="Safari"></a>Safari</h2><h3 id="使用Safari打开指定URL"><a href="#使用Safari打开指定URL" class="headerlink" title="使用Safari打开指定URL"></a>使用Safari打开指定URL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">openWebLink</span></span>()&#123;</span><br><span class="line">osascript &lt;&lt;EOF</span><br><span class="line">tell application <span class="string">"Safari"</span></span><br><span class="line">	activate</span><br><span class="line">    tell window 1</span><br><span class="line">        <span class="built_in">set</span> current tab to (make new tab with properties &#123;URL:<span class="string">"<span class="variable">$&#123;1&#125;</span>"</span>&#125;)</span><br><span class="line">    end tell</span><br><span class="line">end tell</span><br><span class="line">EOF</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Safari当前标签页执行一段js"><a href="#Safari当前标签页执行一段js" class="headerlink" title="Safari当前标签页执行一段js"></a>Safari当前标签页执行一段js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//CSDN或360Doc解锁文本</span></span><br><span class="line">tell application <span class="string">"Safari"</span> to <span class="keyword">do</span> JavaScript <span class="string">"javascript:window.oncontextmenu=document.oncontextmenu=document.oncopy=null; [...document.querySelectorAll('body')].forEach(dom =&gt; dom.outerHTML = dom.outerHTML); [...document.querySelectorAll('body, body *')].forEach(dom =&gt; &#123;['onselect', 'onselectstart', 'onselectend', 'ondragstart', 'ondragend', 'oncontextmenu', 'oncopy'].forEach(ev =&gt; dom.removeAttribute(ev)); dom.style['user-select']='auto'; dom.style['-webkit-touch-callout']='auto'; dom.style['-webkit-user-select']='auto'; dom.style['-ms-user-select']='auto';dom.style['-khtml-user-select']='auto'; dom.style['-moz-user-select']='auto';&#125;);"</span> <span class="keyword">in</span> <span class="built_in">document</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Xcode"><a href="#Xcode" class="headerlink" title="Xcode"></a>Xcode</h2><h3 id="Xcode打开-编译-运行项目的shell工作流"><a href="#Xcode打开-编译-运行项目的shell工作流" class="headerlink" title="Xcode打开/编译/运行项目的shell工作流"></a>Xcode打开/编译/运行项目的shell工作流</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line">WorkspaceName=<span class="string">"xxx.xcworkspace"</span> <span class="comment">#workspace文件名</span></span><br><span class="line">FilePath=<span class="string">"/xxx/xxx"</span> <span class="comment">#项目根目录路径</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打开项目</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">LoadProject</span></span>() &#123;</span><br><span class="line">osascript &lt;&lt;SCRIPT</span><br><span class="line">    tell application <span class="string">"Xcode"</span></span><br><span class="line"><span class="comment">#    判断已经打开就关闭的代码 觉着用不上就注释了</span></span><br><span class="line"><span class="comment">#        open "$FilePath"</span></span><br><span class="line"><span class="comment">#        set workspaceDocument to workspace document "$&#123;WorkspaceName&#125;"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#        repeat 120 times</span></span><br><span class="line"><span class="comment">#            if loaded of workspaceDocument is true then</span></span><br><span class="line"><span class="comment">#                close workspaceDocument</span></span><br><span class="line"><span class="comment">#                exit repeat</span></span><br><span class="line"><span class="comment">#            end if</span></span><br><span class="line"><span class="comment">#        end repeat</span></span><br><span class="line"></span><br><span class="line">        open <span class="string">"<span class="variable">$FilePath</span>"</span></span><br><span class="line">        <span class="built_in">set</span> workspaceDocument_new to workspace document <span class="string">"<span class="variable">$&#123;WorkspaceName&#125;</span>"</span></span><br><span class="line">        <span class="built_in">set</span> loadTime_Begin to (current date)</span><br><span class="line"></span><br><span class="line">        repeat 1200 <span class="built_in">times</span></span><br><span class="line">            <span class="keyword">if</span> loaded of workspaceDocument_new is <span class="literal">true</span> <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">set</span> loadTime_End to (current date)</span><br><span class="line">                <span class="built_in">exit</span> repeat</span><br><span class="line">            end <span class="keyword">if</span></span><br><span class="line">        end repeat</span><br><span class="line">    end tell</span><br><span class="line">SCRIPT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 编译项目</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">BuildProject</span></span>() &#123;</span><br><span class="line">osascript &lt;&lt;SCRIPT</span><br><span class="line">    tell application <span class="string">"Xcode"</span></span><br><span class="line">        <span class="built_in">set</span> actionResult to build workspace document 1</span><br><span class="line">        <span class="built_in">set</span> buildTime_Begin to (current date)</span><br><span class="line">        repeat</span><br><span class="line">            <span class="keyword">if</span> completed of actionResult is <span class="literal">true</span> <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">set</span> buildTime_End to (current date)</span><br><span class="line">                <span class="built_in">exit</span> repeat</span><br><span class="line">            end <span class="keyword">if</span></span><br><span class="line">        end repeat</span><br><span class="line">        <span class="built_in">log</span> <span class="string">"Build 开始时间"</span> &amp; (time string of (buildTime_Begin))</span><br><span class="line">        <span class="built_in">log</span> <span class="string">"Build 开始结束"</span> &amp; (time string of (buildTime_End))</span><br><span class="line">        <span class="built_in">log</span> <span class="string">"Build 总共耗时 :"</span> &amp; (buildTime_End - buildTime_Begin) &amp; <span class="string">"秒"</span></span><br><span class="line">    end tell</span><br><span class="line">SCRIPT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行项目</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">RunProject</span></span>() &#123;</span><br><span class="line">osascript &lt;&lt;SCRIPT</span><br><span class="line">    tell application <span class="string">"Xcode"</span></span><br><span class="line">        <span class="built_in">set</span> actionResult to run workspace document 1</span><br><span class="line">        <span class="built_in">set</span> runTime_Begin to (current date)</span><br><span class="line">        repeat</span><br><span class="line">            <span class="keyword">if</span> status of actionResult is running <span class="keyword">then</span></span><br><span class="line">                <span class="built_in">set</span> runTime_End to (current date)</span><br><span class="line">                <span class="built_in">exit</span> repeat</span><br><span class="line">            end <span class="keyword">if</span></span><br><span class="line">        end repeat</span><br><span class="line">        <span class="built_in">log</span> <span class="string">"Run 开始时间"</span> &amp; (time string of (runTime_Begin))</span><br><span class="line">        <span class="built_in">log</span> <span class="string">"Run 开始结束"</span> &amp; (time string of (runTime_End))</span><br><span class="line">        <span class="built_in">log</span> <span class="string">"Run 总共耗时 :"</span> &amp; (runTime_End - runTime_Begin) &amp; <span class="string">"秒"</span></span><br><span class="line">    end tell</span><br><span class="line">SCRIPT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">LoadProject</span><br><span class="line">BuildProject</span><br><span class="line">RunProject</span><br></pre></td></tr></table></figure>
+<h3 id="Xcode打开的当前文件的路径"><a href="#Xcode打开的当前文件的路径" class="headerlink" title="Xcode打开的当前文件的路径"></a>Xcode打开的当前文件的路径</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">tell</span> <span class="built_in">application</span> <span class="string">"Xcode"</span></span><br><span class="line">	<span class="keyword">set</span> CurrentActiveDocument <span class="keyword">to</span> document <span class="number">1</span> <span class="keyword">whose</span> <span class="built_in">name</span> <span class="keyword">ends with</span> (<span class="built_in">word</span> <span class="number">-1</span> <span class="keyword">of</span> (<span class="keyword">get</span> <span class="built_in">name</span> <span class="keyword">of</span> window <span class="number">1</span>))</span><br><span class="line">	<span class="keyword">set</span> WhatYouWant <span class="keyword">to</span> path <span class="keyword">of</span> CurrentActiveDocument</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">tell</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Finder"><a href="#Finder" class="headerlink" title="Finder"></a>Finder</h2><h3 id="获取当前选中文件或文件夹的路径"><a href="#获取当前选中文件或文件夹的路径" class="headerlink" title="获取当前选中文件或文件夹的路径"></a>获取当前选中文件或文件夹的路径</h3><p>获取当前选中的文件或者文件夹的路径 (Mac 升级Big Sur之后Alfred快捷键就无法获取选中的文件或目录的路径,困扰了很长一段时间,后来无意中发现了这个操作,所以又算是修复了这个问题)</p>
+<blockquote>
+<p>后来去Alfred官方论坛搜了一下 发现是权限问题,只要在 偏好设置&gt;安全性与隐私&gt;辅助功能里把Alfred勾选☑️上即可 可能是macOS big sur更注重隐私了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取当前选中的文件或者文件夹路径</span></span><br><span class="line">CurrentSelectPath=$(osascript &lt;&lt;EOF</span><br><span class="line">tell application <span class="string">"Finder"</span></span><br><span class="line">    <span class="built_in">set</span> theItems to selection</span><br><span class="line">    <span class="built_in">set</span> filePath to (POSIX path of (the selection as <span class="built_in">alias</span>))</span><br><span class="line">  end tell</span><br><span class="line">  <span class="built_in">set</span> q to filePath</span><br><span class="line">  <span class="built_in">return</span> q</span><br><span class="line">EOF</span><br><span class="line">)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$CurrentSelectPath</span></span><br></pre></td></tr></table></figure>
+<h3 id="AppleScript格式路径与POSIX路径互转"><a href="#AppleScript格式路径与POSIX路径互转" class="headerlink" title="AppleScript格式路径与POSIX路径互转"></a>AppleScript格式路径与POSIX路径互转</h3><p>AppleScript获取的路径默认都是带冒号的,例如: <code>Macintosh HD:Applications:i4tools.app:</code><br><code>choose file</code>  或者 <code>choose folder</code> 可以获取带冒号的路径</p>
+<p>带<code>:</code>的路径转为带<code>/</code>的路径</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> appPath <span class="keyword">to</span> <span class="keyword">POSIX path</span> <span class="keyword">of</span> <span class="string">"Macintosh HD:Applications:i4tools.app:"</span></span><br><span class="line"><span class="comment"># /Applications/i4tools.app</span></span><br></pre></td></tr></table></figure>
+<p>带<code>/</code>的路径转为带<code>:</code>的路径</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> thePath <span class="keyword">to</span> <span class="keyword">POSIX file</span> <span class="string">"/Applications/i4tools.app"</span> <span class="keyword">as</span> <span class="built_in">string</span></span><br><span class="line"><span class="comment"># Macintosh HD:Applications:i4tools.app:</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/" title="关于AppleScript的一些应用总结">http://wangguibin/github.io/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/" rel="tag"># 工作流</a>
+          
+            <a href="/hexo-github-action/tags/workflow/" rel="tag"># workflow</a>
+          
+            <a href="/hexo-github-action/tags/AppleScript/" rel="tag"># AppleScript</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/" rel="next" title="iOS编译SDK自动化脚本(.framework+.a)">
+                <i class="fa fa-chevron-left"></i> iOS编译SDK自动化脚本(.framework+.a)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2022/02/02/IPA%E5%8C%85%E5%86%85%E7%BD%91%E5%88%86%E5%8F%91/" rel="prev" title="IPA包内网分发">
+                IPA包内网分发 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iTerm2"><span class="nav-number">1.</span> <span class="nav-text">iTerm2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建窗口并执行shell指令"><span class="nav-number">1.1.</span> <span class="nav-text">新建窗口并执行shell指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新建tab-并执行shell命令"><span class="nav-number">1.2.</span> <span class="nav-text">新建tab, 并执行shell命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配合自动操作选中Podfile文件增加快速操作菜单-创建新窗口并执行pod-install"><span class="nav-number">1.3.</span> <span class="nav-text">配合自动操作选中Podfile文件增加快速操作菜单,创建新窗口并执行pod install</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Safari"><span class="nav-number">2.</span> <span class="nav-text">Safari</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Safari打开指定URL"><span class="nav-number">2.1.</span> <span class="nav-text">使用Safari打开指定URL</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Safari当前标签页执行一段js"><span class="nav-number">3.</span> <span class="nav-text">Safari当前标签页执行一段js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Xcode"><span class="nav-number">4.</span> <span class="nav-text">Xcode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode打开-编译-运行项目的shell工作流"><span class="nav-number">4.1.</span> <span class="nav-text">Xcode打开&#x2F;编译&#x2F;运行项目的shell工作流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xcode打开的当前文件的路径"><span class="nav-number">4.2.</span> <span class="nav-text">Xcode打开的当前文件的路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finder"><span class="nav-number">5.</span> <span class="nav-text">Finder</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取当前选中文件或文件夹的路径"><span class="nav-number">5.1.</span> <span class="nav-text">获取当前选中文件或文件夹的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AppleScript格式路径与POSIX路径互转"><span class="nav-number">5.2.</span> <span class="nav-text">AppleScript格式路径与POSIX路径互转</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>

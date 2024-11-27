@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "25c7361c"
+    });
+  daovoice('update');
+  </script>
+
+
+
+  
+  
+    
+    
+  <script src="/hexo-github-action/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/hexo-github-action/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/hexo-github-action/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/hexo-github-action/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/hexo-github-action/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/hexo-github-action/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/hexo-github-action/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/hexo-github-action/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/hexo-github-action/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="iOS,Shell,静态库," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="之前研究过静态库打包合成的问题,为此踩了不少坑, 写了一篇关于静态库打包的半自动的文章  关于Xcode12静态库打包的一些心得 - CoderWGB - 博客园">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS编译SDK自动化脚本(.framework+.a)">
+<meta property="og:url" content="http://wangguibin/github.io/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/index.html">
+<meta property="og:site_name" content="CoderWGB&#39;s Blog">
+<meta property="og:description" content="之前研究过静态库打包合成的问题,为此踩了不少坑, 写了一篇关于静态库打包的半自动的文章  关于Xcode12静态库打包的一些心得 - CoderWGB - 博客园">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:00:51_aggregate.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:01:38_framework.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:02:16_liba.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:09:26_Xnip2022-01-24_20-08-46.png">
+<meta property="article:published_time" content="2022-01-24T20:43:42.000Z">
+<meta property="article:modified_time" content="2024-11-27T13:18:26.444Z">
+<meta property="article:author" content="CoderWGB">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Shell">
+<meta property="article:tag" content="静态库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:00:51_aggregate.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/hexo-github-action/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://WangGuibin/github.io/hexo-github-action/2022/01/24/iOS编译SDK自动化脚本(.framework+.a)/"/>
+
+
+
+
+
+  <title>iOS编译SDK自动化脚本(.framework+.a) | CoderWGB's Blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/hexo-github-action/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CoderWGB's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Stay hungry, Stay foolish</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/hexo-github-action/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/hexo-github-action/about" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/hexo-github-action/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/hexo-github-action/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/hexo-github-action/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://WangGuibin/github.io/hexo-github-action/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CoderWGB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/hexo-github-action/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CoderWGB's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS编译SDK自动化脚本(.framework+.a)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-01-24T20:43:42+00:00">
+                2022-01-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2024-11-27T13:18:26+00:00">
+                2024-11-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  882 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>之前研究过静态库打包合成的问题,为此踩了不少坑, 写了一篇关于静态库打包的半自动的文章</p>
+<ul>
+<li><a href="https://www.cnblogs.com/wgb1234/p/14258036.html" target="_blank" rel="noopener">关于Xcode12静态库打包的一些心得 - CoderWGB - 博客园</a></li>
+</ul>
+<a id="more"></a>
+
+<p>不知道是Xcode的问题还是系统的问题,之前在网上找过了一些脚本,发现不可以直接在SDK工程中加入脚本,不然MacBook就直接发烫电风扇转不停了,当时没有找到好的办法,所以搞了个半自动…</p>
+<p>最近发现有<code>Aggregate</code>这么个玩意儿,终于可以全自动了哈哈哈😄,需要在SDK的工程里创建一个聚合类型的<code>target</code>即<code>Aggregate</code></p>
+<p>并在<code>Build Phases</code>新建一个<code>RunScript</code>里面执行脚本,无论是<code>.framework</code>还是<code>.a</code>都是一样的</p>
+<p>开整:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:00:51_aggregate.png" alt="创建Aggregate"></p>
+<p>自动构建.framework脚本如下: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="comment">#SDK的名字</span></span><br><span class="line">SDK_NAME=<span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line"><span class="comment">#SDK产出目录</span></span><br><span class="line">INSTALL_DIR=<span class="variable">$&#123;SRCROOT&#125;</span>/Products/<span class="variable">$&#123;SDK_NAME&#125;</span>.framework</span><br><span class="line"></span><br><span class="line"><span class="comment">#清空编译缓存</span></span><br><span class="line">rm -rf <span class="variable">$&#123;BUILD_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行模拟器编译指令</span></span><br><span class="line">xcodebuild -configuration <span class="variable">$&#123;CONFIGURATION&#125;</span> -target ”<span class="variable">$&#123;SDK_NAME&#125;</span>“ -sdk iphonesimulator build</span><br><span class="line"><span class="comment">#执行真机编译指令</span></span><br><span class="line">xcodebuild -configuration <span class="variable">$&#123;CONFIGURATION&#125;</span> -target ”<span class="variable">$&#123;SDK_NAME&#125;</span>“ -sdk iphoneos  build</span><br><span class="line"></span><br><span class="line"><span class="comment">#真机目录</span></span><br><span class="line">DEVICE_DIR=”build“/<span class="variable">$&#123;CONFIGURATION&#125;</span>-iphoneos/<span class="variable">$&#123;SDK_NAME&#125;</span>.framework</span><br><span class="line"><span class="comment">#模拟器目录</span></span><br><span class="line">SIMULATOR_DIR=”build“/<span class="variable">$&#123;CONFIGURATION&#125;</span>-iphonesimulator/<span class="variable">$&#123;SDK_NAME&#125;</span>.framework</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除旧的安装目录</span></span><br><span class="line"><span class="keyword">if</span> [ -d ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>“ ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">rm -rf ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>“</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">#创建新的安装目录</span></span><br><span class="line">mkdir -p ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>“</span><br><span class="line"><span class="comment">#拷贝编译产物到安装目录</span></span><br><span class="line">cp -R ”<span class="variable">$&#123;DEVICE_DIR&#125;</span>/“ ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>/“</span><br><span class="line"></span><br><span class="line"><span class="comment">#合并真机和模拟器的编译产物</span></span><br><span class="line">lipo -create ”<span class="variable">$&#123;DEVICE_DIR&#125;</span>/<span class="variable">$&#123;SDK_NAME&#125;</span>“ ”<span class="variable">$&#123;SIMULATOR_DIR&#125;</span>/<span class="variable">$&#123;SDK_NAME&#125;</span>“ -output ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>/<span class="variable">$&#123;SDK_NAME&#125;</span>“</span><br><span class="line"></span><br><span class="line"><span class="comment">#打开安装目录查看结果</span></span><br><span class="line">open ”<span class="variable">$&#123;SRCROOT&#125;</span>/Products/“</span><br><span class="line"></span><br><span class="line">rm -rf ”<span class="variable">$&#123;SRCROOT&#125;</span>/build“</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看此次编译的架构支持</span></span><br><span class="line">lipo_info=`lipo -info <span class="variable">$&#123;INSTALL_DIR&#125;</span>/<span class="variable">$&#123;SDK_NAME&#125;</span>`</span><br><span class="line">icon_path=`<span class="built_in">pwd</span>`/Xcode.icns</span><br><span class="line">icon_file=$(osascript -e ”<span class="built_in">set</span> thePath to POSIX file \“<span class="variable">$&#123;icon_path&#125;</span>\” as string“)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$icon_file</span></span><br><span class="line">archs=<span class="variable">$&#123;lipo_info##*are:&#125;</span></span><br><span class="line">osascript -e ”display dialog \“<span class="variable">$&#123;archs&#125;</span>\” with title \“查看静态库信息\” buttons &#123;\“OK\”&#125; default button 1 with icon file \“<span class="variable">$&#123;icon_file&#125;</span>\”“</span><br><span class="line"><span class="built_in">echo</span> ”脚本跑🏃完了“</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:01:38_framework.png" alt="framework脚本执行结果"></p>
+<p>自动构建.a脚本如下: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="comment">#SDK的名字</span></span><br><span class="line">SDK_NAME=<span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line"><span class="comment">#SDK产出目录</span></span><br><span class="line">INSTALL_DIR=<span class="variable">$&#123;SRCROOT&#125;</span>/Products/<span class="variable">$&#123;SDK_NAME&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#清空编译缓存</span></span><br><span class="line">rm -rf <span class="variable">$&#123;BUILD_DIR&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行模拟器编译指令</span></span><br><span class="line">xcodebuild -configuration <span class="variable">$&#123;CONFIGURATION&#125;</span> -target ”<span class="variable">$&#123;SDK_NAME&#125;</span>“ -sdk iphonesimulator build</span><br><span class="line"><span class="comment">#执行真机编译指令</span></span><br><span class="line">xcodebuild -configuration <span class="variable">$&#123;CONFIGURATION&#125;</span> -target ”<span class="variable">$&#123;SDK_NAME&#125;</span>“ -sdk iphoneos  build</span><br><span class="line"></span><br><span class="line"><span class="comment">#真机目录</span></span><br><span class="line">DEVICE_DIR=”build“/<span class="variable">$&#123;CONFIGURATION&#125;</span>-iphoneos</span><br><span class="line"><span class="comment">#模拟器目录</span></span><br><span class="line">SIMULATOR_DIR=”build“/<span class="variable">$&#123;CONFIGURATION&#125;</span>-iphonesimulator</span><br><span class="line"></span><br><span class="line"><span class="comment">#清除旧的安装目录</span></span><br><span class="line"><span class="keyword">if</span> [ -d ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>“ ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">rm -rf ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>“</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="comment">#创建新的安装目录</span></span><br><span class="line">mkdir -p ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>“</span><br><span class="line"><span class="comment">#拷贝编译产物到安装目录</span></span><br><span class="line">cp -R ”<span class="variable">$&#123;DEVICE_DIR&#125;</span>/“ ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>/“</span><br><span class="line">rm -rf ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>/usr“</span><br><span class="line"></span><br><span class="line"><span class="comment">#合并真机和模拟器的编译产物</span></span><br><span class="line">lipo -create ”<span class="variable">$&#123;DEVICE_DIR&#125;</span>/lib<span class="variable">$&#123;SDK_NAME&#125;</span>.a“ ”<span class="variable">$&#123;SIMULATOR_DIR&#125;</span>/lib<span class="variable">$&#123;SDK_NAME&#125;</span>.a“ -output ”<span class="variable">$&#123;INSTALL_DIR&#125;</span>/lib<span class="variable">$&#123;SDK_NAME&#125;</span>.a“</span><br><span class="line"></span><br><span class="line"><span class="comment">#打开安装目录查看结果</span></span><br><span class="line">open ”<span class="variable">$&#123;SRCROOT&#125;</span>/Products/“</span><br><span class="line"><span class="comment">#删除编译冗余数据</span></span><br><span class="line">rm -rf ”<span class="variable">$&#123;SRCROOT&#125;</span>/build“</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看此次编译的架构支持</span></span><br><span class="line">lipo_info=`lipo -info <span class="variable">$&#123;INSTALL_DIR&#125;</span>/lib<span class="variable">$&#123;SDK_NAME&#125;</span>.a`</span><br><span class="line">icon_path=`<span class="built_in">pwd</span>`/Xcode.icns </span><br><span class="line">icon_file=$(osascript -e ”<span class="built_in">set</span> thePath to POSIX file \“<span class="variable">$&#123;icon_path&#125;</span>\” as string“)</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$icon_file</span></span><br><span class="line">archs=<span class="variable">$&#123;lipo_info##*are:&#125;</span></span><br><span class="line">osascript -e ”display dialog \“<span class="variable">$&#123;archs&#125;</span>\” with title \“查看静态库信息\” buttons &#123;\“OK\”&#125; default button 1 with icon file \“<span class="variable">$&#123;icon_file&#125;</span>\”“</span><br><span class="line"><span class="built_in">echo</span> ”脚本跑🏃完了“</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:02:16_liba.png" alt="lib.a静态库脚本执行结果"></p>
+<p><strong>真机架构:</strong>   </p>
+<ul>
+<li>armv7</li>
+<li>armv7s</li>
+<li>arm64</li>
+<li>arm64e</li>
+</ul>
+<p><strong>模拟器架构:</strong></p>
+<ul>
+<li>i386</li>
+<li>x86_64</li>
+</ul>
+<p>不过现在Xcode13默认armv7和 arm64为标准架构,x86_64为PC端模拟器架构,需要自己手动调整Xcode配置剔除</p>
+<p>如图: </p>
+<p><img src="https://cdn.jsdelivr.net/gh/WangGuibin/ImageBed@main/files/2022_01_24_20:09:26_Xnip2022-01-24_20-08-46.png" alt="Xcode SDK架构设置"></p>
+<ul>
+<li><p><a href="https://github.com/WangGuibin/WGBToolsConfigRepository/tree/master/oh-my-workflows/workflows/Xcode/静态库相关" target="_blank" rel="noopener">之前写的Mac自动操作静态库相关的工作流</a></p>
+</li>
+<li><p><a href="https://github.com/WangGuibin/TestDemo/tree/master/SDKDemo" target="_blank" rel="noopener">SDK自动打包 Demo</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CoderWGB
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://wangguibin/github.io/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/" title="iOS编译SDK自动化脚本(.framework+.a)">http://wangguibin/github.io/hexo-github-action/2022/01/24/iOS%E7%BC%96%E8%AF%91SDK%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC(.framework+.a)/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/hexo-github-action/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/hexo-github-action/tags/Shell/" rel="tag"># Shell</a>
+          
+            <a href="/hexo-github-action/tags/%E9%9D%99%E6%80%81%E5%BA%93/" rel="tag"># 静态库</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/hexo-github-action/2021/08/31/iOS%E9%9F%B3%E9%A2%91%E6%B5%81%E6%B7%B7%E9%9F%B3%E5%AE%9E%E8%B7%B5/" rel="next" title="iOS音频流混音实践">
+                <i class="fa fa-chevron-left"></i> iOS音频流混音实践
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hexo-github-action/2022/01/25/%E5%85%B3%E4%BA%8EAppleScript%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BA%94%E7%94%A8%E6%80%BB%E7%BB%93/" rel="prev" title="关于AppleScript的一些应用总结">
+                关于AppleScript的一些应用总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CoderWGB</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/hexo-github-action/archives">
+              
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/hexo-github-action/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/WangGuibin" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:wangguibin1993@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CoderWGB</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">42k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/hexo-github-action/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/hexo-github-action/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/hexo-github-action/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: true,
+        appId: 'oT5vWHkWT1JN1o5aXiSqYGtH-gzGzoHsz',
+        appKey: 'V7zBLpzBgxVESicbyF072Cj9',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/hexo-github-action/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/hexo-github-action/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "horizontal";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/hexo-github-action/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/hexo-github-action/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
